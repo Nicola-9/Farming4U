@@ -10,13 +10,5 @@
         android:layout_height="match_parent"
         android:id="@android:id/list"
         />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:contentDescription="Plus"
-        app:srcCompat="@drawable/ic_baseline_add_24"/>
 
 </FrameLayout>
