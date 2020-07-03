@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#aac3b5"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Posto per la mappa"
+            android:textSize="30dp"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margine_cardview_homepage"
+            android:layout_marginBottom="@dimen/margine_cardview_homepage"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="center"
+                    android:src="@drawable/sprinkler"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="# coltivazioni irrigate nelle ultime 24 ore"
+                    android:textSize="@dimen/testo_materialcard_homepage"
+                    />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!--
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="false"
+            app:backgroundTint="#ffaaaa"
+            app:icon="@drawable/ic_warning_rosso"
+            android:text="Testo 1"
+            android:layout_marginRight="5dp"
+            >
+
+        </com.google.android.material.button.MaterialButton>
+        -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/margine_cardview_homepage"
+            android:layout_marginBottom="@dimen/margine_cardview_homepage"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/cardview_padding_left"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ic_warning_rosso"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="5dp"
+                    android:text="# warning attivi"
+                    android:textSize="@dimen/testo_materialcard_homepage"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <!--
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_marginLeft="5dp"
+            app:icon="@drawable/ic_warning_rosso"
+            android:text="# warning attivi"
+            android:background="#CDCD26"
+            >
+
+
+
+        </com.google.android.material.button.MaterialButton>
+
+-->
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/margine_cardview_homepage"
+                        android:layout_marginTop="@dimen/margine_cardview_homepage"
+                        android:layout_marginBottom="@dimen/margine_cardview_homepage"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <ImageView
+                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginRight="5dp"
+                                android:padding="@dimen/cardview_padding_left"
+                                android:layout_gravity="center"
+                                android:src="@drawable/sprinkler"
+                                />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_gravity="center"
+                                android:text="# mq terreni coltivati"
+                                android:textSize="@dimen/testo_materialcard_homepage"
+                                />
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/margine_cardview_homepage"
+                        android:layout_marginTop="@dimen/margine_cardview_homepage"
+                        >
+                        <LinearLayout
+                            android:padding="@dimen/cardview_padding_left"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="# note salvate"
+                                android:textAppearance="?attr/textAppearanceHeadline6"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Prima nota"
+                                android:maxLines="1"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="?android:attr/textColorSecondary"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Seconda nota"
+                                android:maxLines="1"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="?android:attr/textColorSecondary"
+                                />
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margine_cardview_homepage"
+                android:layout_marginLeft="@dimen/margine_cardview_homepage"
+                >
+
+                <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meteo giornaliero"
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:id="@+id/immagineMeteo1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/meteo_soleggiato"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Meteo1"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="9:00"
+                            android:layout_gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:id="@+id/immagineMeteo2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/meteo_sole_nuvoloso"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Meteo1"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="12:00"
+                            android:layout_gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:id="@+id/immagineMeteo3"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/meteo_sole_nuvoloso"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Meteo1"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="15:00"
+                            android:layout_gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:id="@+id/immagineMeteo4"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/meteo_sole_pioggia"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Meteo1"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="18:00"
+                            android:layout_gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <ImageView
+                            android:id="@+id/immagineMeteo5"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/meteo_molta_pioggia"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="Meteo1"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="21:00"
+                            android:layout_gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            />
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

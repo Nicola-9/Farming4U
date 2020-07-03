@@ -1,0 +1,54 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/mtrl_list_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toStartOf="@id/bottoneX"
+            android:paddingTop="16dp"
+            android:text="fsdfvsfvsf sdgfsfsef sef ef esfsefsefgasefdd dffssadada asdsdadawdwadw wdawadwadwadaw "
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/mtrl_list_item_tint"/>
+
+        <TextView
+            android:id="@+id/mtrl_list_item_secondary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mtrl_list_item_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:paddingEnd="16dp"
+            android:text="1234dfsdvdfbh seffaf"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/mtrl_list_item_tint" />
+
+        <ImageView
+            android:id="@+id/mtrl_list_item_icon"
+            android:layout_below="@id/mtrl_list_item_text"
+            android:layout_toEndOf="@id/mtrl_list_item_secondary_text"
+            android:layout_toRightOf="@id/mtrl_list_item_secondary_text"
+            android:src="@drawable/ic_alarm_off_black"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bottoneX"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="#000000"
+            android:text="x"
+            />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>
