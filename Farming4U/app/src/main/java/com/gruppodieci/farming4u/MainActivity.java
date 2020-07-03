@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +14,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
 
-        toolbar = findViewById(R.id.toolbar);
+        this.toolbar = findViewById(R.id.toolbar);
+        this.bottomBar = findViewById(R.id.bottomNavigationMenu);
+
+        this.bottomBar.setSelectedItemId(R.id.home);
+
+        this.bottomNavigationMenu = new BottomNavigationMenu(this);
+        this.bottomNavigationMenu.onMenuItemClick(bottomBar);
 
         setSupportActionBar(toolbar);
     }
@@ -28,4 +35,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private MaterialToolbar toolbar;
+    private BottomNavigationView bottomBar;
+    private BottomNavigationMenu bottomNavigationMenu;
 }
