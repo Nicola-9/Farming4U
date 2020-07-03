@@ -2,8 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Mappa" />
-    <item android:title="Irrigatori" />
-    <item android:title="Sensori" />
-    <item android:title="Logout" />
+    <item android:title="Mappa" android:id="@+id/mappaSettingsButton"/>
+    <item android:title="Irrigatori" android:id="@+id/irrigatoriSettingsButton" />
+    <item android:title="Sensori" android:id="@+id/sensoriSettingsButton"/>
+    <item android:title="Logout" android:id="@+id/logoutSettingsButton"/>
 </menu>
