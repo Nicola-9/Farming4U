@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:id="@+id/headerSensors">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/key_arrow_left"
+                android:background="@null"
+                android:tint="#717171"
+                android:scaleType="fitCenter"
+                android:id="@+id/switchSensorsLeft" />
+
+            <ImageView
+                android:layout_width="175dp"
+                android:layout_height="150dp"
+                android:src="@drawable/beaconBLE"
+                android:id="@+id/sensors"/>
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/key_arrow_right"
+                android:background="@null"
+                android:tint="#717171"
+                android:scaleType="fitCenter"
+                android:id="@+id/switchSensorsRight" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensore Vigneto"
+            android:textSize="25dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="vertical"
+        android:layout_below="@id/headerSensors">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Umidità"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/humidity_small"
+                app:iconTintMode="multiply"
+                app:iconGravity="start"
+                android:text="     78.7 %"
+                android:textSize="35dp"
+                android:textColor="#000"
+                android:textAlignment="textStart"
+                android:elevation="15dp"
+                app:cornerRadius="15dp"
+                app:strokeColor="#d1d1d1"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#fff"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperatura"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/temperatura_small"
+                app:iconTintMode="multiply"
+                app:iconGravity="start"
+                android:text="    25.9 °C"
+                android:textSize="35dp"
+                android:textColor="#000"
+                android:textAlignment="textStart"
+                android:elevation="15dp"
+                app:cornerRadius="15dp"
+                app:strokeColor="#d1d1d1"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#fff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acidità"
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ph"
+                app:iconTintMode="multiply"
+                app:iconGravity="start"
+                android:text="      ph 7"
+                android:textSize="35dp"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textAlignment="textStart"
+                android:elevation="15dp"
+                app:cornerRadius="15dp"
+                app:strokeColor="#d1d1d1"
+                app:strokeWidth="2dp"
+                android:backgroundTint="#fff" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
