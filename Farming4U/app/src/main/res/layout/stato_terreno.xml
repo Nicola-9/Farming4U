@@ -30,8 +30,8 @@
             <ImageView
                 android:layout_width="175dp"
                 android:layout_height="150dp"
-                android:src="@drawable/beaconble"
-                android:id="@+id/sensors"/>
+                android:src="@drawable/beacon_ble"
+                android:id="@+id/sensorsImage"/>
 
             <ImageButton
                 android:layout_width="45dp"
@@ -52,7 +52,8 @@
             android:textSize="25dp"
             android:textColor="#000"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/sensorName"/>
 
     </LinearLayout>
 
@@ -76,7 +77,8 @@
                 android:text="Umidità"
                 android:textSize="20dp"
                 android:textColor="#000"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:id="@+id/firstButtonHeader"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -93,7 +95,7 @@
                 app:strokeColor="#d1d1d1"
                 app:strokeWidth="2dp"
                 android:backgroundTint="#fff"
-                />
+                android:id="@+id/firstSensorInformationButton" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +109,8 @@
                 android:text="Temperatura"
                 android:textSize="20dp"
                 android:textColor="#000"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:id="@+id/secondButtonHeader"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -123,7 +126,8 @@
                 app:cornerRadius="15dp"
                 app:strokeColor="#d1d1d1"
                 app:strokeWidth="2dp"
-                android:backgroundTint="#fff" />
+                android:backgroundTint="#fff"
+                android:id="@+id/secondSensorInformationButton"/>
 
         </LinearLayout>
 
@@ -138,7 +142,8 @@
                 android:text="Acidità"
                 android:textSize="20dp"
                 android:textColor="#000"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:id="@+id/thirdButtonHeader"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -155,7 +160,8 @@
                 app:cornerRadius="15dp"
                 app:strokeColor="#d1d1d1"
                 app:strokeWidth="2dp"
-                android:backgroundTint="#fff" />
+                android:backgroundTint="#fff"
+                android:id="@+id/thirdSensorInformationButton"/>
 
         </LinearLayout>
     </LinearLayout>

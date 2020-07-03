@@ -24,6 +24,14 @@
         android:layout_above="@id/bottomNavigationMenu"
         android:id="@+id/startBottomMenu"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/startBottomMenu"
+        android:id="@+id/fragmentContainer"/>
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
