@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gruppodieci.farming4u.R;
-import com.gruppodieci.farming4u.business.AlertDialog;
 import com.gruppodieci.farming4u.business.MonthConverter;
 
 import java.time.LocalDateTime;
@@ -54,7 +53,6 @@ public class NewNoteFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.createDialog(getContext(),"Sei sicuro di voler salvare?","Ma proprio sicuro sicuro?","Dai salva","Annulla stronzo");
             }
         });
 
