@@ -23,6 +23,8 @@ android {
 
 }
 
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -34,4 +36,14 @@ dependencies {
 
     //Material Design
     implementation 'com.google.android.material:material:1.1.0'
+
+    //DateTimePicker https://github.com/wdullaer/MaterialDateTimePicker
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+
+    //grafi https://github.com/futuredapp/donut
+    implementation("app.futured.donut:library-compose:2.0.0")
+    implementation("app.futured.donut:library:2.0.0")
+
+
+
 }
