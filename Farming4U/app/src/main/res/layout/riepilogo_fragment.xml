@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:background="#aac3b5"
         >
         <TextView
@@ -22,12 +22,14 @@
     </FrameLayout>
 
     <LinearLayout
+        android:layout_marginLeft="@dimen/margine_cardview_homepage"
+        android:layout_marginRight="@dimen/margine_cardview_homepage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         >
 
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -56,12 +58,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:text="# coltivazioni irrigate nelle ultime 24 ore"
                     android:textSize="@dimen/testo_materialcard_homepage"
                     />
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
 
 
         <!--
@@ -85,11 +88,13 @@
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/margine_cardview_homepage"
             android:layout_marginBottom="@dimen/margine_cardview_homepage"
-            android:elevation="15dp"
-            app:cornerRadius="15dp"
+            android:layout_marginTop="@dimen/margine_cardview_homepage"
+            android:elevation="25dp"
             app:strokeColor="#d1d1d1"
+            app:cardCornerRadius="12dp"
             app:strokeWidth="2dp"
-            android:backgroundTint="@color/colorCardviewWarning"
+            app:cardBackgroundColor="#FFAB91"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:clickable="true"
 
             >
@@ -108,6 +113,7 @@
 
                     />
                 <TextView
+                    android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -143,6 +149,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
+        android:layout_marginLeft="@dimen/margine_cardview_homepage"
+        android:layout_marginRight="@dimen/margine_cardview_homepage"
+        android:layout_marginBottom="@dimen/margine_cardview_homepage"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -170,10 +179,11 @@
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:layout_marginBottom="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:cornerRadius="15dp"
                         app:strokeColor="#d1d1d1"
+                        app:cardCornerRadius="12dp"
                         app:strokeWidth="2dp"
-                        android:backgroundTint="@color/colorCardViewm2Coltivati"
+                        app:cardBackgroundColor="@color/colorCardViewm2Coltivati"
+                        style="@style/Widget.MaterialComponents.FloatingActionButton"
                         android:clickable="true"
                         >
                         <LinearLayout
@@ -207,6 +217,7 @@
                                 />
                                -->
                             <TextView
+                                android:layout_marginRight="5dp"
                                 android:layout_width="0dp"
                                 android:layout_weight="2"
                                 android:layout_height="wrap_content"
@@ -231,10 +242,11 @@
                         android:layout_marginRight="@dimen/margine_cardview_homepage"
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:cornerRadius="15dp"
                         app:strokeColor="#d1d1d1"
+                        app:cardCornerRadius="12dp"
                         app:strokeWidth="2dp"
-                        android:backgroundTint="@color/colorCardviewNote"
+                        app:cardBackgroundColor="@color/colorCardviewNote"
+                        style="@style/Widget.MaterialComponents.FloatingActionButton"
                         android:clickable="true"
                         >
                         <LinearLayout
@@ -249,6 +261,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
+                                android:layout_marginLeft="5dp"
                                 android:text="# note salvate"
                                 android:textAppearance="?attr/textAppearanceHeadline6"
                                 />
@@ -264,6 +277,7 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:layout_marginTop="5dp"
+                                android:layout_marginLeft="5dp"
                                 android:text="Prima nota"
                                 android:maxLines="1"
                                 android:textAppearance="?attr/textAppearanceBody2"
@@ -276,6 +290,7 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="3dp"
                                 android:text="Seconda nota"
+                                android:layout_marginLeft="5dp"
                                 android:maxLines="1"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
@@ -294,7 +309,7 @@
             android:layout_weight="1"
             >
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -312,7 +327,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Meteo giornaliero"
-                        android:textSize="15dp"
+                        android:textSize="14dp"
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:textAppearance="?attr/textAppearanceHeadline6"
@@ -469,7 +484,7 @@
 
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
         </FrameLayout>
 
 
