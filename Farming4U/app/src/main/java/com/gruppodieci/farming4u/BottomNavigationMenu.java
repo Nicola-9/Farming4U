@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.GroundsFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.fragments.NewNoteFragment;
 import com.gruppodieci.farming4u.fragments.NotesFragment;
@@ -41,7 +42,12 @@ public class BottomNavigationMenu {
 
                         return true;
                     case R.id.grounds:
-                        activeFragment = null;
+
+                        activeFragment = new GroundsFragment();
+                        replaceFragment(activeFragment);
+
+                        MainActivity.getToolbar().setTitle("Terreni");
+
                         return true;
                 }
 
@@ -55,6 +61,16 @@ public class BottomNavigationMenu {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, toReplace);
 
+        fragmentTransaction.commit();
+    }
+
+    public static void replaceFragment(Fragment toReplace,boolean addToBackstack){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, toReplace);
+        if (addToBackstack) {
+            fragmentTransaction.addToBackStack(null);
+        }
         fragmentTransaction.commit();
     }
 

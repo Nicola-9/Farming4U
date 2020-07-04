@@ -9,10 +9,14 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
+import com.gruppodieci.farming4u.MainActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CustomAdapterNotes;
 import com.gruppodieci.farming4u.business.Note;
@@ -56,10 +60,40 @@ public class NotesFragment extends ListFragment {
             public void onClick(View v) {
                 //your code for the particular button
                 Log.d("DEBUG","add cliccato");
+                Fragment fragment = new NewNoteFragment();
+
+                BottomNavigationMenu.replaceFragment(fragment,true);
+                BottomNavigationMenu.setActiveFragment(fragment);
             }
         });
 
+        setToolbar();
         return view;
+    }
+
+    private void setToolbar() {
+
+            ((MainActivity)getActivity()).showToolbarMenu(false);
+            MaterialToolbar toolbar= MainActivity.getToolbar();
+            toolbar.setVisibility(View.VISIBLE);
+            toolbar.setTitle("Note");
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().onBackPressed();
+                }
+            });
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((MainActivity)getActivity()).showToolbarMenu(true);
+        MaterialToolbar toolbar= MainActivity.getToolbar();
+        toolbar.setNavigationIcon(null);
+
     }
 
 

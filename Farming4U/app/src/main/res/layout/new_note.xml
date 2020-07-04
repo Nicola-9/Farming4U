@@ -10,8 +10,24 @@
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Testoo"
+        android:text=""
         android:layout_marginBottom="10dp"
+        />
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/buttonAggiungiPromemoria"
+        android:layout_width="wrap_content"
+        android:lines="2"
+        android:layout_height="wrap_content"
+        android:text="Aggiungi\npromemoria"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/relativeLayoutPulsanti"
+        app:icon="@drawable/ic_baseline_alarm_off_24"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         />
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInputEditTextNota"
@@ -19,9 +35,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-         />
+
+        />
 
     <RelativeLayout
+        android:id="@+id/relativeLayoutPulsanti"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
