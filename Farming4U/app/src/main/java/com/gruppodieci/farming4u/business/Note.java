@@ -10,6 +10,7 @@ public class Note implements Serializable {
     public Note(String nota,String data){
         this.nota=nota;
         this.data=data;
+        dataSveglia="";
     }
 
     public String getNota() {

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -17,6 +17,20 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+
+    <style name="CardViewWarning" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorCardviewWarning</item>
+
+    </style>
+
+    <style name="CardViewNote" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorCardviewNote</item>
+    </style>
+
+    <style name="CardViewm2Coltivati" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/colorCardViewm2Coltivati</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -25,5 +39,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>

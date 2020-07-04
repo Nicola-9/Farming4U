@@ -31,10 +31,17 @@ public class MainActivity extends AppCompatActivity {
         new SavingFiles(getApplicationContext());
         InstanziateFiles.instanziateFiles();
         setSupportActionBar(toolbar);
+        showToolbarMenu=true;
     }
 
+    public void showToolbarMenu(boolean show){
+        showToolbarMenu=show;
+        invalidateOptionsMenu();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if (!showToolbarMenu)
+            return false;
         super.onCreateOptionsMenu(menu);
 
         getMenuInflater().inflate(R.menu.settings_menu, menu);
@@ -60,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
