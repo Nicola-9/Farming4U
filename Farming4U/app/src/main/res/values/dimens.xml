@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margine_cardview_homepage">5dp</dimen>
+    <dimen name="margine_cardview_homepage">0dp</dimen>
     <dimen name="testo_materialcard_homepage">18dp</dimen>
     <dimen name="cardview_padding_left">7dp</dimen>
 </resources>
