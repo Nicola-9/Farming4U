@@ -255,31 +255,30 @@ public class GroundStatusBusiness {
     }
 
     public void setValue(){
-        int humidityData = random.nextInt(3);
-        int temperatureData = random.nextInt(3);
-        int phData = random.nextInt(3);
+        int humidityData = random.nextInt(11);
+        int temperatureData = random.nextInt(11);
+        int phData = random.nextInt(11);
 
-        switch (humidityData){
-            case 0:
-                firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+        if(humidityData >= 0 && humidityData <= 6){
+            firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
 
-                float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+            float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                warningHum.setImageResource(R.drawable.ok_icon);
+            warningHum.setImageResource(R.drawable.ok_icon);
 
-                warningHum.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-                warningHum.getLayoutParams().width = (int) pixelsWidth;
+            warningHum.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            warningHum.getLayoutParams().width = (int) pixelsWidth;
 
-                warningHum.requestLayout();
+            warningHum.requestLayout();
 
-                int humidityValue = random.nextInt(this.humidityValueNormal.length);
+            int humidityValue = random.nextInt(this.humidityValueNormal.length);
 
-                String value = basicSpace + humidityValueNormal[humidityValue];
-                firstSensorInformationButton.setText(value);
+            String value = basicSpace + humidityValueNormal[humidityValue];
+            firstSensorInformationButton.setText(value);
 
-                humidityMessagePriority = "normal";
-                break;
-            case 1:
+            humidityMessagePriority = "normal";
+        } else
+            if(humidityData >= 7 && humidityData <= 8){
                 firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
                 float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
@@ -298,51 +297,48 @@ public class GroundStatusBusiness {
                 firstSensorInformationButton.setText(valueM);
 
                 humidityMessagePriority = "medium";
-                break;
+            } else
+                if(humidityData >= 9 && humidityData <= 10){
+                    firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-            case 2:
-                firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
-                float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    warningHum.setImageResource(R.drawable.esclamativo_rosso);
 
-                warningHum.setImageResource(R.drawable.esclamativo_rosso);
+                    warningHum.getLayoutParams().height = (int) pixelsHeightHigh;
+                    warningHum.getLayoutParams().width = (int) pixelsWidthHigh;
 
-                warningHum.getLayoutParams().height = (int) pixelsHeightHigh;
-                warningHum.getLayoutParams().width = (int) pixelsWidthHigh;
+                    warningHum.requestLayout();
 
-                warningHum.requestLayout();
+                    int humidityValueH = random.nextInt(this.humidityValueHigh.length);
 
-                int humidityValueH = random.nextInt(this.humidityValueHigh.length);
+                    String valueH = basicSpace + humidityValueHigh[humidityValueH];
+                    firstSensorInformationButton.setText(valueH);
 
-                String valueH = basicSpace + humidityValueHigh[humidityValueH];
-                firstSensorInformationButton.setText(valueH);
+                    humidityMessagePriority = "high";
+                }
 
-                humidityMessagePriority = "high";
-                break;
-        }
+        if(temperatureData >= 0 && temperatureData <= 6){
+            secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
 
-        switch (temperatureData){
-            case 0:
-                secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+            float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+            warningTemp.setImageResource(R.drawable.ok_icon);
 
-                warningTemp.setImageResource(R.drawable.ok_icon);
+            warningTemp.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            warningTemp.getLayoutParams().width = (int) pixelsWidth;
 
-                warningTemp.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-                warningTemp.getLayoutParams().width = (int) pixelsWidth;
+            warningTemp.requestLayout();
 
-                warningTemp.requestLayout();
+            int tempValue = random.nextInt(this.temperatureValueNormal.length);
 
-                int tempValue = random.nextInt(this.temperatureValueNormal.length);
+            String value = basicSpace + temperatureValueNormal[tempValue];
+            secondSensorInformationButton.setText(value);
 
-                String value = basicSpace + temperatureValueNormal[tempValue];
-                secondSensorInformationButton.setText(value);
-
-                temperatureMessagePriority = "normal";
-                break;
-            case 1:
+            temperatureMessagePriority = "normal";
+        } else
+            if(temperatureData >= 7 && temperatureData <= 8){
                 secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
                 float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
@@ -361,51 +357,48 @@ public class GroundStatusBusiness {
                 secondSensorInformationButton.setText(valueM);
 
                 temperatureMessagePriority = "medium";
-                break;
+            } else
+                if(temperatureData >= 9 && temperatureData <= 10){
+                    secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-            case 2:
-                secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
-                float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    warningTemp.setImageResource(R.drawable.esclamativo_rosso);
 
-                warningTemp.setImageResource(R.drawable.esclamativo_rosso);
+                    warningTemp.getLayoutParams().height = (int) pixelsHeightHigh;
+                    warningTemp.getLayoutParams().width = (int) pixelsWidthHigh;
 
-                warningTemp.getLayoutParams().height = (int) pixelsHeightHigh;
-                warningTemp.getLayoutParams().width = (int) pixelsWidthHigh;
+                    warningTemp.requestLayout();
 
-                warningTemp.requestLayout();
+                    int tempValueH = random.nextInt(this.temperatureValueHigh.length);
 
-                int tempValueH = random.nextInt(this.temperatureValueHigh.length);
+                    String valueH = basicSpace + temperatureValueHigh[tempValueH];
+                    secondSensorInformationButton.setText(valueH);
 
-                String valueH = basicSpace + temperatureValueHigh[tempValueH];
-                secondSensorInformationButton.setText(valueH);
+                    temperatureMessagePriority = "high";
+                }
 
-                temperatureMessagePriority = "high";
-                break;
-        }
+        if(phData >= 0 && phData <= 6){
+            thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
 
-        switch (phData){
-            case 0:
-                thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.GREEN));
+            float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                float pixelsWidth =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+            warningPh.setImageResource(R.drawable.ok_icon);
 
-                warningPh.setImageResource(R.drawable.ok_icon);
+            warningPh.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            warningPh.getLayoutParams().width = (int) pixelsWidth;
 
-                warningPh.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-                warningPh.getLayoutParams().width = (int) pixelsWidth;
+            warningPh.requestLayout();
 
-                warningPh.requestLayout();
+            int phValue = random.nextInt(this.phValueNormal.length);
 
-                int phValue = random.nextInt(this.phValueNormal.length);
+            String value = basicSpace + phValueNormal[phValue];
+            thirdSensorInformationButton.setText(value);
 
-                String value = basicSpace + phValueNormal[phValue];
-                thirdSensorInformationButton.setText(value);
-
-                phMessagePriority = "normal";
-                break;
-            case 1:
+            phMessagePriority = "normal";
+        } else
+            if(phData >= 7 && phData <= 8){
                 thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
                 float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
@@ -424,29 +417,27 @@ public class GroundStatusBusiness {
                 thirdSensorInformationButton.setText(valueM);
 
                 phMessagePriority = "medium";
-                break;
+            } else
+                if(phData >= 9 && phData <= 10){
+                    thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-            case 2:
-                thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
+                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
-                float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
-                float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    warningPh.setImageResource(R.drawable.esclamativo_rosso);
 
-                warningPh.setImageResource(R.drawable.esclamativo_rosso);
+                    warningPh.getLayoutParams().height = (int) pixelsHeightHigh;
+                    warningPh.getLayoutParams().width = (int) pixelsWidthHigh;
 
-                warningPh.getLayoutParams().height = (int) pixelsHeightHigh;
-                warningPh.getLayoutParams().width = (int) pixelsWidthHigh;
+                    warningPh.requestLayout();
 
-                warningPh.requestLayout();
+                    int phValueH = random.nextInt(this.phValueHigh.length);
 
-                int phValueH = random.nextInt(this.phValueHigh.length);
+                    String valueH = basicSpace + phValueHigh[phValueH];
+                    thirdSensorInformationButton.setText(valueH);
 
-                String valueH = basicSpace + phValueHigh[phValueH];
-                thirdSensorInformationButton.setText(valueH);
-
-                phMessagePriority = "high";
-                break;
-        }
+                    phMessagePriority = "high";
+                }
     }
 
     private String[] warning;
