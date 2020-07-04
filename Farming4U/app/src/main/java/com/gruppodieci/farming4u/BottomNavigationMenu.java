@@ -9,6 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
+import com.gruppodieci.farming4u.fragments.NewNoteFragment;
+import com.gruppodieci.farming4u.fragments.NotesFragment;
+import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
+import com.gruppodieci.farming4u.fragments.WarningFragment;
 
 public class BottomNavigationMenu {
 
@@ -24,7 +28,8 @@ public class BottomNavigationMenu {
 
                 switch (itemId){
                     case R.id.home:
-
+                        activeFragment = new RiepilogoFragment();
+                        replaceFragment(activeFragment);
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");

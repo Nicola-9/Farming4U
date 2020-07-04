@@ -10,6 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
+import com.gruppodieci.farming4u.business.InstanziateFiles;
+import com.gruppodieci.farming4u.business.SavingFiles;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         this.bottomNavigationMenu = new BottomNavigationMenu(this);
         this.bottomNavigationMenu.onMenuItemClick(bottomBar);
 
+        new SavingFiles(getApplicationContext());
+        InstanziateFiles.instanziateFiles();
         setSupportActionBar(toolbar);
     }
 
