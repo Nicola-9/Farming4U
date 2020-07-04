@@ -15,8 +15,8 @@ import com.gruppodieci.farming4u.fragments.WarningFragment;
 
 public class BottomNavigationMenu {
 
-    public BottomNavigationMenu(AppCompatActivity instance){
-        this.instance = instance;
+    public BottomNavigationMenu(AppCompatActivity instanceA){
+        instance = instanceA;
     }
 
     public void onMenuItemClick(BottomNavigationView bottomBar){
@@ -35,7 +35,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
                         return true;
                     case R.id.grounds:
-
+                        activeFragment = null;
                         return true;
                 }
 
@@ -44,14 +44,26 @@ public class BottomNavigationMenu {
         });
     }
 
-    public void replaceFragment(Fragment toReplace){
-        FragmentManager fragmentManager = this.instance.getSupportFragmentManager();
+    public static void replaceFragment(Fragment toReplace){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, toReplace);
 
         fragmentTransaction.commit();
     }
 
-    private AppCompatActivity instance;
-    public Fragment activeFragment;
+    public static AppCompatActivity getInstance(){
+        return instance;
+    }
+
+    public static Fragment getActiveFragment(){
+        return activeFragment;
+    }
+
+    public static void setActiveFragment(Fragment fragment){
+        activeFragment = fragment;
+    }
+
+    static AppCompatActivity instance;
+    static Fragment activeFragment;
 }
