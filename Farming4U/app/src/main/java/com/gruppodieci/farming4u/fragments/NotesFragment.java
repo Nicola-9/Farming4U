@@ -13,10 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.ListFragment;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
-import com.gruppodieci.farming4u.MainActivity;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CustomAdapterNotes;
 import com.gruppodieci.farming4u.business.Note;
@@ -73,8 +72,8 @@ public class NotesFragment extends ListFragment {
 
     private void setToolbar() {
 
-            ((MainActivity)getActivity()).showToolbarMenu(false);
-            MaterialToolbar toolbar= MainActivity.getToolbar();
+            ((BasicActivity)getActivity()).showToolbarMenu(false);
+            MaterialToolbar toolbar= BasicActivity.getToolbar();
             toolbar.setVisibility(View.VISIBLE);
             toolbar.setTitle("Note");
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
@@ -90,8 +89,8 @@ public class NotesFragment extends ListFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ((MainActivity)getActivity()).showToolbarMenu(true);
-        MaterialToolbar toolbar= MainActivity.getToolbar();
+        ((BasicActivity)getActivity()).showToolbarMenu(true);
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
         toolbar.setNavigationIcon(null);
 
     }

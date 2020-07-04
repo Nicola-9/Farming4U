@@ -1,7 +1,6 @@
 package com.gruppodieci.farming4u.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
-import com.gruppodieci.farming4u.BottomNavigationMenu;
-import com.gruppodieci.farming4u.MainActivity;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.GroundStatusBusiness;
 
@@ -60,7 +58,7 @@ public class GroundStatusFragment extends Fragment {
 
         this.groundStatusBusiness.setInformationButtonsListeners();
 
-        MainActivity.getToolbar().setVisibility(View.VISIBLE);
+        BasicActivity.getToolbar().setVisibility(View.VISIBLE);
 
         return this.groundStatus;
     }

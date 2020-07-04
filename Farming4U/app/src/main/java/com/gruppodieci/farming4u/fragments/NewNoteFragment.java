@@ -22,9 +22,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.gruppodieci.farming4u.MainActivity;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.MonthConverter;
 import com.gruppodieci.farming4u.business.Note;
@@ -188,8 +187,8 @@ public class NewNoteFragment extends Fragment {
     }
 
     private void setToolbar() {
-        ((MainActivity) getActivity()).showToolbarMenu(false);
-        MaterialToolbar toolbar = MainActivity.getToolbar();
+        ((BasicActivity) getActivity()).showToolbarMenu(false);
+        MaterialToolbar toolbar = BasicActivity.getToolbar();
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setTitle("Nuova nota");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
@@ -205,8 +204,8 @@ public class NewNoteFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ((MainActivity)getActivity()).showToolbarMenu(true);
-        MaterialToolbar toolbar= MainActivity.getToolbar();
+        ((BasicActivity)getActivity()).showToolbarMenu(true);
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
         toolbar.setNavigationIcon(null);
 
     }
