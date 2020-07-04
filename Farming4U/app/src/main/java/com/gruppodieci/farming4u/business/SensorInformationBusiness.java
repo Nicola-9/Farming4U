@@ -1,11 +1,22 @@
 package com.gruppodieci.farming4u.business;
 
 import android.graphics.Color;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.button.MaterialButton;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 
 public class SensorInformationBusiness {
     public SensorInformationBusiness(TextView informationTitle, TextView informationPriority, FrameLayout framePriorityColor,
@@ -25,6 +36,20 @@ public class SensorInformationBusiness {
         this.setNameAndPriority();
         this.setImage();
         this.setTitleAndText();
+    }
+
+    public void setOnBackButtonListener(ImageButton backButton){
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GroundStatusFragment.setSensor(sensorName);
+
+                Fragment newFragment = new GroundStatusFragment();
+
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+            }
+        });
     }
 
     public static void setInformation(String sensorNameP, String priorityP, String buttonPressedP, String valueP, String messageP){
@@ -77,7 +102,7 @@ public class SensorInformationBusiness {
     private void setImage(){
         switch (buttonPressed){
             case "humidity":
-                this.informationParameterImage.setImageResource(R.drawable.humidity_small);
+                this.informationParameterImage.setImageResource(R.drawable.humidity_big);
 
                 if(priority.equals("normal")){
                     String tit = "Umidità";
@@ -93,7 +118,7 @@ public class SensorInformationBusiness {
 
                 break;
             case "temperature":
-                this.informationParameterImage.setImageResource(R.drawable.temperatura_small);
+                this.informationParameterImage.setImageResource(R.drawable.temperatura_big);
 
                 if(priority.equals("normal")){
                     String tit = "Temperatura";
@@ -109,7 +134,14 @@ public class SensorInformationBusiness {
 
                 break;
             case "ph":
-                this.informationParameterImage.setImageResource(R.drawable.ph);
+                this.informationParameterImage.setImageResource(R.drawable.ph_big);
+
+                float pixelsDimension =  100 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+
+                this.informationParameterImage.getLayoutParams().height = (int) pixelsDimension;
+                this.informationParameterImage.getLayoutParams().width = (int) pixelsDimension;
+
+                this.informationParameterImage.requestLayout();
 
                 if(priority.equals("normal")){
                     String tit = "Acidità suolo";
@@ -130,6 +162,10 @@ public class SensorInformationBusiness {
     private void setTitleAndText(){
         this.informationTextParameter.setText(value);
         this.informationText.setText(message);
+    }
+
+    public static String getSensorName(){
+        return sensorName;
     }
 
     private TextView informationTitle;

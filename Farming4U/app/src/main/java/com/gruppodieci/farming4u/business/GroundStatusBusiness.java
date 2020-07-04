@@ -45,6 +45,7 @@ public class GroundStatusBusiness {
 
     public void setUtils(String currentSensor) {
         this.currentSensor = currentSensor;
+
         this.instance = instance;
 
         this.handler = new Handler();
@@ -94,7 +95,13 @@ public class GroundStatusBusiness {
     public void setSensorImage() {
         if(this.currentSensor.equals("beacon")) {
             this.sensorImage.setImageResource(R.drawable.beacon_ble);
+
+            String sensor = "Sensore Vigneto";
+
+            this.sensorName.setText(sensor);
         } else {
+            String sensor = "Sonda Oliveto";
+            this.sensorName.setText(sensor);
             this.sensorImage.setImageResource(R.drawable.sensore_sonda);
         }
     }
@@ -170,9 +177,9 @@ public class GroundStatusBusiness {
                                                         firstSensorInformationButton.getText().toString(), warningValue);
 
                 Fragment information = new SensorInformationFragment();
-                BottomNavigationMenu.setActiveFragment(information);
 
                 BottomNavigationMenu.replaceFragment(information);
+                BottomNavigationMenu.setActiveFragment(information);
             }
         });
 
@@ -197,9 +204,9 @@ public class GroundStatusBusiness {
                         secondSensorInformationButton.getText().toString(), warningValue);
 
                 Fragment information = new SensorInformationFragment();
-                BottomNavigationMenu.setActiveFragment(information);
 
                 BottomNavigationMenu.replaceFragment(information);
+                BottomNavigationMenu.setActiveFragment(information);
             }
         });
 
@@ -224,9 +231,9 @@ public class GroundStatusBusiness {
                         thirdSensorInformationButton.getText().toString(), warningValue);
 
                 Fragment information = new SensorInformationFragment();
-                BottomNavigationMenu.setActiveFragment(information);
 
                 BottomNavigationMenu.replaceFragment(information);
+                BottomNavigationMenu.setActiveFragment(information);
             }
         });
     }
