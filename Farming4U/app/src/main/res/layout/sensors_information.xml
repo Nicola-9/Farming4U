@@ -69,7 +69,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/humidity_small"
+                        android:src="@drawable/ph_big"
                         android:id="@+id/informationParameterImage"/>
 
                 </FrameLayout>

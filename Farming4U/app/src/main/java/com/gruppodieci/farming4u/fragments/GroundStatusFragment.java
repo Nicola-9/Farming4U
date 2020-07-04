@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
+import com.gruppodieci.farming4u.MainActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.GroundStatusBusiness;
 
@@ -47,7 +48,10 @@ public class GroundStatusFragment extends Fragment {
                                             this.secondSensorInformationButton, this.thirdButtonHeader, this.thirdSensorInformationButton,
                                             this.warningHum, this.warningTemp, this.warningPh);
 
-        this.groundStatusBusiness.setUtils("beacon");
+        this.groundStatusBusiness.setUtils(sensor);
+
+        this.groundStatusBusiness.setSensorImage();
+
         this.groundStatusBusiness.setValue();
 
         this.groundStatusBusiness.setSwitchSensorListener();
@@ -56,7 +60,13 @@ public class GroundStatusFragment extends Fragment {
 
         this.groundStatusBusiness.setInformationButtonsListeners();
 
+        MainActivity.getToolbar().setVisibility(View.VISIBLE);
+
         return this.groundStatus;
+    }
+
+    public static void setSensor(String sensorP){
+        sensor = sensorP;
     }
 
     private View groundStatus;
@@ -74,5 +84,5 @@ public class GroundStatusFragment extends Fragment {
     private ImageView warningTemp;
     private ImageView warningPh;
     private GroundStatusBusiness groundStatusBusiness;
-    private Handler handler;
+    static String sensor;
 }

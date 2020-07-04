@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 
 public class BottomNavigationMenu {
 
@@ -26,8 +27,13 @@ public class BottomNavigationMenu {
 
                         return true;
                     case R.id.groundStatus:
+                        GroundStatusFragment.setSensor("beacon");
+
                         activeFragment = new GroundStatusFragment();
                         replaceFragment(activeFragment);
+
+                        MainActivity.getToolbar().setTitle("Stato Terreno");
+
                         return true;
                     case R.id.grounds:
                         activeFragment = null;

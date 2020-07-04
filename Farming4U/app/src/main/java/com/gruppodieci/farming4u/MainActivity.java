@@ -1,11 +1,15 @@
 package com.gruppodieci.farming4u;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.gruppodieci.farming4u.business.SensorInformationBusiness;
+import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
     public static MaterialToolbar getToolbar(){
         return toolbar;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (BottomNavigationMenu.getActiveFragment() instanceof SensorInformationFragment) {
+            GroundStatusFragment.setSensor(SensorInformationBusiness.getSensorName());
+
+            Fragment newFrag = new GroundStatusFragment();
+
+            BottomNavigationMenu.replaceFragment(newFrag);
+            BottomNavigationMenu.setActiveFragment(newFrag);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     static MaterialToolbar toolbar;
