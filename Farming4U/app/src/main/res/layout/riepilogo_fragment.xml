@@ -169,6 +169,20 @@
                             android:orientation="horizontal"
                             >
 
+
+                            <app.futured.donut.DonutProgressView
+                                android:id="@+id/donut_view"
+                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginRight="5dp"
+                                android:padding="@dimen/cardview_padding_left"
+                                android:layout_gravity="center"
+                                app:donut_bgLineColor="#A39D9D"
+                                app:donut_gapWidth="0"
+                                app:donut_gapAngle="0"
+                                app:donut_strokeWidth="10dp"/>
+                            <!--
                             <ImageView
                                 android:layout_height="wrap_content"
                                 android:layout_width="0dp"
@@ -178,7 +192,7 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/sprinkler"
                                 />
-
+                               -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_weight="2"
@@ -205,31 +219,43 @@
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         >
                         <LinearLayout
-                            android:padding="@dimen/cardview_padding_left"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:layout_margin="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginLeft="5dp"
                             >
                             <TextView
+                                android:id="@+id/nrNoteSalvateRiepilogo"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
                                 android:text="# note salvate"
                                 android:textAppearance="?attr/textAppearanceHeadline6"
                                 />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#34000000"
+                                />
                             <TextView
+                                android:id="@+id/primaNotaRiepilogo"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
                                 android:text="Prima nota"
                                 android:maxLines="1"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
                                 />
                             <TextView
+                                android:id="@+id/secondaNotaRiepilogo"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginTop="3dp"
                                 android:text="Seconda nota"
                                 android:maxLines="1"
                                 android:textAppearance="?attr/textAppearanceBody2"
@@ -286,7 +312,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/meteo_soleggiato"
+                            app:srcCompat="@drawable/meteo_10"
                             android:scaleType="fitCenter"
                             android:contentDescription="Meteo1"
                             />
@@ -314,7 +340,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/meteo_sole_nuvoloso"
+                            app:srcCompat="@drawable/meteo_7"
                             android:scaleType="fitCenter"
                             android:contentDescription="Meteo1"
                             />
@@ -342,7 +368,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/meteo_sole_nuvoloso"
+                            app:srcCompat="@drawable/meteo_7"
                             android:scaleType="fitCenter"
                             android:contentDescription="Meteo1"
                             />
@@ -370,7 +396,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/meteo_sole_pioggia"
+                            app:srcCompat="@drawable/meteo_8"
                             android:scaleType="fitCenter"
                             android:contentDescription="Meteo1"
                             />
@@ -398,7 +424,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/meteo_molta_pioggia"
+                            app:srcCompat="@drawable/meteo_2"
                             android:scaleType="fitCenter"
                             android:contentDescription="Meteo1"
                             />

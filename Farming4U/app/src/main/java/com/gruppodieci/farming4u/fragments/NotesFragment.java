@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CustomAdapterNotes;
 import com.gruppodieci.farming4u.business.Note;
+import com.gruppodieci.farming4u.business.SavingFiles;
 
 import java.util.ArrayList;
 
@@ -30,13 +31,12 @@ public class NotesFragment extends ListFragment {
     }
 
     private void instanziateNotes() {
-        for(int i=0;i<4;i++) {
-            Note nota = new Note("Pianta il BIG PERLON!", "19:45");
+        ArrayList<Note> noteSaved=(ArrayList<Note>)SavingFiles.loadFile("fileNotes");
+        int i=1;
+        for(Note nota:noteSaved){
             customAdapter.add(nota);
-            nota.setDataSveglia("15:00");
-            customAdapter.add(nota);
+            Log.d("DEBUG","Nota  "+nota.getNota()+" , nr "+i++);
         }
-        Log.d("DEBUG2","grandezza array note: "+note.size());
     }
 
 

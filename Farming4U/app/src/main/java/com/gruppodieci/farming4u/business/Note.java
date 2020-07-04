@@ -1,8 +1,9 @@
 package com.gruppodieci.farming4u.business;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Note {
+public class Note implements Serializable {
     public Note(){
     }
 

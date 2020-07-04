@@ -2,6 +2,7 @@ package com.gruppodieci.farming4u.business;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.gruppodieci.farming4u.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapterNotes extends ArrayAdapter<Note> {
@@ -54,9 +56,7 @@ public class CustomAdapterNotes extends ArrayAdapter<Note> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //your code for the particular button
-                Note nota=getItem(position);
-                createDialog(getContext(),nota,position);
+                createDialog(getContext(),position);
             }
         });
 
@@ -66,13 +66,16 @@ public class CustomAdapterNotes extends ArrayAdapter<Note> {
     }
 
 
-    public void createDialog(final Context context, Note nota, final int position){
+    public void createDialog(final Context context, final int position){
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         Note nota=getItem(position);
                         notes.remove(nota);
+
+                        SavingFiles.saveFile("fileNotes",notes);
+                        Log.d("DEBUG","grandezza notesaved "+notes.size());
                         notifyDataSetChanged();
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
