@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
 
-        this.toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
 
         this.bottomBar.setSelectedItemId(R.id.home);
@@ -34,7 +34,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private MaterialToolbar toolbar;
+    public static MaterialToolbar getToolbar(){
+        return toolbar;
+    }
+
+    static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
 }
