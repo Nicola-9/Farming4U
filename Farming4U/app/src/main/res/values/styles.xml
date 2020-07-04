@@ -17,6 +17,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+
     <style name="CardViewWarning" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/colorCardviewWarning</item>
 
@@ -29,5 +30,15 @@
     <style name="CardViewm2Coltivati" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/colorCardViewm2Coltivati</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>
