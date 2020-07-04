@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.labancanicola.farming4u"
-        minSdkVersion 28
-        targetSdkVersion 29
+        minSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -23,6 +23,8 @@ android {
 
 }
 
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -31,4 +33,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Material Design
+    implementation 'com.google.android.material:material:1.1.0'
+
+    //DateTimePicker https://github.com/wdullaer/MaterialDateTimePicker
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+
+    //grafi https://github.com/futuredapp/donut
+    implementation("app.futured.donut:library-compose:2.0.0")
+    implementation("app.futured.donut:library:2.0.0")
+
+
+
 }
