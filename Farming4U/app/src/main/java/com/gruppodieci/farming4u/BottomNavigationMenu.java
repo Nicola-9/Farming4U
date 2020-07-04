@@ -58,6 +58,16 @@ public class BottomNavigationMenu {
         fragmentTransaction.commit();
     }
 
+    public static void replaceFragment(Fragment toReplace,boolean addToBackstack){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, toReplace);
+        if (addToBackstack) {
+            fragmentTransaction.addToBackStack(null);
+        }
+        fragmentTransaction.commit();
+    }
+
     public static AppCompatActivity getInstance(){
         return instance;
     }
