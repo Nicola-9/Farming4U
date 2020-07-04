@@ -1,11 +1,15 @@
 package com.gruppodieci.farming4u;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.gruppodieci.farming4u.business.SensorInformationBusiness;
+import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
 
@@ -16,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
 
-        this.toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
 
         this.bottomBar.setSelectedItemId(R.id.home);
@@ -38,7 +42,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private MaterialToolbar toolbar;
+    public static MaterialToolbar getToolbar(){
+        return toolbar;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (BottomNavigationMenu.getActiveFragment() instanceof SensorInformationFragment) {
+            GroundStatusFragment.setSensor(SensorInformationBusiness.getSensorName());
+
+            Fragment newFrag = new GroundStatusFragment();
+
+            BottomNavigationMenu.replaceFragment(newFrag);
+            BottomNavigationMenu.setActiveFragment(newFrag);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
 }
