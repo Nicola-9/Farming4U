@@ -18,11 +18,11 @@ public class SeminaFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
 
         // Inflate Fragment layout
-        this.view = inflater.inflate(R.layout.stato_terreno, container, false);
+        this.view = inflater.inflate(R.layout.semina_fragment, container, false);
 
         return this.view;
     }
