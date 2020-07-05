@@ -7,7 +7,7 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_weight="1"
         android:background="#FF5722"
         >
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/icona1"
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -70,9 +70,10 @@
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
                     android:src="@drawable/icona_albero"
+                    android:background="@null"
                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/icona2"
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -83,9 +84,10 @@
                     android:src="@drawable/icona_ciliegia"
                     android:layout_margin="15dp"
                     android:layout_toRightOf="@id/icona1"
+                    android:background="@null"
                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/icona3"
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -96,9 +98,10 @@
                     android:src="@drawable/icona_mela"
                     android:layout_margin="15dp"
                     android:layout_toRightOf="@id/icona2"
+                    android:background="@null"
                     />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/icona4"
                     android:layout_height="60dp"
                     android:layout_width="60dp"
@@ -109,6 +112,48 @@
                     android:src="@drawable/icona_patata"
                     android:layout_margin="15dp"
                     android:layout_toRightOf="@id/icona3"
+                    android:background="@null"
+                    />
+
+                <ImageButton
+                    android:id="@+id/icona5"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icona_kiwi"
+                    android:layout_margin="15dp"
+                    android:background="@null"
+                    android:visibility="gone"
+                    />
+
+                <ImageButton
+                    android:id="@+id/icona6"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icona_piselli"
+                    android:layout_margin="15dp"
+                    android:background="@null"
+                    android:visibility="gone"
+                    />
+                <ImageButton
+                    android:id="@+id/icona7"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icona_uva"
+                    android:layout_margin="15dp"
+                    android:background="@null"
+                    android:visibility="gone"
                     />
 
             </RelativeLayout>
@@ -133,6 +178,8 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:id="@+id/input_text"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     />
 
 

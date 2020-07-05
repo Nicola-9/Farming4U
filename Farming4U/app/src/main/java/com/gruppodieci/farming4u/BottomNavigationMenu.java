@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.GroundsFragment;
@@ -41,7 +42,7 @@ public class BottomNavigationMenu {
                         return true;
                     case R.id.grounds:
 
-                        activeFragment = new SeminaFragment();
+                        activeFragment = new GroundsFragment();
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setTitle("Terreni");
