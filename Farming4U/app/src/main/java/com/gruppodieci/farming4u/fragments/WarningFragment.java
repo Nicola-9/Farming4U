@@ -12,15 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gruppodieci.farming4u.MainActivity;
 import com.gruppodieci.farming4u.R;
-import com.gruppodieci.farming4u.business.CustomAdapterNotes;
 import com.gruppodieci.farming4u.business.CustomAdapterWarning;
-import com.gruppodieci.farming4u.business.Note;
 import com.gruppodieci.farming4u.business.Warning;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class WarningFragment extends ListFragment {
@@ -48,11 +44,11 @@ public class WarningFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.lista_note, container, false);
-        listviewNote=view.findViewById(android.R.id.list);
+        view = inflater.inflate(R.layout.lista_warning, container, false);
+        listviewWarning =view.findViewById(android.R.id.list);
         customAdapter = new CustomAdapterWarning(getContext(),R.layout.lista_warning, warning);
-        Log.d("DEBUG","listview "+listviewNote);
-        listviewNote.setAdapter(customAdapter);
+        Log.d("DEBUG","listview "+ listviewWarning);
+        listviewWarning.setAdapter(customAdapter);
         instanziateNotes();
 
         setToolbar();
@@ -84,7 +80,7 @@ public class WarningFragment extends ListFragment {
     }
 
     private View view;
-    private ListView listviewNote;
+    private ListView listviewWarning;
     private ArrayList<Warning> warning;
     private CustomAdapterWarning customAdapter;
 }
