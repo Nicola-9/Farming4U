@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 
 public class CuraPianteFragment extends Fragment {
 
@@ -26,9 +27,10 @@ public class CuraPianteFragment extends Fragment {
 
         this.curaPiante = inflater.inflate(R.layout.fragment_cura_piante, container, false);
 
-        this.textView = this.curaPiante.findViewById(R.id.testoprova);
+        this.textView = this.curaPiante.findViewById(R.id.curaPiante);
 
         return curaPiante;
+
 
     }
 }
