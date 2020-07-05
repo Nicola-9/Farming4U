@@ -13,16 +13,20 @@ public class InstanziateFiles {
     private static void saveNotes(){
         Object obj=SavingFiles.loadFile("fileNotes");
         if (obj!=null)
-                return;
+            return;
         ArrayList<Note> note= new ArrayList<>();
-        boolean sveglia=false;
-        for(int i=0;i<8;i++) {
-            Note nota = new Note("Pianta il BIG PERLON!", "19:45");
-            if(sveglia)
-                nota.setDataSveglia("15:00");
-            note.add(nota);
-            sveglia=!sveglia;
-        }
+
+        Note nota = new Note("Controlla la coltivazione di uva Big Perlon", "2 Luglio 2020\n19:45");
+        nota.setDataSveglia("15 Luglio 2020\n23:35");
+        note.add(nota);
+
+        nota = new Note("Aggiusta la recinzione danneggiata dal vento", "3 Luglio 2020\n15:37");
+        note.add(nota);
+
+        nota = new Note("Porta a riparare il tagliaerba", "2 Luglio 2020\n15:37");
+        nota.setDataSveglia("3 Agosto 2020\n14:30");
+        note.add(nota);
+
         Log.d("DEBUG2","grandezza array note: "+note.size());
         SavingFiles.saveFile("fileNotes",note);
     }
