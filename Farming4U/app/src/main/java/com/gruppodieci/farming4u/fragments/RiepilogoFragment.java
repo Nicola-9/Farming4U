@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
-import com.gruppodieci.farming4u.MainActivity;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Note;
@@ -118,7 +118,7 @@ public class RiepilogoFragment extends Fragment {
         donuts.add(section1);
         donut.submitData(donuts);
 
-        MaterialToolbar toolbar=MainActivity.getToolbar();
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
         toolbar.setVisibility(View.VISIBLE);
         toolbar.setTitle("Home");
 
