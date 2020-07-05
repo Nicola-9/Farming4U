@@ -15,6 +15,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.gruppodieci.farming4u.MainActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CustomAdapterWarning;
+import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.Warning;
 
 import java.util.ArrayList;
@@ -24,9 +25,16 @@ public class WarningFragment extends ListFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        warning =new ArrayList<>();
+        warnings =new ArrayList<>();
+        loadWarnings();
 
 
+    }
+
+    private void fillCustomAdapter(){
+        for(Warning warning:warningSaved){
+            customAdapter.add(warning);
+        }
     }
 
     private void instanziateNotes() {
@@ -36,7 +44,7 @@ public class WarningFragment extends ListFragment {
             customAdapter.add(warning);
             serious=!serious;
         }
-        Log.d("DEBUG2","grandezza array note: "+ warning.size());
+        Log.d("DEBUG2","grandezza array note: "+ warnings.size());
     }
 
 
@@ -46,16 +54,21 @@ public class WarningFragment extends ListFragment {
 
         view = inflater.inflate(R.layout.lista_warning, container, false);
         listviewWarning =view.findViewById(android.R.id.list);
-        customAdapter = new CustomAdapterWarning(getContext(),R.layout.lista_warning, warning);
+        customAdapter = new CustomAdapterWarning(getContext(),R.layout.lista_warning, warnings);
         Log.d("DEBUG","listview "+ listviewWarning);
         listviewWarning.setAdapter(customAdapter);
-        instanziateNotes();
+
 
         setToolbar();
+        fillCustomAdapter();
+
 
         return view;
     }
 
+    private void loadWarnings(){
+        warningSaved=(ArrayList<Warning>) SavingFiles.loadFile("fileWarnings");
+    }
 
     private void setToolbar(){
         ((MainActivity)getActivity()).showToolbarMenu(false);
@@ -78,9 +91,9 @@ public class WarningFragment extends ListFragment {
         toolbar.setNavigationIcon(null);
 
     }
-
+    private ArrayList<Warning> warningSaved;
     private View view;
     private ListView listviewWarning;
-    private ArrayList<Warning> warning;
+    private ArrayList<Warning> warnings;
     private CustomAdapterWarning customAdapter;
 }
