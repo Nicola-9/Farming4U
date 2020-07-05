@@ -72,6 +72,14 @@ public class BottomNavigationMenu {
         fragmentTransaction.commit();
     }
 
+    public static void replaceFragment(int containerViewId, Fragment toReplace){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(containerViewId, toReplace);
+
+        fragmentTransaction.commit();
+    }
+
     public static AppCompatActivity getInstance(){
         return instance;
     }

@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
@@ -81,6 +83,30 @@ public class BasicActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.mappaSettingsButton:
+
+                return true;
+            case R.id.irrigatoriSettingsButton:
+
+                return true;
+            case R.id.sensoriSettingsButton:
+
+                return true;
+            case R.id.logoutSettingsButton:
+
+                return true;
+            default:
+                super.onOptionsItemSelected(item);
+        }
+
+        return false;
     }
 
     private boolean showToolbarMenu;

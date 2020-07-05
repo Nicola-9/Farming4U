@@ -8,7 +8,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarSensorInformation"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="85dp"
         android:background="#71A3BB">
 
         <LinearLayout
@@ -18,8 +18,8 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/arrow_back"
                 android:background="@null"
@@ -44,30 +44,30 @@
                         android:layout_height="wrap_content"
                         android:text="Umidità\nVigneto"
                         android:textColor="#fff"
-                        android:textSize="39sp"
+                        android:textSize="17sp"
                         android:id="@+id/informationTitle"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="3dp"
                         android:text="Priorità: Alta"
                         android:textColor="#fff"
-                        android:textSize="19sp"
+                        android:textSize="13sp"
                         android:id="@+id/informationPriority"/>
                 </LinearLayout>
 
                 <FrameLayout
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="25dp"
                     android:background="#F66565"
                     android:id="@+id/framePriorityColor">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:src="@drawable/humidity_big"
                         android:id="@+id/informationParameterImage"/>
@@ -88,12 +88,14 @@
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_height="35dp"
             android:layout_below="@id/toolbarSensorInformation"
             app:tabMode="fixed"
             app:tabGravity="center"
             android:background="#71A3BB"
             app:tabSelectedTextColor="#fff"
+            app:tabTextAppearance="@style/TabSensorInformation"
             app:tabIndicatorColor="#00FF0A">
 
             <com.google.android.material.tabs.TabItem
@@ -116,12 +118,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.3"
+            android:layout_weight="0.1"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="70dp"
-                android:layout_height="90dp"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/esclamativo_rosso"
                 android:id="@+id/informationWarningImage"/>
@@ -130,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="78.7 %"
-                android:textSize="45sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
@@ -140,9 +142,9 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:layout_weight="0.7"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="45dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             app:cardCornerRadius="15dp"
@@ -154,7 +156,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="25dp"
+                android:layout_margin="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -163,7 +165,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="Umidità Elevata"
                     android:textStyle="bold"
-                    android:textSize="25sp"
+                    android:textSize="19sp"
                     android:layout_weight="0.3"
                     android:textColor="#000"
                     android:id="@+id/informationDescriptionTitle"/>
@@ -174,7 +176,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="Probabilità di formazione\nmuffe superiore\nal 50 %.\nSi consiglia di intervenire\n immediatamente."
                     android:textStyle="normal"
-                    android:textSize="20dp"
+                    android:textSize="15sp"
                     android:textAlignment="viewStart"
                     android:layout_weight="0.7"
                     android:textColor="#000"
