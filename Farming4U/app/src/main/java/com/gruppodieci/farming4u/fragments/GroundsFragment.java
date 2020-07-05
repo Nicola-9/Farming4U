@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 
 import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
 
@@ -17,6 +18,7 @@ public class GroundsFragment extends Fragment {
 
     private View grounds;
     private TabLayout tabLayout;
+    static Fragment activeFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +55,9 @@ public class GroundsFragment extends Fragment {
                         break;
 
                     case "Semina e coltivazione":
+
+                        fragment = new SeminaFragment();
+                        replaceFragment(R.id.mapContent,fragment);
 
                         break;
 
