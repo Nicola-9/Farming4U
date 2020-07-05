@@ -16,6 +16,7 @@ import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
@@ -98,7 +99,7 @@ public class BasicActivity extends AppCompatActivity {
 
                 return true;
             case R.id.sensoriSettingsButton:
-
+                BottomNavigationMenu.replaceFragment(new ImpostazioniSensori(),true);
                 return true;
             case R.id.logoutSettingsButton:
                 this.launchLogin = new Intent(this, LoginActivity.class);
