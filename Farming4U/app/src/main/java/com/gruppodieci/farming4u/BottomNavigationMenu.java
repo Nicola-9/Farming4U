@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.NewNoteFragment;
 import com.gruppodieci.farming4u.fragments.NotesFragment;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
@@ -35,7 +36,8 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
                         return true;
                     case R.id.grounds:
-
+                        activeFragment = new SeminaFragment();
+                        replaceFragment(activeFragment);
                         return true;
                 }
 

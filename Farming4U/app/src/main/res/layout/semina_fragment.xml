@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/mappa"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_weight="1"
+        android:background="#FF5722"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Posto per la mappa"
+            android:textSize="30dp"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:layout_below="@id/mappa"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/testoSelez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:layout_alignParentTop="true"
+            android:text="Seleziona la tipologia per la coltivazione"
+            android:textSize="15dp"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/icon_ser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/testoSelez"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:cornerRadius="15dp"
+            app:strokeColor="#d1d1d1"
+            app:cardBackgroundColor="#FFFFFF"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/icona1"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/icona_albero"
+                    />
+
+                <ImageView
+                    android:id="@+id/icona2"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icona_ciliegia"
+                    android:layout_margin="15dp"
+                    android:layout_toRightOf="@id/icona1"
+                    />
+
+                <ImageView
+                    android:id="@+id/icona3"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icona_mela"
+                    android:layout_margin="15dp"
+                    android:layout_toRightOf="@id/icona2"
+                    />
+
+                <ImageView
+                    android:id="@+id/icona4"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icona_patata"
+                    android:layout_margin="15dp"
+                    android:layout_toRightOf="@id/icona3"
+                    />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_plants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ricerca tipologia specificata"
+                android:layout_below="@id/icon_ser"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="35dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:id="@+id/input_text"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="35dp"
+                android:layout_alignRight="@id/search_plants"
+                android:layout_below="@id/search_plants"
+                android:backgroundTint="#20C627"
+                app:cornerRadius="7dp"
+                android:text="Conferma"
+                android:textSize="19sp"
+                android:id="@+id/confirm" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="35dp"
+                android:layout_alignLeft="@id/search_plants"
+                android:layout_below="@id/search_plants"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="#D83A3A"
+                app:cornerRadius="7dp"
+                android:text="annulla"
+                android:textSize="19sp"
+                android:id="@+id/cancel" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+</RelativeLayout>
