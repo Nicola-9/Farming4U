@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:orientation="vertical">
 
     <FrameLayout
@@ -59,7 +61,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="# coltivazioni irrigate nelle ultime 24 ore"
+                    android:text="5 coltivazioni irrigate nelle ultime 24 ore"
                     android:textSize="@dimen/testo_materialcard_homepage"
                     />
             </LinearLayout>
@@ -114,6 +116,7 @@
 
                     />
                 <TextView
+                    android:id="@+id/textviewWarningAttivi"
                     android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -225,7 +228,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_gravity="center"
-                                android:text="# mq terreni coltivati"
+                                android:text="3500 mq terreni coltivati"
                                 android:textSize="@dimen/testo_materialcard_homepage"
                                 />
                         </LinearLayout>
