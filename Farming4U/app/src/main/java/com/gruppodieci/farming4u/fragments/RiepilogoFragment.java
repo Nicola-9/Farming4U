@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.Note;
 import com.gruppodieci.farming4u.business.SavingFiles;
@@ -36,7 +41,7 @@ public class RiepilogoFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
+        view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
         primaNotaRiepilogo=view.findViewById(R.id.primaNotaRiepilogo);
         secondaNotaRiepilogo=view.findViewById(R.id.secondaNotaRiepilogo);
         nrNoteSalvateRiepilogo=view.findViewById(R.id.nrNoteSalvateRiepilogo);
@@ -48,12 +53,38 @@ public class RiepilogoFragment extends Fragment {
         primaNotaRiepilogo.setText(primaNota!=null?primaNota:"");
         secondaNotaRiepilogo.setText(secondaNota!=null?secondaNota:"");
 
+        warningAttivi=view.findViewById(R.id.materialcardWarningAttivi);
+        warningAttivi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new WarningFragment();
 
-        meteo1=view.findViewById(R.id.immagineMeteo1);
-        meteo2=view.findViewById(R.id.immagineMeteo2);
-        meteo3=view.findViewById(R.id.immagineMeteo3);
-        meteo4=view.findViewById(R.id.immagineMeteo4);
-        meteo5=view.findViewById(R.id.immagineMeteo5);
+                BottomNavigationMenu.replaceFragment(fragment,true);
+                BottomNavigationMenu.setActiveFragment(fragment);
+            }
+        });
+
+        noteSalvate=view.findViewById(R.id.materialcardNoteSalvate);
+        noteSalvate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new NotesFragment();
+
+                BottomNavigationMenu.replaceFragment(fragment,true);
+                BottomNavigationMenu.setActiveFragment(fragment);
+            }
+        });
+
+        m2Coltivati=view.findViewById(R.id.materialcardm2Coltivati);
+        m2Coltivati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"Fragment coltivazioni",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
 
         assegnaMeteo();
 
@@ -65,11 +96,24 @@ public class RiepilogoFragment extends Fragment {
         donuts.add(section1);
         donut.submitData(donuts);
 
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.setTitle("Home");
+
+
+
+
+
 
         return view;
     }
 
     private void assegnaMeteo() {
+        meteo1=view.findViewById(R.id.immagineMeteo1);
+        meteo2=view.findViewById(R.id.immagineMeteo2);
+        meteo3=view.findViewById(R.id.immagineMeteo3);
+        meteo4=view.findViewById(R.id.immagineMeteo4);
+        meteo5=view.findViewById(R.id.immagineMeteo5);
         int meteoGiorno[]={R.drawable.meteo_1,R.drawable.meteo_2,R.drawable.meteo_3,R.drawable.meteo_4,R.drawable.meteo_5,R.drawable.meteo_6,R.drawable.meteo_7,R.drawable.meteo_8,R.drawable.meteo_9,R.drawable.meteo_10};
         int meteoSera[]={R.drawable.meteo_luna_1,R.drawable.meteo_luna_2,R.drawable.meteo_luna_3,R.drawable.meteo_luna_4,R.drawable.meteo_luna_5,R.drawable.meteo_luna_6};
 
@@ -81,7 +125,10 @@ public class RiepilogoFragment extends Fragment {
 
     }
 
-
+    private MaterialCardView m2Coltivati;
+    private MaterialCardView noteSalvate;
+    private MaterialCardView warningAttivi;
+    private View view;
     private Random random;
     private ImageView meteo1;
     private ImageView meteo2;

@@ -11,14 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
-import com.gruppodieci.farming4u.business.CustomAdapterNotes;
 import com.gruppodieci.farming4u.business.CustomAdapterWarning;
-import com.gruppodieci.farming4u.business.Note;
 import com.gruppodieci.farming4u.business.Warning;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class WarningFragment extends ListFragment {
@@ -53,17 +51,33 @@ public class WarningFragment extends ListFragment {
         listviewNote.setAdapter(customAdapter);
         instanziateNotes();
 
+        setToolbar();
 
         return view;
     }
 
 
+    private void setToolbar(){
+        ((BasicActivity)getActivity()).showToolbarMenu(false);
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.setTitle("Problemi attivi");
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((BasicActivity)getActivity()).showToolbarMenu(true);
+        MaterialToolbar toolbar= BasicActivity.getToolbar();
+        toolbar.setNavigationIcon(null);
 
-
-
-
-
-
+    }
 
     private View view;
     private ListView listviewNote;

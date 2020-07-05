@@ -5,21 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gruppodieci.farming4u.MainActivity;
-
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.launchBasicActivity();
+        this.launchLoginActivity();
     }
 
-    private void launchBasicActivity(){
-        this.basicActivityIntent = new Intent(this, MainActivity.class);
-        startActivity(this.basicActivityIntent);
+    private void launchLoginActivity(){
+        this.loginActivityIntent = new Intent(this, LoginActivity.class);
+        startActivity(this.loginActivityIntent);
         finish();
     }
 
-    private Intent basicActivityIntent;
+    private Intent loginActivityIntent;
 }
+
