@@ -1,19 +1,24 @@
-package com.gruppodieci.farming4u;
+package com.gruppodieci.farming4u.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.Menu;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
+import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
 
-public class MainActivity extends AppCompatActivity {
+public class BasicActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +33,25 @@ public class MainActivity extends AppCompatActivity {
         this.bottomNavigationMenu = new BottomNavigationMenu(this);
         this.bottomNavigationMenu.onMenuItemClick(bottomBar);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Fragment homeFragment = new RiepilogoFragment();
+
+        fragmentTransaction.add(R.id.fragmentContainer, homeFragment);
+
+        fragmentTransaction.commit();
+
+        BottomNavigationMenu.setActiveFragment(homeFragment);
+
         new SavingFiles(getApplicationContext());
         InstanziateFiles.instanziateFiles();
         setSupportActionBar(toolbar);
-        showToolbarMenu=true;
+        showToolbarMenu = true;
     }
 
     public void showToolbarMenu(boolean show){
-        showToolbarMenu=show;
+        showToolbarMenu = show;
         invalidateOptionsMenu();
     }
     @Override
