@@ -4,21 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:orientation="vertical">
 
     <FrameLayout
+        android:id="@+id/frameWarning"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
-        android:background="#aac3b5"
+        android:background="@drawable/terreno_riepilogo"
+        android:padding="2dp"
+        android:elevation="2dp"
+        android:src="@drawable/terreno_riepilogo"
+
+
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Posto per la mappa"
-            android:textSize="30dp"
+        <!--
+        <ImageView
+            android:id="@+id/riepilogoImmagineMappa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/terreno_riepilogo"
+            android:scaleType="centerCrop"
+            android:elevation="10dp"
+
             />
+            -->
+
     </FrameLayout>
 
     <LinearLayout
@@ -59,7 +72,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="# coltivazioni irrigate nelle ultime 24 ore"
+                    android:text="5 coltivazioni irrigate nelle ultime 24 ore"
                     android:textSize="@dimen/testo_materialcard_homepage"
                     />
             </LinearLayout>
@@ -114,6 +127,7 @@
 
                     />
                 <TextView
+                    android:id="@+id/textviewWarningAttivi"
                     android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -225,7 +239,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_gravity="center"
-                                android:text="# mq terreni coltivati"
+                                android:text="3500 mq terreni coltivati"
                                 android:textSize="@dimen/testo_materialcard_homepage"
                                 />
                         </LinearLayout>
