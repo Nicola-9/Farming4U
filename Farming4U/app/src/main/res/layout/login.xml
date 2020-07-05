@@ -61,6 +61,7 @@
 
 
     <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:layout_marginTop="35dp"
