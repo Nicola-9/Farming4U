@@ -1,0 +1,82 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="25dp"
+    app:strokeColor="#d1d1d1"
+    app:cardCornerRadius="12dp"
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="#FFECB3"
+    android:layout_margin="5dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/gradient_note"
+        >
+        <TextView
+            android:id="@+id/warning_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toStartOf="@id/deleteButton"
+            android:paddingTop="10dp"
+            android:text="Pianta l uva BIG PERLON il prima possibile! "
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textColor="@color/mtrl_list_item_tint"/>
+
+        <TextView
+            android:id="@+id/warning_time"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/warning_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingEnd="16dp"
+            android:text="Salvato il 03/07 alle 12:45"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/mtrl_list_item_tint" />
+
+        <TextView
+            android:id="@+id/alarm_time"
+            android:layout_toLeftOf="@id/warning_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/warning_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:paddingEnd="5dp"
+            android:text=""
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/mtrl_list_item_tint" />
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:id="@+id/warning_icon"
+            android:layout_alignTop="@id/alarm_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/warning_text"
+            android:layout_toLeftOf="@id/deleteButton"
+            android:src="@drawable/ic_alarm_off" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_baseline_close_24"
+            app:iconGravity="textStart"
+            android:layout_alignParentRight="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            app:iconPadding="0dp" />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

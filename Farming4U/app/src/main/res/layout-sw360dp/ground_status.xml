@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/headerSensors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/switchSensorsLeft"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_left"
+                android:tint="#717171" />
+
+            <ImageView
+                android:id="@+id/sensorsImage"
+                android:layout_width="150dp"
+                android:layout_height="125dp"
+                android:src="@drawable/beacon_ble" />
+
+            <ImageButton
+                android:id="@+id/switchSensorsRight"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_right"
+                android:tint="#717171" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sensorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sensore Vigneto"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerSensors"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/firstButtonHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Umidità"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:id="@+id/firstSensorInformationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:backgroundTint="#FFFFFF"
+                    android:elevation="15dp"
+                    android:text="     "
+                    android:textAlignment="textStart"
+                    android:textColor="#000"
+                    android:textSize="35sp"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/humidity_small"
+                    app:iconGravity="start"
+                    app:iconTintMode="multiply"
+                    app:strokeColor="#D1D1D1"
+                    app:strokeWidth="2dp" />
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ok_icon"
+                    android:visibility="visible"
+                    android:id="@+id/warningHum"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/secondButtonHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Temperatura"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:id="@+id/secondSensorInformationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:backgroundTint="#fff"
+                    android:elevation="15dp"
+                    android:text="    "
+                    android:textAlignment="textStart"
+                    android:textColor="#000"
+                    android:textSize="35sp"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/temperatura_small"
+                    app:iconGravity="start"
+                    app:iconTintMode="multiply"
+                    app:strokeColor="#d1d1d1"
+                    app:strokeWidth="2dp" />
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/esclamativo_giallo"
+                    android:visibility="visible"
+                    android:id="@+id/warningTemp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/thirdButtonHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Acidità"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textAllCaps="false"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:id="@+id/thirdSensorInformationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:backgroundTint="#fff"
+                    android:elevation="15dp"
+                    android:text="      "
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="35sp"
+                    app:cornerRadius="15dp"
+                    app:icon="@drawable/ph"
+                    app:iconGravity="start"
+                    app:iconTintMode="multiply"
+                    app:strokeColor="#d1d1d1"
+                    app:strokeWidth="2dp" />
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/esclamativo_rosso"
+                    android:visibility="visible"
+                    android:id="@+id/warningPh"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
