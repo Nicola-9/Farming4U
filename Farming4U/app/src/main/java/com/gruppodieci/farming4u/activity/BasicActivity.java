@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,6 +101,10 @@ public class BasicActivity extends AppCompatActivity {
 
                 return true;
             case R.id.logoutSettingsButton:
+                this.launchLogin = new Intent(this, LoginActivity.class);
+                this.startActivity(this.launchLogin);
+
+                this.finish();
 
                 return true;
             default:
@@ -113,4 +118,5 @@ public class BasicActivity extends AppCompatActivity {
     static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
+    private Intent launchLogin;
 }
