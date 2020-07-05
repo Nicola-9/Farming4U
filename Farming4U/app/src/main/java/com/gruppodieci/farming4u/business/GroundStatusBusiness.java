@@ -11,10 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
-import com.gruppodieci.farming4u.MainActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
@@ -281,7 +279,7 @@ public class GroundStatusBusiness {
             if(humidityData >= 7 && humidityData <= 8){
                 firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
-                float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                float pixelsWidthMedium =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                 float pixelsHeightMedium =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                 warningHum.setImageResource(R.drawable.esclamativo_giallo);
@@ -301,7 +299,7 @@ public class GroundStatusBusiness {
                 if(humidityData >= 9 && humidityData <= 10){
                     firstSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsWidthHigh =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                     float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                     warningHum.setImageResource(R.drawable.esclamativo_rosso);
@@ -341,7 +339,7 @@ public class GroundStatusBusiness {
             if(temperatureData >= 7 && temperatureData <= 8){
                 secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
-                float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                float pixelsWidthMedium =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                 float pixelsHeightMedium =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                 warningTemp.setImageResource(R.drawable.esclamativo_giallo);
@@ -361,7 +359,7 @@ public class GroundStatusBusiness {
                 if(temperatureData >= 9 && temperatureData <= 10){
                     secondSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsWidthHigh =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                     float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                     warningTemp.setImageResource(R.drawable.esclamativo_rosso);
@@ -401,7 +399,7 @@ public class GroundStatusBusiness {
             if(phData >= 7 && phData <= 8){
                 thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.rgb(255, 171, 0)));
 
-                float pixelsWidthMedium =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                float pixelsWidthMedium =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                 float pixelsHeightMedium =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                 warningPh.setImageResource(R.drawable.esclamativo_giallo);
@@ -421,7 +419,7 @@ public class GroundStatusBusiness {
                 if(phData >= 9 && phData <= 10){
                     thirdSensorInformationButton.setStrokeColor(ColorStateList.valueOf(Color.RED));
 
-                    float pixelsWidthHigh =  17 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
+                    float pixelsWidthHigh =  23 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
                     float pixelsHeightHigh =  52 * BottomNavigationMenu.getInstance().getResources().getDisplayMetrics().density;
 
                     warningPh.setImageResource(R.drawable.esclamativo_rosso);

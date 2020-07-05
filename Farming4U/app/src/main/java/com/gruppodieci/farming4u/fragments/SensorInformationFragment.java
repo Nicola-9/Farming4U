@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.button.MaterialButton;
-import com.gruppodieci.farming4u.MainActivity;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 
@@ -43,7 +42,7 @@ public class SensorInformationFragment extends Fragment {
                                                                         this.informationTextParameter, this.informationDescriptionTitle,
                                                                         this.informationText);
 
-        MainActivity.getToolbar().setVisibility(View.GONE);
+        BasicActivity.getToolbar().setVisibility(View.GONE);
 
         this.sensorInformationBusiness.setComponents();
         this.sensorInformationBusiness.setOnBackButtonListener(this.backButton);
