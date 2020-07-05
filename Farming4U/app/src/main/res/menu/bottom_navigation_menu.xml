@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Stato Terreno"
+        android:icon="@drawable/icona_stato_terreno"
+        android:id="@+id/groundStatus"/>
+    <item
+        android:title="Home"
+        android:icon="@drawable/home_icon"
+        android:id="@+id/home"/>
+    <item
+        android:title="Terreni"
+        android:icon="@drawable/icona_terreni"
+        android:id="@+id/grounds"/>
+</menu>
