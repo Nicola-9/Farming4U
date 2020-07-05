@@ -24,7 +24,6 @@ import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Note;
-import com.gruppodieci.farming4u.business.RunnableWarning;
 import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.Warning;
 
