@@ -2,5 +2,9 @@
     <string name="app_name">Farming4U</string>
 
     <string name="title_activity_maps">Map</string>
+    <string name="mappaOptionName">Mappa</string>
+    <string name="irrigatorOptionName">Irrigatori</string>
+    <string name="sensorOptionName">Sensori</string>
+    <string name="logoutOptionName">Logout</string>
 
 </resources>

@@ -18,8 +18,8 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/arrow_back"
                 android:background="@null"
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:text="Umidità\nVigneto"
                         android:textColor="#fff"
-                        android:textSize="39sp"
+                        android:textSize="37sp"
                         android:id="@+id/informationTitle"/>
 
                     <TextView
@@ -66,8 +66,8 @@
                     android:id="@+id/framePriorityColor">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:layout_gravity="center"
                         android:src="@drawable/humidity_big"
                         android:id="@+id/informationParameterImage"/>
@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_weight="0.7"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="75dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             app:cardCornerRadius="15dp"

@@ -1,7 +1,9 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardElevation="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
 
     >
     <RelativeLayout
@@ -14,19 +16,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
+            android:layout_marginLeft="10dp"
             android:text="Umidità bassa "
             android:maxLines="2"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/mtrl_list_item_tint"/>
 
         <TextView
-            android:layout_toRightOf="@id/warning_icon"
+
             android:id="@+id/warning_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/warning_icon"
             android:paddingEnd="16dp"
             android:text="03/07 alle 12:45"
             android:textAppearance="?attr/textAppearanceBody2"

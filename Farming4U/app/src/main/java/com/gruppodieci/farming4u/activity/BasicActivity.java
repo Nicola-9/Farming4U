@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
@@ -83,8 +87,37 @@ public class BasicActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int itemId = item.getItemId();
+
+        switch (itemId){
+            case R.id.mappaSettingsButton:
+
+                return true;
+            case R.id.irrigatoriSettingsButton:
+
+                return true;
+            case R.id.sensoriSettingsButton:
+                BottomNavigationMenu.replaceFragment(new ImpostazioniSensori(),true);
+                return true;
+            case R.id.logoutSettingsButton:
+                this.launchLogin = new Intent(this, LoginActivity.class);
+                this.startActivity(this.launchLogin);
+
+                this.finish();
+
+                return true;
+            default:
+                super.onOptionsItemSelected(item);
+        }
+
+        return false;
+    }
+
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
+    private Intent launchLogin;
 }
