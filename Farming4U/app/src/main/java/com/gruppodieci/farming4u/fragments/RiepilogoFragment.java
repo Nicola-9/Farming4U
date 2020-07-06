@@ -1,8 +1,11 @@
 package com.gruppodieci.farming4u.fragments;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +36,8 @@ import java.util.Random;
 
 import app.futured.donut.DonutProgressView;
 import app.futured.donut.DonutSection;
+
+import static android.content.Context.VIBRATOR_SERVICE;
 
 
 public class RiepilogoFragment extends Fragment {
@@ -188,7 +193,7 @@ public class RiepilogoFragment extends Fragment {
                 if (frameWidth > 0) {
                     Log.d("DEBUG", "runnable attivo");
                     int value = random.nextInt(100);
-                    if (value <= 20) {
+                    if (value <= 15) {
                         Log.d("DEBUG", "warning normale generato");
 
                         //generazione tipologia
@@ -212,8 +217,8 @@ public class RiepilogoFragment extends Fragment {
                         //warning normale
                         Warning warning = new Warning("Testo", false);
                         warning.setType(type);
-                        int witch = random.nextInt(warningsNotSerious.length);
-                        warning.setWarning(warningsNotSerious[witch]);
+                        int witch = random.nextInt(location.length);
+                        warning.setWarning(type+location[witch]);
                         Log.d("DEBUG", "Overlap!");
                         int size = ((random.nextInt(5) + 3) * 25);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
@@ -231,9 +236,11 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        disegnaCerchi();
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true);
+                        frameWarning.addView(cerchioView);
+                        startVibration();
 
-                    } else if (value > 20 && value <= 30) {
+                    } else if (value > 20 && value <= 35) {
 
                         //generazione tipologia
                         int choice = random.nextInt(4);
@@ -257,8 +264,8 @@ public class RiepilogoFragment extends Fragment {
                         Log.d("DEBUG", "warning grave generato");
                         Warning warning = new Warning("Testo", true);
                         warning.setType(type);
-                        int witch = random.nextInt(warningsSerious.length);
-                        warning.setWarning(warningsSerious[witch]);
+                        int witch = random.nextInt(location.length);
+                        warning.setWarning(type+location[witch]+" Richiesta massima urgenza.");
                         int size = ((random.nextInt(5) + 3) * 25);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
@@ -274,21 +281,22 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        disegnaCerchi();
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true);
+                        frameWarning.addView(cerchioView);
+                        startVibration();
 
 
-                    } else if (value > 70) {
+                    } else if (value > 65) {
                         Log.d("DEBUG", "warning risolto");
                         //Simulazione problema risolto
                         int size = warnings.size();
-                        while(size>7){
+                        while(size>8){
+                            deleteRandomWarning();
                             size = warnings.size();
-                            int randVal = random.nextInt(size);
-                            warnings.remove(randVal);
                         }
-                        if (size > 3) {
-                            int randVal = random.nextInt(size);
-                            warnings.remove(randVal);
+                        if (size > 5) {
+                            deleteRandomWarning();
+
                             saveWarnings();
                             setTextviewWarningAttivi();
                             disegnaCerchi();
@@ -307,6 +315,58 @@ public class RiepilogoFragment extends Fragment {
             }
         };
         runnable.run();
+    }
+
+    private void deleteRandomWarning(){
+        ArrayList<Integer> posColtivazione=new ArrayList<>();
+        ArrayList<Integer> posPesticidi=new ArrayList<>();
+        ArrayList<Integer> posErba=new ArrayList<>();
+        ArrayList<Integer> posIrrigazione=new ArrayList<>();
+        for(int i=0;i<warnings.size();i++){
+            switch (warnings.get(i).getType()){
+                case Warning.CONCIMAZIONE:
+                    posColtivazione.add(i);
+                    break;
+                case Warning.ERBA:
+                    posErba.add(i);
+                    break;
+                case Warning.IRRIGAZIONE:
+                    posIrrigazione.add(i);
+                    break;
+                case Warning.PESTICIDI:
+                    posPesticidi.add(i);
+                    break;
+            }
+        }
+        int maxSize=Math.max(posColtivazione.size(),Math.max(posPesticidi.size(),Math.max(posErba.size(),posIrrigazione.size())));
+        ArrayList<Integer>toDelete;
+        if (posColtivazione.size()==maxSize)
+            toDelete=posColtivazione;
+        else if(posErba.size()==maxSize)
+            toDelete=posErba;
+        else if(posIrrigazione.size()==maxSize)
+            toDelete=posIrrigazione;
+        else  toDelete=posPesticidi;
+        Log.d("DEBUGTYPE","toDelete size "+toDelete.size()+" maxSize "+maxSize);
+        int randVal = random.nextInt(toDelete.size());
+        Log.d("DEBUGTYPE","Deleted "+warnings.get(toDelete.get(randVal)).getType());
+        Log.d("DEBUGTYPE","grandezza warnings prima di cancellare "+warnings.size());
+        Log.d("DEBUGTYPE","Cancellare warning in posizione "+toDelete.get(randVal));
+        warnings.remove((toDelete.get(randVal)).intValue());
+        Log.d("DEBUGTYPE","grandezza warnings dopo aver cancellato "+warnings.size());
+
+        for(Warning warn:warnings){
+            Log.d("DEBUGTYPE","Warning type "+warn.getType());
+        }
+        Log.d("DEBUGTYPE","\n\n");
+    }
+
+    private void startVibration(){
+        if (Build.VERSION.SDK_INT >= 26) {
+            ((Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            ((Vibrator) getActivity().getSystemService(VIBRATOR_SERVICE)).vibrate(250);
+        }
     }
 
     private void disegnaCerchi() {
@@ -353,6 +413,8 @@ public class RiepilogoFragment extends Fragment {
     private int frameWidth;
     private String[] warningsSerious = new String[]{"Temperatura estrema nella piantagione di mele","Terreno eccessivamente arido nel vitigno","Grave mancanza di pesticida nella piantagione di uva Big Perlon","Umidità eccessiva rilevata nella piantagione di zucche"};
     private String[] warningsNotSerious = new String[]{"Temperatura elevata nella piantagione di mele","Terreno arido nel vitigno","Mancanza di pesticida nella piantagione di uva Big Perlon","Umidità eccessiva rilevata nella piantagione di zucche"};
+    private String[] location = new String[]{" nella piantagione di mele."," nel vitigno."," nella piantagione di uva Big Perlon."," nella piantagione di zucche."," nel campo di pomodori."};
+
     private Runnable runnable;
     private Handler handler;
     private FrameLayout frameWarning;

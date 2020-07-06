@@ -13,8 +13,8 @@
     <color name="colorCardviewNote">#FFE0B2</color>
 
 
-    <color name="colorWarningSerious">#8DFF8A65</color>
-    <color name="colorWarningNotSerious">#8BFFF176</color>
+    <color name="colorWarningSerious">#99EC3118</color>
+    <color name="colorWarningNotSerious">#99EAF121</color>
 
 
     <color name="buttonOk">#6DBF32</color>
