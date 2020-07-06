@@ -112,6 +112,8 @@ public class RiepilogoFragment extends Fragment {
         frameWarning=view.findViewById(R.id.frameWarning);
         frameTreeObserver();
 
+        imageColtivations=view.findViewById(R.id.imageColtivations);
+        Glide.with(this).load(R.drawable.gif_irrigazione).into(imageColtivations);
 
 
 
@@ -479,6 +481,7 @@ public class RiepilogoFragment extends Fragment {
     private View view;
     private Random random;
     //private ImageView mappa;
+    private ImageView imageColtivations;
     private ImageView meteo1;
     private ImageView meteo2;
     private ImageView meteo3;

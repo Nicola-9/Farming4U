@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
-    android:layout_margin="8dp"
+    android:layout_margin="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="12dp"
     android:id="@+id/cardviewWarning"
@@ -44,7 +44,7 @@
 
 
         <ImageView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:id="@+id/warning_icon"
