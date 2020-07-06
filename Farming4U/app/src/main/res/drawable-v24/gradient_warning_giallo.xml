@@ -3,7 +3,7 @@
 
     <gradient
         android:startColor="@color/cardviewWarningGiallo"
-        android:centerColor="#FFE082"
+        android:centerColor="#FFECB3"
         android:endColor="@color/cardviewWarningGiallo"
         android:angle="135"
         />

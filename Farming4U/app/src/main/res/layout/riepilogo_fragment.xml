@@ -12,7 +12,7 @@
         android:id="@+id/frameWarning"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="11"
         android:background="@drawable/terreno_riepilogo"
         android:padding="2dp"
         android:elevation="2dp"
@@ -39,7 +39,7 @@
         android:layout_marginRight="@dimen/margine_cardview_homepage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="4"
         >
 
         <FrameLayout
@@ -104,11 +104,11 @@
             android:layout_marginBottom="@dimen/margine_cardview_homepage"
             android:layout_marginTop="@dimen/margine_cardview_homepage"
             android:elevation="25dp"
-            app:strokeColor="#d1d1d1"
+            app:strokeColor="#AE3636"
             app:cardCornerRadius="12dp"
             app:strokeWidth="2dp"
             app:cardElevation="15dp"
-            app:cardBackgroundColor="#FFAB91"
+            app:cardBackgroundColor="#FF5252"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:clickable="true"
 
@@ -164,7 +164,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="8"
         android:layout_marginLeft="@dimen/margine_cardview_homepage"
         android:layout_marginRight="@dimen/margine_cardview_homepage"
         android:layout_marginBottom="@dimen/margine_cardview_homepage"
@@ -196,11 +196,11 @@
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:layout_marginBottom="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:strokeColor="#d1d1d1"
+                        app:strokeColor="#1C8ABC"
                         app:cardCornerRadius="12dp"
                         app:strokeWidth="2dp"
                         app:cardElevation="5dp"
-                        app:cardBackgroundColor="@color/colorCardViewm2Coltivati"
+                        app:cardBackgroundColor="#29B6F6"
                         style="@style/Widget.MaterialComponents.FloatingActionButton"
                         android:clickable="true"
                         >
@@ -261,7 +261,7 @@
                         android:layout_marginRight="@dimen/margine_cardview_homepage"
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:strokeColor="#d1d1d1"
+                        app:strokeColor="#9C821A"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="5dp"
                         app:strokeWidth="2dp"

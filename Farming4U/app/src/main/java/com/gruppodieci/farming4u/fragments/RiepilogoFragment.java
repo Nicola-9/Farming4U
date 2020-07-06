@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.card.MaterialCardView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
@@ -157,12 +158,35 @@ public class RiepilogoFragment extends Fragment {
         meteo5=view.findViewById(R.id.immagineMeteo5);
         int meteoGiorno[]={R.drawable.meteo_1,R.drawable.meteo_2,R.drawable.meteo_3,R.drawable.meteo_4,R.drawable.meteo_5,R.drawable.meteo_6,R.drawable.meteo_7,R.drawable.meteo_8,R.drawable.meteo_9,R.drawable.meteo_10};
         int meteoSera[]={R.drawable.meteo_luna_1,R.drawable.meteo_luna_2,R.drawable.meteo_luna_3,R.drawable.meteo_luna_4,R.drawable.meteo_luna_5,R.drawable.meteo_luna_6};
+        int meteoGif[]={R.drawable.lightning,R.drawable.windy,R.drawable.partly_cloudy,R.drawable.storm,R.drawable.snow_with_rain,R.drawable.partly_cloudy_with_rain};
+        int meteoGifSera[]={R.drawable.lightning,R.drawable.windy,R.drawable.storm,R.drawable.snow_with_rain};
 
-        meteo1.setImageResource(meteoGiorno[random.nextInt(10)]);
-        meteo2.setImageResource(meteoGiorno[random.nextInt(10)]);
-        meteo3.setImageResource(meteoGiorno[random.nextInt(10)]);
-        meteo4.setImageResource(meteoGiorno[random.nextInt(10)]);
-        meteo5.setImageResource(meteoSera[random.nextInt(6)]);
+        boolean sunny=random.nextBoolean();
+        if(sunny){
+            Glide.with(this).load(R.drawable.sunny).into(meteo1);
+        }
+        else
+            Glide.with(this).load(meteoGif[random.nextInt(meteoGif.length)]).into(meteo1);
+        sunny=random.nextBoolean();
+        if(sunny){
+            Glide.with(this).load(R.drawable.sunny).into(meteo2);
+        }
+        else
+            Glide.with(this).load(meteoGif[random.nextInt(meteoGif.length)]).into(meteo2);
+        sunny=random.nextBoolean();
+        if(sunny){
+            Glide.with(this).load(R.drawable.sunny).into(meteo3);
+        }
+        else
+            Glide.with(this).load(meteoGif[random.nextInt(meteoGif.length)]).into(meteo3);
+        sunny=random.nextBoolean();
+        if(sunny){
+            Glide.with(this).load(R.drawable.sunny).into(meteo4);
+        }
+        else
+            Glide.with(this).load(meteoGif[random.nextInt(meteoGif.length)]).into(meteo4);
+        Glide.with(this).load(meteoGifSera[random.nextInt(meteoGifSera.length)]).into(meteo5);
+
 
     }
 
@@ -236,8 +260,14 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true);
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
                         frameWarning.addView(cerchioView);
+                        cerchioView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                cerchioCliccato(view);
+                            }
+                        });
                         startVibration();
 
                     } else if (value > 20 && value <= 35) {
@@ -281,8 +311,14 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true);
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
                         frameWarning.addView(cerchioView);
+                        cerchioView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                cerchioCliccato(view);
+                            }
+                        });
                         startVibration();
 
 
@@ -305,11 +341,11 @@ public class RiepilogoFragment extends Fragment {
                     }
 
 
-                    handler.postDelayed(this, 3000);
+                    handler.postDelayed(this, 5000);
                 }
                 else {
                     Log.d("DEBUG", "errore runnable");
-                    handler.postDelayed(this, 3000);
+                    handler.postDelayed(this, 5000);
                 }
 
             }
@@ -372,10 +408,22 @@ public class RiepilogoFragment extends Fragment {
     private void disegnaCerchi() {
         frameWarning.removeAllViews();
         for(Warning warning:warnings){
-            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious());
+            Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
+            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning.getType());
             frameWarning.addView(cerchioView);
+            cerchioView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cerchioCliccato(view);
+                }
+            });
         }
         frameWarning.invalidate();
+    }
+
+    private void cerchioCliccato(View view) {
+        CerchioView cerchiooView=(CerchioView)view;
+        Log.d("DEBUG","Cerchio cliccato, tipo "+cerchiooView.getType());
     }
 
     private void saveWarnings(){
@@ -406,6 +454,11 @@ public class RiepilogoFragment extends Fragment {
         double diffX = Math.abs(xA - xB);
         double diffY = Math.abs(yA - yB);
         return Math.hypot(xA - xB, yA - yB) <= radiusA+radiusB;
+    }
+
+    private void showGif(View view) {
+        ImageView imageView = view.findViewById(R.id.immagineMeteo1);
+        Glide.with(this).load(R.drawable.meteo_11).into(imageView);
     }
 
 
