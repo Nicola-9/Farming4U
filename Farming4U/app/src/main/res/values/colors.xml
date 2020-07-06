@@ -17,4 +17,8 @@
     <color name="colorWarningNotSerious">#8BFFF176</color>
 
 
+    <color name="buttonOk">#6DBF32</color>
+    <color name="buttonAnnulla">#DD1111</color>
+
+
 </resources>
