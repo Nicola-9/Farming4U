@@ -46,7 +46,10 @@ public class CustomAdapterNotes extends ArrayAdapter<Note> {
 
         note_text.setText(note.getNota());
         scheduled_time.setText(note.getData());
-        boolean alarm=note.getDataSveglia()!=null?true:false;
+        boolean alarm=true;
+        String sveglia=note.getDataSveglia();
+        if(sveglia==null || sveglia.equalsIgnoreCase(""))
+            alarm=false;
         alarm_icon.setImageResource(R.drawable.ic_alarm_off);
 
         if(alarm){

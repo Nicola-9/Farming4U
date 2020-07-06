@@ -43,6 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         >
 
         <com.google.android.material.button.MaterialButton
@@ -51,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Annulla"
+            android:backgroundTint="@color/buttonAnnulla"
             />
 
 
@@ -61,6 +63,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonOk"
             android:text="Salva"
             />
 
