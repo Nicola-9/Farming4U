@@ -7,6 +7,13 @@ public class Warning implements Serializable {
     public Warning(){
     }
 
+    public Warning(String warning, boolean isSerious, String data, String type){
+        this.warning=warning;
+        this.isSerious=isSerious;
+        this.data=data;
+        this.type=type;
+    }
+
     public Warning(String warning, boolean isSerious, String data){
         this.warning=warning;
         this.isSerious=isSerious;
@@ -70,10 +77,20 @@ public class Warning implements Serializable {
         this.sizeOfWarning = sizeOfWarning;
     }
 
+    public String getType() { return this.type; }
+
+    public void setType(String type) { this.type = type; }
+
+    private String type;
     private int sizeOfWarning;
     private int yPosition;
     private int xPosition;
     private String data;
     private String warning;
     private boolean isSerious;
+
+    public static final String CONCIMAZIONE = "Carenza di concime";
+    public static final String PESTICIDI = "Carenza di pesticidi";
+    public static final String ERBA = "Erba alta";
+    public static final String IRRIGAZIONE = "Irrigazione necessaria";
 }

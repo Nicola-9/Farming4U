@@ -2,17 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gruppodieci.farming4u.fragments.CuraPianteFragment">
+    tools:context="com.gruppodieci.farming4u.fragments.CuraPianteFragment"
+    android:id="@+id/map"
+    android:background="@drawable/terreno">
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-
-   <TextView
-       android:id="@+id/curaPiante"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Cura della piante"/>
-
-   </RelativeLayout>
 </FrameLayout>
