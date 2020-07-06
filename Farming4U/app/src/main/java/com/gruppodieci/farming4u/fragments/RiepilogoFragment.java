@@ -190,8 +190,28 @@ public class RiepilogoFragment extends Fragment {
                     int value = random.nextInt(100);
                     if (value <= 20) {
                         Log.d("DEBUG", "warning normale generato");
+
+                        //generazione tipologia
+                        int choice = random.nextInt(4);
+                        String type = "";
+                        switch (choice) {
+                            case 0:
+                                type = Warning.CONCIMAZIONE;
+                                break;
+                            case 1:
+                                type = Warning.ERBA;
+                                break;
+                            case 2:
+                                type = Warning.IRRIGAZIONE;
+                                break;
+                            case 3:
+                                type = Warning.PESTICIDI;
+                                break;
+                        }
+
                         //warning normale
                         Warning warning = new Warning("Testo", false);
+                        warning.setType(type);
                         int witch = random.nextInt(warningsNotSerious.length);
                         warning.setWarning(warningsNotSerious[witch]);
                         Log.d("DEBUG", "Overlap!");
@@ -214,9 +234,29 @@ public class RiepilogoFragment extends Fragment {
                         disegnaCerchi();
 
                     } else if (value > 20 && value <= 30) {
+
+                        //generazione tipologia
+                        int choice = random.nextInt(4);
+                        String type = "";
+                        switch (choice) {
+                            case 0:
+                                type = Warning.CONCIMAZIONE;
+                                break;
+                            case 1:
+                                type = Warning.ERBA;
+                                break;
+                            case 2:
+                                type = Warning.IRRIGAZIONE;
+                                break;
+                            case 3:
+                                type = Warning.PESTICIDI;
+                                break;
+                        }
+
                         //warning grave
                         Log.d("DEBUG", "warning grave generato");
                         Warning warning = new Warning("Testo", true);
+                        warning.setType(type);
                         int witch = random.nextInt(warningsSerious.length);
                         warning.setWarning(warningsSerious[witch]);
                         int size = ((random.nextInt(5) + 3) * 25);
@@ -282,7 +322,7 @@ public class RiepilogoFragment extends Fragment {
         SavingFiles.saveFile("fileWarnings",warnings);
     }
 
-    private void loadWarnings(){
+    public static void loadWarnings(){
         warnings=(ArrayList<Warning>)SavingFiles.loadFile("fileWarnings");
         if(warnings==null){
             warnings=new ArrayList<>();
@@ -316,7 +356,7 @@ public class RiepilogoFragment extends Fragment {
     private Runnable runnable;
     private Handler handler;
     private FrameLayout frameWarning;
-    private ArrayList<Warning> warnings;
+    public static ArrayList<Warning> warnings;
     private MaterialCardView m2Coltivati;
     private MaterialCardView noteSalvate;
     private MaterialCardView warningAttivi;
