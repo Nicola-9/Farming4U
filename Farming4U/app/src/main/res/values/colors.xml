@@ -20,5 +20,8 @@
     <color name="buttonOk">#6DBF32</color>
     <color name="buttonAnnulla">#DD1111</color>
 
+    <color name="cardviewWarningGiallo">#FFFDE7</color>
+    <color name="cardviewWarningRosso">#FBE9E7</color>
+
 
 </resources>
