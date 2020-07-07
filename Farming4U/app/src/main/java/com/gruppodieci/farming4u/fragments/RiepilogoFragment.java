@@ -279,13 +279,13 @@ public class RiepilogoFragment extends Fragment {
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]);
                         Log.d("DEBUG", "Overlap!");
-                        int size = ((random.nextInt(5) + 3) * 25);
+                        int size = ((random.nextInt(5) + 2) * 25);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
                             Log.d("DEBUG", "Overlap!");
-                            size = ((random.nextInt(5) + 3) * 25);
+                            size = ((random.nextInt(5) + 2) * 25);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -326,12 +326,12 @@ public class RiepilogoFragment extends Fragment {
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]+" Richiesta massima urgenza.");
-                        int size = ((random.nextInt(5) + 3) * 25);
+                        int size = ((random.nextInt(5) + 2) * 25);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            size = ((random.nextInt(5) + 3) * 25);
+                            size = ((random.nextInt(5) + 2) * 25);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -366,11 +366,11 @@ public class RiepilogoFragment extends Fragment {
                     }
 
 
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 4000);
                 }
                 else {
                     Log.d("DEBUG", "errore runnable");
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 4000);
                 }
 
             }
