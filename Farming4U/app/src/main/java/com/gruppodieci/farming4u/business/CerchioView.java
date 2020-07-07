@@ -8,14 +8,18 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 import com.gruppodieci.farming4u.R;
 
 public class CerchioView extends View {
     private float x,y;
     private int size;
     private boolean isSerious;
+
     private int actualSize;
     private boolean animation;
+  
     private Paint fill;
     private Warning warning;
 
@@ -43,6 +47,7 @@ public class CerchioView extends View {
         this.y = y;
         this.size=size;
         this.isSerious=isSerious;
+
         this.animation=animation;
         actualSize=1;
         this.warning=warning;
@@ -131,7 +136,17 @@ public class CerchioView extends View {
         return size;
     }
 
+    public void setWarning(Warning warning) {
+        this.warning = warning;
+    }
 
+    public Warning getWarning() {
+        return this.warning;
+    }
 
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+    }
 
 }

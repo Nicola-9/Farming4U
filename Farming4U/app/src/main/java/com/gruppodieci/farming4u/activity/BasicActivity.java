@@ -31,6 +31,8 @@ public class BasicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
 
+        istance = this;
+
         toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
 
@@ -136,15 +138,24 @@ public class BasicActivity extends AppCompatActivity {
         return false;
     }
 
+    public static BasicActivity getIstance() {
+        return istance;
+    }
+
     public static AppCompatActivity getBasicActivity(){
         return instanceThis;
     }
+
+  
+    private static BasicActivity istance;
+
 
     public static void setSelectedItem(String select){
         if(select.equals("semina")){
             bottomBar.setSelectedItemId(R.id.grounds);
         }
     }
+
 
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
