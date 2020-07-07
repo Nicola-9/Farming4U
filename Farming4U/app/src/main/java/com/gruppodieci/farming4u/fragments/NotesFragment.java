@@ -34,6 +34,7 @@ public class NotesFragment extends ListFragment {
     }
 
     private void instanziateNotes() {
+        customAdapter.clear();
         ArrayList<Note> noteSaved=(ArrayList<Note>)SavingFiles.loadFile("fileNotes");
         int i=1;
         for(Note nota:noteSaved){
