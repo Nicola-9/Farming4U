@@ -4,21 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:orientation="vertical">
 
     <FrameLayout
+        android:id="@+id/frameWarning"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
-        android:background="#aac3b5"
+        android:layout_weight="11"
+        android:background="@drawable/terreno_riepilogo"
+        android:padding="2dp"
+        android:elevation="2dp"
+        android:src="@drawable/terreno_riepilogo"
+
+
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Posto per la mappa"
-            android:textSize="30dp"
+        <!--
+        <ImageView
+            android:id="@+id/riepilogoImmagineMappa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/terreno_riepilogo"
+            android:scaleType="centerCrop"
+            android:elevation="10dp"
+
             />
+            -->
+
     </FrameLayout>
 
     <LinearLayout
@@ -26,7 +39,7 @@
         android:layout_marginRight="@dimen/margine_cardview_homepage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="4"
         >
 
         <FrameLayout
@@ -43,23 +56,21 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
+                    android:id="@+id/imageColtivations"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="5dp"
-                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_weight="2"
                     android:layout_gravity="center"
                     android:src="@drawable/sprinkler"
                     />
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="# coltivazioni irrigate nelle ultime 24 ore"
+                    android:layout_marginRight="8dp"
+                    android:text="5 coltivazioni irrigate nelle ultime 24 ore"
                     android:textSize="@dimen/testo_materialcard_homepage"
                     />
             </LinearLayout>
@@ -91,10 +102,11 @@
             android:layout_marginBottom="@dimen/margine_cardview_homepage"
             android:layout_marginTop="@dimen/margine_cardview_homepage"
             android:elevation="25dp"
-            app:strokeColor="#d1d1d1"
+            app:strokeColor="#AE3636"
             app:cardCornerRadius="12dp"
             app:strokeWidth="2dp"
-            app:cardBackgroundColor="#FFAB91"
+            app:cardElevation="15dp"
+            app:cardBackgroundColor="#E57373"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:clickable="true"
 
@@ -114,6 +126,7 @@
 
                     />
                 <TextView
+                    android:id="@+id/textviewWarningAttivi"
                     android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -149,7 +162,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="8"
         android:layout_marginLeft="@dimen/margine_cardview_homepage"
         android:layout_marginRight="@dimen/margine_cardview_homepage"
         android:layout_marginBottom="@dimen/margine_cardview_homepage"
@@ -181,10 +194,11 @@
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:layout_marginBottom="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:strokeColor="#d1d1d1"
+                        app:strokeColor="#16698F"
                         app:cardCornerRadius="12dp"
                         app:strokeWidth="2dp"
-                        app:cardBackgroundColor="@color/colorCardViewm2Coltivati"
+                        app:cardElevation="5dp"
+                        app:cardBackgroundColor="#29B6F6"
                         style="@style/Widget.MaterialComponents.FloatingActionButton"
                         android:clickable="true"
                         >
@@ -225,7 +239,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_gravity="center"
-                                android:text="# mq terreni coltivati"
+                                android:text="3500 mq terreni coltivati"
                                 android:textSize="@dimen/testo_materialcard_homepage"
                                 />
                         </LinearLayout>
@@ -245,8 +259,9 @@
                         android:layout_marginRight="@dimen/margine_cardview_homepage"
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:strokeColor="#d1d1d1"
+                        app:strokeColor="#9C821A"
                         app:cardCornerRadius="12dp"
+                        app:cardElevation="5dp"
                         app:strokeWidth="2dp"
                         app:cardBackgroundColor="@color/colorCardviewNote"
                         style="@style/Widget.MaterialComponents.FloatingActionButton"
@@ -265,7 +280,9 @@
                                 android:layout_height="0dp"
                                 android:layout_weight="1"
                                 android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
                                 android:text="# note salvate"
+                                android:textSize="@dimen/testo_materialcard_homepage"
                                 android:textAppearance="?attr/textAppearanceHeadline6"
                                 />
 

@@ -43,4 +43,8 @@ dependencies {
     //grafi https://github.com/futuredapp/donut
     implementation("app.futured.donut:library-compose:2.0.0")
     implementation("app.futured.donut:library:2.0.0")
+
+    //gif
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
 }

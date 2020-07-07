@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
         this.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verifyUsernameAndPassword();
+                if(verifyLength())
+                    verifyUsernameAndPassword();
             }
         });
     }
@@ -98,6 +99,33 @@ public class LoginActivity extends AppCompatActivity {
                 this.loginUsernameLayout.setError("Username errato");
             }
         }
+    }
+
+    private boolean verifyLength(){
+        boolean isCorrectLength = false;
+
+        if(loginUsername.getText() != null && loginPassword.getText() != null){
+            if(loginUsername.getText().toString().trim().length() == 0 && loginPassword.getText().toString().trim().length() == 0){
+                this.loginUsernameLayout.setErrorEnabled(true);
+                this.loginUsernameLayout.setError("Campo username vuoto");
+
+                this.loginPasswordLayout.setErrorEnabled(true);
+                this.loginPasswordLayout.setError("Campo password vuoto");
+            } else
+                if(loginUsername.getText().toString().trim().length() == 0 && loginPassword.getText().toString().trim().length() > 0){
+                    this.loginUsernameLayout.setErrorEnabled(true);
+                    this.loginUsernameLayout.setError("Campo username vuoto");
+                } else
+                    if(loginUsername.getText().toString().trim().length() > 0 && loginPassword.getText().toString().trim().length() == 0){
+                        this.loginPasswordLayout.setErrorEnabled(true);
+                        this.loginPasswordLayout.setError("Campo password vuoto");
+                    } else
+                        if(loginUsername.getText().toString().trim().length() > 0 && loginPassword.getText().toString().trim().length() > 0){
+                            isCorrectLength = true;
+                        }
+        }
+
+        return isCorrectLength;
     }
 
     private TextInputLayout loginUsernameLayout;
