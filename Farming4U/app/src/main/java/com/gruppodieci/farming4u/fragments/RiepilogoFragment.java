@@ -8,6 +8,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -111,6 +112,13 @@ public class RiepilogoFragment extends Fragment {
 
         frameWarning=view.findViewById(R.id.frameWarning);
         frameTreeObserver();
+        frameWarning.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                frameCliccato(motionEvent);
+                return false;
+            }
+        });
 
         imageColtivations=view.findViewById(R.id.imageColtivations);
         Glide.with(this).load(R.drawable.gif_irrigazione).into(imageColtivations);
@@ -132,6 +140,23 @@ public class RiepilogoFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void frameCliccato(MotionEvent event) {
+        Warning warningCliccato=null;
+        int action = event.getAction();
+        if(action==MotionEvent.ACTION_DOWN){
+            for(Warning warn:warnings){
+                double xDiff=Math.abs(event.getX()-warn.getxPosition());
+                double yDiff=Math.abs(event.getY()-warn.getyPosition());
+                double hypot=Math.hypot(xDiff,yDiff);
+                if (hypot<warn.getSizeOfWarning()){
+                    warningCliccato=warn;
+                    Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
+                }
+            }
+        }
+
     }
 
     private void setTextviewWarningAttivi() {
@@ -264,12 +289,7 @@ public class RiepilogoFragment extends Fragment {
                         setTextviewWarningAttivi();
                         CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
                         frameWarning.addView(cerchioView);
-                        cerchioView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                cerchioCliccato(view);
-                            }
-                        });
+
                         startVibration();
 
                     } else if (value > 20 && value <= 35) {
@@ -315,12 +335,7 @@ public class RiepilogoFragment extends Fragment {
                         setTextviewWarningAttivi();
                         CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
                         frameWarning.addView(cerchioView);
-                        cerchioView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                cerchioCliccato(view);
-                            }
-                        });
+
                         startVibration();
 
 
@@ -413,20 +428,11 @@ public class RiepilogoFragment extends Fragment {
             Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
             CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning.getType());
             frameWarning.addView(cerchioView);
-            cerchioView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    cerchioCliccato(view);
-                }
-            });
+
         }
         frameWarning.invalidate();
     }
 
-    private void cerchioCliccato(View view) {
-        CerchioView cerchiooView=(CerchioView)view;
-        Log.d("DEBUG","Cerchio cliccato, tipo "+cerchiooView.getType());
-    }
 
     private void saveWarnings(){
         SavingFiles.saveFile("fileWarnings",warnings);
