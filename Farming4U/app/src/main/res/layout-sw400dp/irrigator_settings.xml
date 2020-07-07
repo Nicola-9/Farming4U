@@ -238,20 +238,22 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/irrigatorSettingButtonDismiss"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:backgroundTint="@color/buttonAnnulla"
-            android:text="Annulla" />
+            android:text="Annulla"
+            android:textSize="20sp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/irrigatorSettingButtonSave"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:backgroundTint="@color/buttonOk"
-            android:text="Salva" />
+            android:text="Salva"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 
