@@ -39,7 +39,7 @@ public class GroundsFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Trattamento del terreno"));
         tabLayout.addTab(semina);
 
-        if (activeTab.equals("semina")){
+        if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
