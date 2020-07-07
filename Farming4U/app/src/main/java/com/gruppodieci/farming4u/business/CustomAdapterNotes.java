@@ -74,8 +74,7 @@ public class CustomAdapterNotes extends ArrayAdapter<Note> {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
-                        Note nota=getItem(position);
-                        notes.remove(nota);
+                        notes.remove(position);
 
                         SavingFiles.saveFile("fileNotes",notes);
                         Log.d("DEBUG","grandezza notesaved "+notes.size());
