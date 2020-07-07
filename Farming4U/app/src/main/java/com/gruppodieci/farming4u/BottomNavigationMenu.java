@@ -30,6 +30,8 @@ public class BottomNavigationMenu {
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
                         replaceFragment(activeFragment);
+
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");
@@ -39,6 +41,7 @@ public class BottomNavigationMenu {
 
                         BasicActivity.getToolbar().setTitle("Stato Terreno");
 
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.grounds:
 
@@ -47,6 +50,7 @@ public class BottomNavigationMenu {
 
                         BasicActivity.getToolbar().setTitle("Terreni");
 
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                 }
 
