@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 
@@ -18,7 +20,9 @@ public class GroundsFragment extends Fragment {
 
     private View grounds;
     private TabLayout tabLayout;
+    TabLayout.Tab semina;
     static Fragment activeFragment;
+    static String activeTab = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,11 +33,31 @@ public class GroundsFragment extends Fragment {
 
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
+        semina = tabLayout.newTab().setText("Semina e coltivazione");
+
         tabLayout.addTab(tabLayout.newTab().setText("Cura delle piante"));
         tabLayout.addTab(tabLayout.newTab().setText("Trattamento del terreno"));
-        tabLayout.addTab(tabLayout.newTab().setText("Semina e coltivazione"));
+        tabLayout.addTab(semina);
 
-        replaceFragment(R.id.mapContent, new CuraPianteFragment());
+        if (activeTab.equals("semina")){
+            MaterialToolbar toolbar = BasicActivity.getToolbar();
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BasicActivity.getBasicActivity().onBackPressed();
+                }
+            });
+
+            semina.select();
+
+            Fragment semina = new SeminaFragment();
+            BottomNavigationMenu.setActiveFragment(semina);
+
+            replaceFragment(R.id.mapContent, semina);
+        } else {
+            replaceFragment(R.id.mapContent, new CuraPianteFragment());
+        }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -80,4 +104,7 @@ public class GroundsFragment extends Fragment {
 
     }
 
+    public static void setTab(String tab){
+        activeTab = tab;
+    }
 }
