@@ -66,15 +66,18 @@ public class RiepilogoFragment extends Fragment {
         secondaNotaRiepilogo=view.findViewById(R.id.secondaNotaRiepilogo);
         nrNoteSalvateRiepilogo=view.findViewById(R.id.nrNoteSalvateRiepilogo);
 
-        String primaNota=noteSaved.get(0).getNota();
-        String secondaNota=noteSaved.get(1).getNota();
+        String primaNota=null;
+        String secondaNota=null;
+        if(noteSaved.size()>0)
+            primaNota=noteSaved.get(0).getNota();
+        if(noteSaved.size()>1)
+            secondaNota=noteSaved.get(1).getNota();
 
         nrNoteSalvateRiepilogo.setText(""+noteSaved.size()+" note salvate");
         primaNotaRiepilogo.setText(primaNota!=null?primaNota:"");
         secondaNotaRiepilogo.setText(secondaNota!=null?secondaNota:"");
 
         textviewWarningAttivi=view.findViewById(R.id.textviewWarningAttivi);
-
 
         warningAttivi=view.findViewById(R.id.materialcardWarningAttivi);
         warningAttivi.setOnClickListener(new View.OnClickListener() {
@@ -287,7 +290,7 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning);
                         frameWarning.addView(cerchioView);
 
                         startVibration();
@@ -333,7 +336,7 @@ public class RiepilogoFragment extends Fragment {
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning);
                         frameWarning.addView(cerchioView);
 
                         startVibration();
@@ -426,7 +429,7 @@ public class RiepilogoFragment extends Fragment {
         frameWarning.removeAllViews();
         for(Warning warning:warnings){
             Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
-            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning.getType());
+            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning);
             frameWarning.addView(cerchioView);
 
         }
