@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Warning;
+
+import java.util.Random;
 
 public class CuraPianteFragment extends Fragment {
 
@@ -46,7 +49,30 @@ public class CuraPianteFragment extends Fragment {
 
             if( warning.getType().equals(Warning.CONCIMAZIONE) || warning.getType().equals(Warning.PESTICIDI) ) {
 
-                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning);
+                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious());
+
+                cerchioView.setWarning(warning);
+
+                Random random = new Random();
+                cerchioView.getWarning().setProductQuantity(random.nextInt(20) + 10);
+                cerchioView.getWarning().setDays(random.nextInt(70) + 20);
+
+                cerchioView.setOnClickListener( new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        CerchioView cerchioViewPressed = (CerchioView) v;
+
+                        cerchioViewPressed.getWarning().setTagClicked(true);
+
+                        BottomNavigationMenu.replaceFragment(R.id.fragmentContainer, new ProblemInformationFragment());
+                        BasicActivity.getIstance().getSupportActionBar().hide();
+
+                    }
+
+                });
+
                 frameWarning.addView(cerchioView);
 
             }
