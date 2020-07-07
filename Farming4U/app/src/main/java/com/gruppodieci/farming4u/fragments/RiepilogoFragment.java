@@ -105,7 +105,11 @@ public class RiepilogoFragment extends Fragment {
         m2Coltivati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"Fragment coltivazioni",Toast.LENGTH_LONG).show();
+                GroundsFragment.setTab("semina");
+
+                BottomNavigationMenu.setPreviousFragment("home");
+                BottomNavigationMenu.replaceFragment(new GroundsFragment());
+                BasicActivity.setSelectedItem("semina");
             }
         });
 

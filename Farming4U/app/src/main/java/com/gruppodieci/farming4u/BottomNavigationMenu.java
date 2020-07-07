@@ -93,6 +93,15 @@ public class BottomNavigationMenu {
         activeFragment = fragment;
     }
 
+    public static void setPreviousFragment(String fragment){
+        previousFrag = fragment;
+    }
+
+    public static String getPreviousFragment(){
+        return previousFrag;
+    }
+
     static AppCompatActivity instance;
     static Fragment activeFragment;
+    static String previousFrag;
 }
