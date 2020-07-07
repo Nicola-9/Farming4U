@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
-import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Warning;
 

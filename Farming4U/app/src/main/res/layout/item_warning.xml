@@ -2,13 +2,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
+    android:layout_margin="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    android:id="@+id/cardviewWarning"
+    android:clickable="true"
 
 
     >
     <RelativeLayout
+        android:id="@+id/relativeLayoutWarningSingolo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <TextView
             android:layout_toRightOf="@id/warning_icon"
             android:layout_below="@id/warning_time"
@@ -38,6 +44,7 @@
 
 
         <ImageView
+            android:layout_marginTop="8dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:id="@+id/warning_icon"

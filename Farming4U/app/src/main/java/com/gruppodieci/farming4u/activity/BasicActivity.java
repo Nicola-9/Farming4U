@@ -21,6 +21,7 @@ import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
+import com.gruppodieci.farming4u.fragments.SettingsIrrigator;
 
 public class BasicActivity extends AppCompatActivity {
 
@@ -54,6 +55,8 @@ public class BasicActivity extends AppCompatActivity {
         InstanziateFiles.instanziateFiles();
         setSupportActionBar(toolbar);
         showToolbarMenu = true;
+
+        instanceThis = this;
     }
 
     public void showToolbarMenu(boolean show){
@@ -84,7 +87,7 @@ public class BasicActivity extends AppCompatActivity {
 
             BottomNavigationMenu.replaceFragment(newFrag);
             BottomNavigationMenu.setActiveFragment(newFrag);
-        } else {
+        }else {
             super.onBackPressed();
         }
     }
@@ -98,7 +101,9 @@ public class BasicActivity extends AppCompatActivity {
 
                 return true;
             case R.id.irrigatoriSettingsButton:
-
+                Fragment irrigator = new SettingsIrrigator();
+                BottomNavigationMenu.setActiveFragment(irrigator);
+                BottomNavigationMenu.replaceFragment(irrigator, true);
                 return true;
             case R.id.sensoriSettingsButton:
                 BottomNavigationMenu.replaceFragment(new ImpostazioniSensori(),true);
@@ -121,10 +126,15 @@ public class BasicActivity extends AppCompatActivity {
         return istance;
     }
 
+    public static AppCompatActivity getBasicActivity(){
+        return instanceThis;
+    }
+  
     private static BasicActivity istance;
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
     private Intent launchLogin;
+    static AppCompatActivity instanceThis;
 }
