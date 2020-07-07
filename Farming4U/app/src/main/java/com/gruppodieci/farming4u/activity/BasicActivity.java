@@ -29,6 +29,8 @@ public class BasicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
 
+        istance = this;
+
         toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
 
@@ -115,6 +117,11 @@ public class BasicActivity extends AppCompatActivity {
         return false;
     }
 
+    public static BasicActivity getIstance() {
+        return istance;
+    }
+
+    private static BasicActivity istance;
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
     private BottomNavigationView bottomBar;
