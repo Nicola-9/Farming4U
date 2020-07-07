@@ -194,7 +194,7 @@
                         android:layout_marginTop="@dimen/margine_cardview_homepage"
                         android:layout_marginBottom="@dimen/margine_cardview_homepage"
                         android:elevation="15dp"
-                        app:strokeColor="#1C8ABC"
+                        app:strokeColor="#16698F"
                         app:cardCornerRadius="12dp"
                         app:strokeWidth="2dp"
                         app:cardElevation="5dp"

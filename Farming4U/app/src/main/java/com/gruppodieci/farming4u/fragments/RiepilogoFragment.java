@@ -118,7 +118,7 @@ public class RiepilogoFragment extends Fragment {
 
 
         donut=view.findViewById(R.id.donut_view);
-        DonutSection section1=new DonutSection("section 1", Color.parseColor(getResources().getString(0+R.color.colorDonutValue)),50f);
+        DonutSection section1=new DonutSection("section 1", Color.parseColor(getResources().getString(0+R.color.colorDonutValue)),73f);
         donut.setCap(100f);
         donut.setAnimationDurationMs(2000);
         List<DonutSection> donuts= new ArrayList<>();
