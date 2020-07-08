@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/headerSensorsSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/switchSensorsSettingsLeft"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_left"
+                android:tint="#717171" />
+
+            <ImageView
+                android:id="@+id/sensorsImageSettings"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:src="@drawable/irrigator_settings_icon" />
+
+            <ImageButton
+                android:id="@+id/switchSensorsSettingsRight"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_right"
+                android:tint="#717171" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/newIrrigatorContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome irrigatore"
+            android:lines="1"
+            android:id="@+id/sensorNameSettings"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipologia irrigatore"
+            android:lines="1"
+            android:layout_marginTop="15dp"
+            android:id="@+id/sensorTypeSettings"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Minimo raggio"
+            android:lines="1"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:id="@+id/sensorMinRadiusSettings"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Massimo raggio"
+            android:lines="1"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:id="@+id/sensorMaxRadiusSettings"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newIrrigatorContent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="55dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/irrigatorSettingAddButtonDismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@color/buttonAnnulla"
+            android:text="Annulla"
+            android:textSize="17sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/irrigatorSettingAddButtonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/buttonOk"
+            android:text="Salva"
+            android:textSize="17sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

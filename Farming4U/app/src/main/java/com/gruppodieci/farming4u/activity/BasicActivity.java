@@ -18,9 +18,11 @@ import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
+import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
+import com.gruppodieci.farming4u.fragments.SettingsIrrigator;
 
 public class BasicActivity extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ public class BasicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
+
+        istance = this;
 
         toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
@@ -52,6 +56,8 @@ public class BasicActivity extends AppCompatActivity {
         InstanziateFiles.instanziateFiles();
         setSupportActionBar(toolbar);
         showToolbarMenu = true;
+
+        instanceThis = this;
     }
 
     public void showToolbarMenu(boolean show){
@@ -82,9 +88,24 @@ public class BasicActivity extends AppCompatActivity {
 
             BottomNavigationMenu.replaceFragment(newFrag);
             BottomNavigationMenu.setActiveFragment(newFrag);
-        } else {
-            super.onBackPressed();
-        }
+        }else
+            if(BottomNavigationMenu.getActiveFragment() instanceof SeminaFragment){
+                if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                    bottomBar.setSelectedItemId(R.id.home);
+
+                    Fragment newFrag = new RiepilogoFragment();
+
+                    toolbar.setNavigationIcon(null);
+                    toolbar.setNavigationOnClickListener(null);
+
+                    BottomNavigationMenu.replaceFragment(newFrag);
+                    BottomNavigationMenu.setActiveFragment(newFrag);
+                } else{
+                    super.onBackPressed();
+                }
+            } else{
+                super.onBackPressed();
+            }
     }
 
     @Override
@@ -96,7 +117,9 @@ public class BasicActivity extends AppCompatActivity {
 
                 return true;
             case R.id.irrigatoriSettingsButton:
-
+                Fragment irrigator = new SettingsIrrigator();
+                BottomNavigationMenu.setActiveFragment(irrigator);
+                BottomNavigationMenu.replaceFragment(irrigator, true);
                 return true;
             case R.id.sensoriSettingsButton:
                 BottomNavigationMenu.replaceFragment(new ImpostazioniSensori(),true);
@@ -115,9 +138,29 @@ public class BasicActivity extends AppCompatActivity {
         return false;
     }
 
+    public static BasicActivity getIstance() {
+        return istance;
+    }
+
+    public static AppCompatActivity getBasicActivity(){
+        return instanceThis;
+    }
+
+  
+    private static BasicActivity istance;
+
+
+    public static void setSelectedItem(String select){
+        if(select.equals("semina")){
+            bottomBar.setSelectedItemId(R.id.grounds);
+        }
+    }
+
+
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
-    private BottomNavigationView bottomBar;
+    static BottomNavigationView bottomBar;
     private BottomNavigationMenu bottomNavigationMenu;
     private Intent launchLogin;
+    static AppCompatActivity instanceThis;
 }
