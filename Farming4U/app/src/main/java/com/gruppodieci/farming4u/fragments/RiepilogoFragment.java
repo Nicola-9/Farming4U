@@ -292,6 +292,10 @@ public class RiepilogoFragment extends Fragment {
                         warning.setxPosition(xPosition);
                         warning.setyPosition(yPosition);
                         warning.setSizeOfWarning(size);
+
+                        warning.setProductQuantity(random.nextInt(20) + 10);
+                        warning.setDays(random.nextInt(70) + 20);
+
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
@@ -338,6 +342,10 @@ public class RiepilogoFragment extends Fragment {
                         warning.setxPosition(xPosition);
                         warning.setyPosition(yPosition);
                         warning.setSizeOfWarning(size);
+
+                        warning.setProductQuantity(random.nextInt(20) + 10);
+                        warning.setDays(random.nextInt(70) + 20);
+
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();

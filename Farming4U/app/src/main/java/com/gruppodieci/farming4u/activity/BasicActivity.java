@@ -16,7 +16,9 @@ import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.GroundsFragment;
 import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
+import com.gruppodieci.farming4u.fragments.ProblemInformationFragment;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
@@ -103,6 +105,13 @@ public class BasicActivity extends AppCompatActivity {
                 } else{
                     super.onBackPressed();
                 }
+            } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
+
+                Fragment newFragment = new GroundsFragment();
+
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+
             } else{
                 super.onBackPressed();
             }

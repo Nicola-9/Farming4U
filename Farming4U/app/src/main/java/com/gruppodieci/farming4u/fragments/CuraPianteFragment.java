@@ -4,13 +4,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Warning;
 
@@ -49,25 +52,26 @@ public class CuraPianteFragment extends Fragment {
 
             if( warning.getType().equals(Warning.CONCIMAZIONE) || warning.getType().equals(Warning.PESTICIDI) ) {
 
-                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious());
+                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious(), warning);
 
-                cerchioView.setWarning(warning);
-
-                Random random = new Random();
-                cerchioView.getWarning().setProductQuantity(random.nextInt(20) + 10);
-                cerchioView.getWarning().setDays(random.nextInt(70) + 20);
-
-                cerchioView.setOnClickListener( new View.OnClickListener() {
+                map.setOnTouchListener( new View.OnTouchListener() {
 
                     @Override
-                    public void onClick(View v) {
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                        CerchioView cerchioViewPressed = (CerchioView) v;
+                        Warning warningCliccato = frameCliccato(motionEvent);
 
-                        cerchioViewPressed.getWarning().setTagClicked(true);
+                        if(warningCliccato != null) {
 
-                        BottomNavigationMenu.replaceFragment(R.id.fragmentContainer, new ProblemInformationFragment());
-                        BasicActivity.getIstance().getSupportActionBar().hide();
+                            Fragment problem = new ProblemInformationFragment();
+                            BottomNavigationMenu.replaceFragment(R.id.fragmentContainer, problem);
+                            BottomNavigationMenu.setActiveFragment(problem);
+
+                            BasicActivity.getIstance().getSupportActionBar().hide();
+
+                        }
+
+                        return false;
 
                     }
 
@@ -80,6 +84,26 @@ public class CuraPianteFragment extends Fragment {
         }
 
         frameWarning.invalidate();
+
+    }
+
+    private Warning frameCliccato(MotionEvent event) {
+        Warning warningCliccato=null;
+        int action = event.getAction();
+        if(action==MotionEvent.ACTION_DOWN){
+            for(Warning warn:RiepilogoFragment.warnings){
+                double xDiff=Math.abs(event.getX()-warn.getxPosition());
+                double yDiff=Math.abs(event.getY()-warn.getyPosition() * 2);
+                double hypot=Math.hypot(xDiff,yDiff);
+                if (hypot<warn.getSizeOfWarning()){
+                    warningCliccato=warn;
+                    warningCliccato.setTagClicked(true);
+                    Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
+                }
+            }
+        }
+
+        return warningCliccato;
 
     }
 
