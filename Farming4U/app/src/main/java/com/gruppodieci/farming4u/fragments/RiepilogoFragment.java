@@ -153,7 +153,7 @@ public class RiepilogoFragment extends Fragment {
     private void frameCliccato(MotionEvent event) {
         Warning warningCliccato=null;
         int action = event.getAction();
-        if(action==MotionEvent.ACTION_DOWN){
+        if(action==MotionEvent.ACTION_UP){
             for(Warning warn:warnings){
                 double xDiff=Math.abs(event.getX()-warn.getxPosition());
                 double yDiff=Math.abs(event.getY()-warn.getyPosition());
