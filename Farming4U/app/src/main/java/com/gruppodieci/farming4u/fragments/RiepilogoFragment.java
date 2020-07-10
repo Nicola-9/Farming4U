@@ -278,14 +278,14 @@ public class RiepilogoFragment extends Fragment {
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]);
-                        Log.d("DEBUG", "Overlap!");
-                        int size = ((random.nextInt(5) + 3) * 25);
-                        Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
+                        //Log.d("DEBUG", "Overlap!");
+                        int size = ((random.nextInt(5) + 2) * 25);
+                        //Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            Log.d("DEBUG", "Overlap!");
-                            size = ((random.nextInt(5) + 3) * 25);
+                            //Log.d("DEBUG", "Overlap!");
+                            size = ((random.nextInt(5) + 2) * 25);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -330,12 +330,12 @@ public class RiepilogoFragment extends Fragment {
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]+" Richiesta massima urgenza.");
-                        int size = ((random.nextInt(5) + 3) * 25);
+                        int size = ((random.nextInt(5) + 2) * 25);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            size = ((random.nextInt(5) + 3) * 25);
+                            size = ((random.nextInt(5) + 2) * 25);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -374,11 +374,11 @@ public class RiepilogoFragment extends Fragment {
                     }
 
 
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 4000);
                 }
                 else {
                     Log.d("DEBUG", "errore runnable");
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 4000);
                 }
 
             }
@@ -416,18 +416,13 @@ public class RiepilogoFragment extends Fragment {
         else if(posIrrigazione.size()==maxSize)
             toDelete=posIrrigazione;
         else  toDelete=posPesticidi;
-        Log.d("DEBUGTYPE","toDelete size "+toDelete.size()+" maxSize "+maxSize);
+        //Log.d("DEBUGTYPE","toDelete size "+toDelete.size()+" maxSize "+maxSize);
         int randVal = random.nextInt(toDelete.size());
-        Log.d("DEBUGTYPE","Deleted "+warnings.get(toDelete.get(randVal)).getType());
-        Log.d("DEBUGTYPE","grandezza warnings prima di cancellare "+warnings.size());
-        Log.d("DEBUGTYPE","Cancellare warning in posizione "+toDelete.get(randVal));
         warnings.remove((toDelete.get(randVal)).intValue());
-        Log.d("DEBUGTYPE","grandezza warnings dopo aver cancellato "+warnings.size());
 
         for(Warning warn:warnings){
-            Log.d("DEBUGTYPE","Warning type "+warn.getType());
+            //Log.d("DEBUGTYPE","Warning type "+warn.getType());
         }
-        Log.d("DEBUGTYPE","\n\n");
     }
 
     private void startVibration(){
@@ -441,7 +436,7 @@ public class RiepilogoFragment extends Fragment {
     private void disegnaCerchi() {
         frameWarning.removeAllViews();
         for(Warning warning:warnings){
-            Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
+           // Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
             CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning);
             frameWarning.addView(cerchioView);
 

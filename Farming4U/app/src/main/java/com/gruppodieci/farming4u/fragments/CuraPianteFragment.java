@@ -52,7 +52,9 @@ public class CuraPianteFragment extends Fragment {
 
             if( warning.getType().equals(Warning.CONCIMAZIONE) || warning.getType().equals(Warning.PESTICIDI) ) {
 
-                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious(), warning);
+
+                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious(),warning);
+
 
                 map.setOnTouchListener( new View.OnTouchListener() {
 
