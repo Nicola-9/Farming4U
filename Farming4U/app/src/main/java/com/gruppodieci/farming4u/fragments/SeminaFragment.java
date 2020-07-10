@@ -89,6 +89,12 @@ public class SeminaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
+
+        GroundsFragment.setTab(null);
+
+
         // Inflate Fragment layout
         this.view = inflater.inflate(R.layout.semina_fragment, container, false);
 
