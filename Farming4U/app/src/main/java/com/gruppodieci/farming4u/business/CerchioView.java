@@ -49,7 +49,7 @@ public class CerchioView extends View {
         fill.setStyle(Paint.Style.FILL);
         strokePaint=new Paint();
         strokePaint.setStyle(Paint.Style.STROKE);
-        strokePaint.setStrokeWidth(10);
+        strokePaint.setStrokeWidth(12);
         strokePaint.setStrokeCap(Paint.Cap.ROUND);
         strokePaint.setColor(getResources().getColor(R.color.colorWarningNotSeriousStroke));
         fill.setColor(getResources().getColor(R.color.colorWarningNotSerious));

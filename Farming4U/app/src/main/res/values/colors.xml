@@ -16,8 +16,8 @@
     <color name="colorWarningSerious">#B3EC3118</color>
     <color name="colorWarningNotSerious">#B3EAF121</color>
 
-    <color name="colorWarningSeriousStroke">#61150B</color>
-    <color name="colorWarningNotSeriousStroke">#5F610F</color>
+    <color name="colorWarningSeriousStroke">#8A2B2B</color>
+    <color name="colorWarningNotSeriousStroke">#9C821A</color>
 
 
     <color name="buttonOk">#6DBF32</color>
