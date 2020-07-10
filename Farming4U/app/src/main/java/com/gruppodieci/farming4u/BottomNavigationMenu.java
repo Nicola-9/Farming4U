@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.business.Warning;
 import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
@@ -44,6 +45,12 @@ public class BottomNavigationMenu {
                         BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.grounds:
+
+                        for(Warning warning: RiepilogoFragment.warnings) {
+
+                            warning.setTagClicked(false);
+
+                        }
 
                         activeFragment = new GroundsFragment();
                         replaceFragment(activeFragment);

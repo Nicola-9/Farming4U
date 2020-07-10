@@ -1,19 +1,30 @@
 package com.gruppodieci.farming4u.fragments;
 
+import android.annotation.SuppressLint;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.SpannableString;
+import android.text.style.LeadingMarginSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Warning;
 
 public class ProblemInformationFragment extends Fragment {
@@ -30,6 +41,9 @@ public class ProblemInformationFragment extends Fragment {
 
     private MaterialButton buttonResolve;
 
+    private ImageButton informationBackButton;
+
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +60,47 @@ public class ProblemInformationFragment extends Fragment {
 
         buttonResolve = this.problemInformation.findViewById(R.id.risolvi);
 
+        buttonResolve.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Warning warningRemove = null;
+                for(Warning warning: RiepilogoFragment.warnings) {
+
+                    if(warning.getTagClicked())
+                        warningRemove = warning;
+
+                }
+
+                if(warningRemove != null)
+                   ;
+
+                BasicActivity.getIstance().onBackPressed();
+
+            }
+
+        });
+
+        informationBackButton = this.problemInformation.findViewById(R.id.informationBackButton);
+
+        informationBackButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                for(Warning warning: RiepilogoFragment.warnings) {
+
+                    warning.setTagClicked(false);
+
+                }
+
+                BasicActivity.getIstance().onBackPressed();
+
+            }
+
+        });
+
         Warning warningPressed = null;
         for(Warning warning: RiepilogoFragment.warnings) {
 
@@ -61,6 +116,8 @@ public class ProblemInformationFragment extends Fragment {
             if (warningPressed.getType().equals(Warning.CONCIMAZIONE)) {
 
                 informationTitle.setText("Carenza di\nconcime");
+
+                informationParameterImage.setBackgroundResource(R.drawable.icona_concimazione);
 
                 String priority = "";
                 if (warningPressed.isSerious()) {
@@ -81,7 +138,9 @@ public class ProblemInformationFragment extends Fragment {
 
             } else if (warningPressed.getType().equals(Warning.PESTICIDI)) {
 
-                informationTitle.setText("Carenza di\nconcime");
+                informationTitle.setText("Carenza di\npesticidi");
+
+                informationParameterImage.setBackgroundResource(R.drawable.icona_pesticidi);
 
                 String priority = "";
                 if (warningPressed.isSerious()) {
@@ -104,9 +163,10 @@ public class ProblemInformationFragment extends Fragment {
 
         }
 
-        warningPressed.setTagClicked(false);
+        problemInformation.invalidate();
 
         return problemInformation;
 
     }
+
 }
