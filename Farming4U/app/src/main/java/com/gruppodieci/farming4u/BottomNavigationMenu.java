@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.business.Warning;
 import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
@@ -30,6 +31,8 @@ public class BottomNavigationMenu {
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
                         replaceFragment(activeFragment);
+
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");
@@ -39,14 +42,22 @@ public class BottomNavigationMenu {
 
                         BasicActivity.getToolbar().setTitle("Stato Terreno");
 
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.grounds:
+
+                        for(Warning warning: RiepilogoFragment.warnings) {
+
+                            warning.setTagClicked(false);
+
+                        }
 
                         activeFragment = new GroundsFragment();
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setTitle("Terreni");
 
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                 }
 
@@ -93,6 +104,15 @@ public class BottomNavigationMenu {
         activeFragment = fragment;
     }
 
+    public static void setPreviousFragment(String fragment){
+        previousFrag = fragment;
+    }
+
+    public static String getPreviousFragment(){
+        return previousFrag;
+    }
+
     static AppCompatActivity instance;
     static Fragment activeFragment;
+    static String previousFrag;
 }

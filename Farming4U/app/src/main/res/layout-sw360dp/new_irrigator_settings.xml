@@ -76,6 +76,7 @@
             android:layout_height="wrap_content"
             android:hint="Minimo raggio"
             android:lines="1"
+            android:inputType="number"
             android:layout_marginTop="15dp"
             android:id="@+id/sensorMinRadiusSettings"/>
 
@@ -84,6 +85,7 @@
             android:layout_height="wrap_content"
             android:hint="Massimo raggio"
             android:lines="1"
+            android:inputType="number"
             android:layout_marginTop="15dp"
             android:id="@+id/sensorMaxRadiusSettings"/>
 
@@ -94,26 +96,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/newIrrigatorContent"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="55dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="55dp"
-        android:layout_marginEnd="55dp">
+        android:layout_marginEnd="45dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/irrigatorSettingButtonDismiss"
-            android:layout_width="100dp"
+            android:id="@+id/irrigatorSettingAddButtonDismiss"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:backgroundTint="@color/buttonAnnulla"
-            android:text="Annulla" />
+            android:text="Annulla"
+            android:textSize="17sp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/irrigatorSettingButtonSave"
-            android:layout_width="100dp"
+            android:id="@+id/irrigatorSettingAddButtonSave"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center"
             android:backgroundTint="@color/buttonOk"
-            android:text="Salva" />
+            android:text="Salva"
+            android:textSize="17sp"/>
 
     </RelativeLayout>
 

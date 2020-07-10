@@ -34,8 +34,10 @@ public class WarningFragment extends ListFragment {
     }
 
     private void fillCustomAdapter(){
-        for(Warning warning:warningSaved){
-            customAdapter.add(warning);
+        if(warningSaved!=null) {
+            for (Warning warning : warningSaved) {
+                customAdapter.add(warning);
+            }
         }
     }
 
