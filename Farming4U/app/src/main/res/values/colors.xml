@@ -8,9 +8,9 @@
     <color name="colorDonutValue">#16698F</color>
     <color name="colorDonutBackground">#6D6E6E</color>
 
-    <color name="colorCardviewWarning">#FFCCBC</color>
-    <color name="colorCardViewm2Coltivati">#B2DFDB</color>
-    <color name="colorCardviewNote">#FFD52E</color>
+    <color name="colorCardviewWarning">#FBE9E7</color>
+    <color name="colorCardViewm2Coltivati">#E3F2FD</color>
+    <color name="colorCardviewNote">#FFECB3</color>
 
 
     <color name="colorWarningSerious">#B3EC3118</color>
