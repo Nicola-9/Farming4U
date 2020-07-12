@@ -56,6 +56,8 @@ public class RiepilogoFragment extends Fragment {
 
         aggiornaWarning();
         Log.d("DEBUG","oncreate riepilogofragment chiamata");
+        BottomNavigationMenu.setPreviousFragment("");
+
     }
 
     @Override
@@ -162,6 +164,16 @@ public class RiepilogoFragment extends Fragment {
                 if (hypot<warn.getSizeOfWarning()){
                     warningCliccato=warn;
                     Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
+                    if(warningCliccato.getType().equals(Warning.CONCIMAZIONE) || warningCliccato.getType().equals(Warning.PESTICIDI)){
+                        GroundsFragment.setTab("cura");
+                        BottomNavigationMenu.setPreviousFragment("home");
+                        Fragment frag = new GroundsFragment();
+                        BottomNavigationMenu.replaceFragment(frag);
+                        BasicActivity.setSelectedItem("semina");
+                    }
+                    else{
+
+                    }
                 }
             }
         }
