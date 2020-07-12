@@ -270,6 +270,8 @@ public class RiepilogoFragment extends Fragment {
                     //forzo la pulizia dello schermo
                     if(warnings.size()>10)
                         value=100;
+                    else if(warnings.size()<3)
+                        value=random.nextInt(3);
                     if (value == 0 || value==1) {
                         Log.d("DEBUG_RUNNABLE", "warning normale generato");
 
@@ -297,13 +299,15 @@ public class RiepilogoFragment extends Fragment {
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]);
                         //Log.d("DEBUG", "Overlap!");
-                        int size = ((random.nextInt(5) + 2) * 25);
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
                         //Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
                             //Log.d("DEBUG", "Overlap!");
-                            size = ((random.nextInt(5) + 2) * 25);
+                            size = ((random.nextInt(5) + 2) * min);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -348,12 +352,14 @@ public class RiepilogoFragment extends Fragment {
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]+" Richiesta massima urgenza.");
-                        int size = ((random.nextInt(5) + 2) * 25);
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            size = ((random.nextInt(5) + 2) * 25);
+                            size = ((random.nextInt(5) + 2) * min);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -486,6 +492,7 @@ public class RiepilogoFragment extends Fragment {
                     frameHeight=frameWarning.getHeight(); //height is ready
                     frameWidth=frameWarning.getWidth();
                     Log.d("DEBUG","instanziateWarnings onGlobalLayout called, framewidth "+frameWidth+" frameheight "+frameHeight);
+                    boolean serious=false;
                     for(int choice=0;choice<4;choice++) {
                         String type = "";
                         switch (choice) {
@@ -503,13 +510,15 @@ public class RiepilogoFragment extends Fragment {
                                 break;
                         }
                         int witch = random.nextInt(location.length);
-                        Warning warning = new Warning(type + location[witch], random.nextBoolean());
+                        Warning warning = new Warning(type + location[witch], serious);
                         warning.setType(type);
-                        int size = ((random.nextInt(5) + 2) * 25);
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            size = ((random.nextInt(5) + 2) * 25);
+                            size = ((random.nextInt(5) + 2) * min);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
@@ -523,6 +532,7 @@ public class RiepilogoFragment extends Fragment {
                         setTextviewWarningAttivi();
                         CerchioView cerchioView = new CerchioView(getContext(), warning.getxPosition(), warning.getyPosition(), warning.getSizeOfWarning(), warning.isSerious(), false, warning);
                         frameWarning.addView(cerchioView);
+                        serious=!serious;
                     }
                 }
             });
