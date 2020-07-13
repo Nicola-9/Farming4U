@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#71A3BB"
+            app:titleMarginStart="35dp"
+            android:elevation="25dp"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary">
+
+
+
+            <ImageButton
+                android:id="@+id/frccia"
+                android:layout_height="16dp"
+                android:layout_width="16dp"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:padding="@dimen/cardview_padding_left"
+                android:layout_gravity="top"
+                android:layout_margin="10dp"
+                android:src="@drawable/icona_freccia"
+                android:background="@null"
+                />
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:textSize="24dp"
+                android:text="Informazioni specifiche colture"
+                android:textColor="#fff"
+                android:layout_gravity="left"
+                android:layout_marginTop="20dp"
+                />
+
+
+            <ImageButton
+                android:id="@+id/icona_prodotto"
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:padding="@dimen/cardview_padding_left"
+                android:layout_gravity="right"
+                android:layout_margin="15dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    <TextView
+        android:id="@+id/testoDesc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:layout_below="@id/toolbar_product"
+        android:text="Immetti periodo di coltivazione"
+        android:textSize="15dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/periodo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testoDesc1"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/periodo_coltivazione" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/testoDesc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:layout_below="@id/periodo"
+        android:text="Immetti quantità da coltivare"
+        android:textSize="15dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/quant"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testoDesc2"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:id="@+id/Quntità_da_coltivare" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/testoDesc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:layout_below="@id/quant"
+        android:text="Informazioni e consigi"
+        android:textSize="15dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/descrzione"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/testoDesc3"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:scrollbars = "vertical"
+        android:background="@drawable/back"
+        >
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="25dp"
+        android:layout_alignRight="@id/descrzione"
+        android:layout_below="@id/descrzione"
+        android:backgroundTint="#20C627"
+        app:cornerRadius="7dp"
+        android:text="Salva"
+        android:textSize="16sp"
+        android:id="@+id/confirm" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="25dp"
+        android:layout_alignLeft="@id/descrzione"
+        android:layout_below="@id/descrzione"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#D83A3A"
+        app:cornerRadius="7dp"
+        android:text="annulla"
+        android:textSize="16sp"
+        android:id="@+id/cancel" />
+
+</RelativeLayout>
