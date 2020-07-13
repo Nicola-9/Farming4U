@@ -2,7 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/mappaOptionName" android:id="@+id/mappaSettingsButton"/>
     <item android:title="@string/irrigatorOptionName" android:id="@+id/irrigatoriSettingsButton" />
     <item android:title="@string/sensorOptionName" android:id="@+id/sensoriSettingsButton"/>
     <item android:title="@string/logoutOptionName" android:id="@+id/logoutSettingsButton"/>
