@@ -21,6 +21,8 @@ public class GroundsFragment extends Fragment {
     private View grounds;
     private TabLayout tabLayout;
     TabLayout.Tab semina;
+    TabLayout.Tab cura;
+
     static Fragment activeFragment;
     static String activeTab = null;
 
@@ -34,8 +36,8 @@ public class GroundsFragment extends Fragment {
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
         semina = tabLayout.newTab().setText("Semina e coltivazione");
-
-        tabLayout.addTab(tabLayout.newTab().setText("Cura delle piante"));
+        cura=tabLayout.newTab().setText("Cura delle piante");
+        tabLayout.addTab(cura);
         tabLayout.addTab(tabLayout.newTab().setText("Trattamento del terreno"));
         tabLayout.addTab(semina);
 
@@ -55,7 +57,25 @@ public class GroundsFragment extends Fragment {
             BottomNavigationMenu.setActiveFragment(semina);
 
             replaceFragment(R.id.mapContent, semina);
-        } else {
+        }
+        else if (activeTab != null && activeTab.equals("cura")) {
+            MaterialToolbar toolbar = BasicActivity.getToolbar();
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BasicActivity.getBasicActivity().onBackPressed();
+                }
+            });
+
+            cura.select();
+
+            Fragment cura = new CuraPianteFragment();
+            BottomNavigationMenu.setActiveFragment(cura);
+
+            replaceFragment(R.id.mapContent, cura);
+        }
+        else {
             replaceFragment(R.id.mapContent, new CuraPianteFragment());
         }
 

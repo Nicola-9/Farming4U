@@ -3,12 +3,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="25dp"
-    app:strokeColor="#d1d1d1"
+    app:strokeColor="#9C821A"
     app:cardCornerRadius="12dp"
     app:strokeWidth="2dp"
     app:cardBackgroundColor="#FFECB3"
     android:layout_margin="5dp"
     app:cardElevation="4dp"
+
 
     >
     <RelativeLayout
