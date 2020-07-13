@@ -1,10 +1,14 @@
 package com.gruppodieci.farming4u.fragments;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,6 +35,8 @@ public class SettingsAddIrrigator extends Fragment {
         this.sensorType = this.settingsAddIrrigator.findViewById(R.id.sensorTypeSettings);
         this.sensorMaxRadius = this.settingsAddIrrigator.findViewById(R.id.sensorMaxRadiusSettings);
         this.sensorMinRadius = this.settingsAddIrrigator.findViewById(R.id.sensorMinRadiusSettings);
+        this.switchLeft = this.settingsAddIrrigator.findViewById(R.id.switchSensorsSettingsLeft);
+        this.switchRight = this.settingsAddIrrigator.findViewById(R.id.switchSensorsSettingsRight);
 
         // Initialize business variable
         this.settingsBusiness = new SettingsAddIrrigatorBusiness();
@@ -55,6 +61,24 @@ public class SettingsAddIrrigator extends Fragment {
         this.settingsBusiness.setOnDismissButtonClick(this.dismissButton, this.sensorName, this.sensorType,
                 this.sensorMaxRadius, this.sensorMinRadius);
 
+        this.switchLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(BasicActivity.getIstance(), "Nessun altro irrigatore disponibile", Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER, 0, 0);
+                t.show();
+            }
+        });
+
+        this.switchRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(BasicActivity.getIstance(), "Nessun altro irrigatore disponibile", Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER, 0, 0);
+                t.show();
+            }
+        });
+
         return this.settingsAddIrrigator;
     }
 
@@ -74,5 +98,7 @@ public class SettingsAddIrrigator extends Fragment {
     private EditText sensorType;
     private EditText sensorMinRadius;
     private EditText sensorMaxRadius;
+    private ImageButton switchLeft;
+    private ImageButton switchRight;
     private SettingsAddIrrigatorBusiness settingsBusiness;
 }

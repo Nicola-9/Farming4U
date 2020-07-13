@@ -1,12 +1,14 @@
 package com.gruppodieci.farming4u.fragments;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +46,8 @@ public class SettingsIrrigator extends Fragment {
         this.dismissButton = this.settingsIrrigator.findViewById(R.id.irrigatorSettingButtonDismiss);
         this.saveButton = this.settingsIrrigator.findViewById(R.id.irrigatorSettingButtonSave);
         this.addIrrigatorButton = this.settingsIrrigator.findViewById(R.id.newIrrigatorButton);
+        this.switchLeft = this.settingsIrrigator.findViewById(R.id.switchSensorsSettingsLeft);
+        this.switchRight = this.settingsIrrigator.findViewById(R.id.switchSensorsSettingsRight);
 
         // Initialize business variable
         this.business = new SettingsIrrigatorBusiness(this.hourButton, this.portataIrrigator, this.maxRadius, this.ferialDays,
@@ -71,6 +75,24 @@ public class SettingsIrrigator extends Fragment {
         this.business.setOnSaveButtonClick();
         this.business.onAddButtonClick();
 
+        this.switchLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(BasicActivity.getIstance(), "Nessun altro irrigatore disponibile", Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER, 0, 0);
+                t.show();
+            }
+        });
+
+        this.switchRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(BasicActivity.getIstance(), "Nessun altro irrigatore disponibile", Toast.LENGTH_SHORT);
+                t.setGravity(Gravity.CENTER, 0, 0);
+                t.show();
+            }
+        });
+
         return this.settingsIrrigator;
     }
 
@@ -93,5 +115,7 @@ public class SettingsIrrigator extends Fragment {
     private MaterialButton dismissButton;
     private MaterialButton saveButton;
     private FloatingActionButton addIrrigatorButton;
+    private ImageButton switchLeft;
+    private ImageButton switchRight;
     private SettingsIrrigatorBusiness business;
 }
