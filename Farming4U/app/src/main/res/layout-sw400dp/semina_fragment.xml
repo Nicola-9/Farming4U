@@ -38,7 +38,7 @@
             android:layout_width="130dp"
             android:layout_height="55dp"
             android:layout_marginBottom="0dp"
-            android:layout_gravity="left"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="190dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
@@ -101,7 +101,6 @@
                         android:layout_margin="15dp"
                         android:src="@drawable/icona_albero"
                         android:background="@null"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -116,7 +115,6 @@
                         android:layout_margin="15dp"
                         android:layout_toRightOf="@id/icona1"
                         android:background="@null"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -131,7 +129,6 @@
                         android:layout_margin="15dp"
                         android:layout_toRightOf="@id/icona2"
                         android:background="@null"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -146,7 +143,6 @@
                         android:layout_margin="15dp"
                         android:layout_toRightOf="@id/icona3"
                         android:background="@null"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -161,7 +157,6 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -176,7 +171,6 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
                         />
                     <ImageButton
                         android:id="@+id/icona7"
@@ -190,7 +184,6 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
                         />
 
                 </RelativeLayout>

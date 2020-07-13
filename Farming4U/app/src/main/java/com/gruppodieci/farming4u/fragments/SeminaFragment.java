@@ -1,19 +1,53 @@
 package com.gruppodieci.farming4u.fragments;
 
+
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
+import android.graphics.Point;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.business.DrawExistingRectangle;
+import com.gruppodieci.farming4u.business.DrawTheRectangle;
+import com.gruppodieci.farming4u.business.DrawTheSelectRectangle;
+import com.gruppodieci.farming4u.business.SavingFilesSeminaTerreni;
+import com.gruppodieci.farming4u.business.TerreniColtivati;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.zip.Inflater;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
+
 
 public class SeminaFragment extends Fragment {
 
@@ -26,17 +60,124 @@ public class SeminaFragment extends Fragment {
     private ImageButton img5;
     private ImageButton img6;
     private ImageButton img7;
+    private ImageButton imgMunu;
+    private Button draw;
+    private Button cancella;
+    private Button conferma;
+    private Button annulla;
+    private DrawTheRectangle drawRectangle;
+    private DrawTheSelectRectangle existingRectangle;
+    private FrameLayout frame;
+    private FrameLayout frameL;
+    float inizio_x;
+    float inizio_y;
+    float fine_x;
+    float fine_y;
+    float x;
+    float y;
+    private ArrayList<TerreniColtivati> terreniFile;
+    private ArrayList<TerreniColtivati> terreniSele = new ArrayList<TerreniColtivati>();
+    private Button save;
+    private Button delate;
+    private Button select;
+    private int selezionaIMGB;
+    private Inflater inf;
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
 
         GroundsFragment.setTab(null);
 
+
         // Inflate Fragment layout
         this.view = inflater.inflate(R.layout.semina_fragment, container, false);
+
+        frame = this.view.findViewById(R.id.mappa);
+
+        save = this.view.findViewById(R.id.salva);
+        save.setVisibility(View.GONE);
+
+        cancella = this.view.findViewById(R.id.cancel);
+
+        //bottone conferma selezione
+        conferma = this.view.findViewById(R.id.confirm);
+
+        drawRectangle = new DrawTheRectangle(getContext(), frame);
+
+
+        final SavingFilesSeminaTerreni salva = new SavingFilesSeminaTerreni();
+
+        terreniFile = salva.readFromFileTerreni(getContext());
+
+        if(terreniFile == null){
+            //File vuoto
+            terreniFile = new ArrayList<TerreniColtivati>();
+        }
+
+       frame.addView(new DrawExistingRectangle(getContext(), frame, terreniFile));
+
+        cancella.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Fragment fragment = new GroundsFragment();
+                replaceFragment(R.id.mapContent,fragment);
+            }
+        });
+
+
+        //salva area coltivabile disegnata
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                //terreniFile = salva.readFromFileTerreni(getContext());
+
+                TerreniColtivati terreni = new TerreniColtivati();
+                terreni.setxPositionInizio(drawRectangle.getInizio_x());
+                terreni.setyPositionInizio(drawRectangle.getInizio_y());
+                terreni.setxPositionFine(drawRectangle.getFine_x());
+                terreni.setyPositionFine(drawRectangle.getFine_y());
+
+                System.out.println(terreni.toString());
+
+                ArrayList<TerreniColtivati> terra = terreniFile;
+
+                terra.add(terreni);
+
+                salva.saveTerreni(terra, getContext());
+
+                System.out.println(terra.toString());
+
+                save.setVisibility(View.GONE);
+
+                //restart fragment
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+            }
+        });
+
+
+        conferma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selezionato1 == true && selezionato2 == true){
+                    selezionato1 = false;
+                    selezionato2 = false;
+                    //start new fragment
+
+
+                    Fragment fragment = new InformazioniSpecificheColtureFragment(selezionaIMGB, x_sel_inizio, x_sel_fine, y_sel_inizio, y_sel_fine);
+                    replaceFragment(R.id.mapContent,fragment);
+                }
+            }
+        });
 
         this.input_text = this.view.findViewById(R.id.input_text);
         img1 = this.view.findViewById(R.id.icona1);
@@ -46,6 +187,264 @@ public class SeminaFragment extends Fragment {
         img5 = this.view.findViewById(R.id.icona5);
         img6 = this.view.findViewById(R.id.icona6);
         img7 = this.view.findViewById(R.id.icona7);
+        imgMunu = this.view.findViewById(R.id.iconaMunu);
+
+        imgMunu.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+
+        PopupMenu popup = new PopupMenu(getContext(), imgMunu);
+
+        popup.getMenuInflater().inflate(R.menu.menu_semina, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        public boolean onMenuItemClick(MenuItem item) {
+        //Toast.makeText(getContext(), "Hai cliccato : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
+            switch (item.getItemId())
+            {
+                case R.id.disegnaSettingsButton:
+
+                    frame.addView(drawRectangle);
+                    frame.invalidate();
+                    save.setVisibility(View.VISIBLE);
+
+                    return true;
+
+                case R.id.salvaSettingsButton:
+
+                    return true;
+
+                case R.id.eliminaSettingsButton:
+                    Toast.makeText(getContext(), "seleziona l'area da cancellare" , Toast.LENGTH_LONG).show();
+                    //verifica se viene selezionata una zona
+                   frame.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, @NotNull MotionEvent event) {
+                            switch(event.getAction()) {
+                                case MotionEvent.ACTION_DOWN:
+                                    x = event.getX();
+                                    y = event.getY();
+                                    break;
+                                case MotionEvent.ACTION_UP:
+                                    for(TerreniColtivati t : terreniFile){
+                                        if(x > t.getxPositionInizio() && x < t.getxPositionFine()){
+                                            if(y > t.getyPositionInizio() && y < t.getyPositionFine()){
+                                                DrawTheRectangle x = new DrawTheRectangle(getContext());
+                                                x.disegnaRettangoloSel(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine());
+
+                                                x_sel_inizio = t.getxPositionInizio();
+                                                y_sel_inizio = t.getyPositionInizio();
+                                                x_sel_fine = t.getxPositionFine();
+                                                y_sel_fine = t.getyPositionFine();
+
+                                                onButtonShowPopupWindowClick2(view);
+
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                            return true;
+                        }
+
+
+                    });
+
+                    return true;
+
+                case R.id.eliminaAllSettingsButton:
+
+                    onButtonShowPopupWindowClick(view);
+
+                    return true;
+
+                case R.id.annullaSettingsButton:
+
+                    return true;
+
+                case R.id.selezionaSettingsButton:
+                    //verifica se viene selezionata una zona
+                    frame.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, @NotNull MotionEvent event) {
+                            switch(event.getAction()) {
+                                case MotionEvent.ACTION_DOWN:
+                                    x = event.getX();
+                                    y = event.getY();
+                                    break;
+                                case MotionEvent.ACTION_UP:
+                                    for(TerreniColtivati t : terreniFile){
+                                        if(x > t.getxPositionInizio() && x < t.getxPositionFine()){
+                                            if(y > t.getyPositionInizio() && y < t.getyPositionFine()){
+                                                DrawTheRectangle x = new DrawTheRectangle(getContext());
+                                                x.disegnaRettangoloSel(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine());
+
+                                                x_sel_inizio = t.getxPositionInizio();
+                                                y_sel_inizio = t.getyPositionInizio();
+                                                x_sel_fine = t.getxPositionFine();
+                                                y_sel_fine = t.getyPositionFine();
+
+                                                TerreniColtivati nuovoTerreno = new TerreniColtivati(x_sel_inizio, y_sel_inizio, x_sel_fine, y_sel_fine);
+
+                                                terreniSele.add(nuovoTerreno);
+
+                                                existingRectangle = new DrawTheSelectRectangle(getContext(), frame, terreniFile, terreniSele);
+
+                                                frame.addView(existingRectangle);
+                                                frame.invalidate();
+
+                                                selezionato1 = true;
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                            return true;
+                        }
+
+
+                    });
+
+                    return true;
+
+                default:
+                    Toast.makeText(getContext(), item.getTitle()+"non funziona: " , Toast.LENGTH_SHORT).show();
+                    return false;
+            }
+         }
+         });
+        popup.show();}});
+
+        img1.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View v) {
+                img1.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img1.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 1;
+
+                img2.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+
+            }
+        });
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img2.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img2.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 2;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+            }
+        });
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img3.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img3.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 3;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img2.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+
+            }
+        });
+        img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img4.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img4.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 4;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img2.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+            }
+        });
+        img5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img5.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img5.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 5;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img2.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+            }
+        });
+        img6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img6.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img6.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 6;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img2.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img7.setBackgroundColor(Color.WHITE);
+            }
+        });
+        img7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                img7.setBackgroundResource(R.drawable.rounded_fg);
+                GradientDrawable drawable = (GradientDrawable) img7.getBackground();
+                drawable.setAlpha(190);
+                drawable.setColor(Color.GREEN);
+                selezionato2 = true;
+                selezionaIMGB = 7;
+
+                img1.setBackgroundColor(Color.WHITE);
+                img2.setBackgroundColor(Color.WHITE);
+                img3.setBackgroundColor(Color.WHITE);
+                img4.setBackgroundColor(Color.WHITE);
+                img5.setBackgroundColor(Color.WHITE);
+                img6.setBackgroundColor(Color.WHITE);
+            }
+        });
 
 
         input_text.addTextChangedListener(new TextWatcher() {
@@ -101,8 +500,127 @@ public class SeminaFragment extends Fragment {
             }
         });
 
-
         return this.view;
     }
+
+
+    public void onButtonShowPopupWindowClick(View view) {
+        LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_eliminatutto, null);
+
+        Button confermaPopup = popupView.findViewById(R.id.conf);
+        Button annullaPopup = popupView.findViewById(R.id.cancels);
+
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = (int) (size.x * 0.8f);
+        int height = size.y/3;
+
+        //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        confermaPopup.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                SavingFilesSeminaTerreni s = new SavingFilesSeminaTerreni();
+
+                s.clearAllTerreni(getContext());
+                //restart fragment
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+
+                popupWindow.dismiss();
+
+            }
+        });
+
+        annullaPopup.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+
+    public void onButtonShowPopupWindowClick2(View view) {
+        LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_eliminasingolo, null);
+
+        Button confermaPopup = popupView.findViewById(R.id.conf);
+        Button annullaPopup = popupView.findViewById(R.id.cancels);
+
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = (int) (size.x * 0.8f);
+        int height = size.y/3;
+
+        //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        confermaPopup.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                TerreniColtivati nuovoTerreno = new TerreniColtivati(x_sel_inizio, y_sel_inizio, x_sel_fine, y_sel_fine);
+                SavingFilesSeminaTerreni elimina = new SavingFilesSeminaTerreni();
+
+                elimina.clearOneTerreni(nuovoTerreno, getContext());
+
+                //restart fragment
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+                popupWindow.dismiss();
+
+            }
+        });
+
+        annullaPopup.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+
+
+    float x_sel_inizio;
+    float y_sel_inizio;
+    float x_sel_fine;
+    float y_sel_fine;
+    Boolean selezionato1 = false;
+    Boolean selezionato2 = false;
 
 }
