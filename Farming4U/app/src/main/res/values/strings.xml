@@ -7,4 +7,7 @@
     <string name="sensorOptionName">Sensori</string>
     <string name="logoutOptionName">Logout</string>
 
+    <string name="seleziona_zonaOptionName">Seleziona zona</string>
+    <string name="elimina_zonaOptionName">Elimina</string>
+
 </resources>

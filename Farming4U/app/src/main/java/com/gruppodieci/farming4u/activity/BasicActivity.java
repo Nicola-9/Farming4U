@@ -15,8 +15,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
+import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
+import com.gruppodieci.farming4u.fragments.GroundsFragment;
 import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
+import com.gruppodieci.farming4u.fragments.ProblemInformationFragment;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
@@ -30,6 +33,8 @@ public class BasicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_layout);
+
+        istance = this;
 
         toolbar = findViewById(R.id.toolbar);
         this.bottomBar = findViewById(R.id.bottomNavigationMenu);
@@ -87,23 +92,45 @@ public class BasicActivity extends AppCompatActivity {
             BottomNavigationMenu.replaceFragment(newFrag);
             BottomNavigationMenu.setActiveFragment(newFrag);
         }else
-            if(BottomNavigationMenu.getActiveFragment() instanceof SeminaFragment){
-                if(BottomNavigationMenu.getPreviousFragment().equals("home")){
-                    bottomBar.setSelectedItemId(R.id.home);
+        if(BottomNavigationMenu.getActiveFragment() instanceof SeminaFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
 
-                    Fragment newFrag = new RiepilogoFragment();
+                Fragment newFrag = new RiepilogoFragment();
 
-                    toolbar.setNavigationIcon(null);
-                    toolbar.setNavigationOnClickListener(null);
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
 
-                    BottomNavigationMenu.replaceFragment(newFrag);
-                    BottomNavigationMenu.setActiveFragment(newFrag);
-                } else{
-                    super.onBackPressed();
-                }
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
             } else{
                 super.onBackPressed();
             }
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof CuraPianteFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+                super.onBackPressed();
+            }
+        } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
+
+            Fragment newFragment = new GroundsFragment();
+
+            BottomNavigationMenu.replaceFragment(newFragment);
+            BottomNavigationMenu.setActiveFragment(newFragment);
+
+        } else{
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -136,15 +163,24 @@ public class BasicActivity extends AppCompatActivity {
         return false;
     }
 
+    public static BasicActivity getIstance() {
+        return istance;
+    }
+
     public static AppCompatActivity getBasicActivity(){
         return instanceThis;
     }
+
+
+    private static BasicActivity istance;
+
 
     public static void setSelectedItem(String select){
         if(select.equals("semina")){
             bottomBar.setSelectedItemId(R.id.grounds);
         }
     }
+
 
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;

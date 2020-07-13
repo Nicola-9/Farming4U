@@ -4,14 +4,20 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
 import com.gruppodieci.farming4u.business.Warning;
+
+import java.util.Random;
 
 public class CuraPianteFragment extends Fragment {
 
@@ -46,7 +52,33 @@ public class CuraPianteFragment extends Fragment {
 
             if( warning.getType().equals(Warning.CONCIMAZIONE) || warning.getType().equals(Warning.PESTICIDI) ) {
 
-                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning);
+
+                CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition() * 2,warning.getSizeOfWarning(),warning.isSerious(),warning);
+
+
+                map.setOnTouchListener( new View.OnTouchListener() {
+
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                        Warning warningCliccato = frameCliccato(motionEvent);
+
+                        if(warningCliccato != null) {
+
+                            Fragment problem = new ProblemInformationFragment();
+                            BottomNavigationMenu.replaceFragment(R.id.fragmentContainer, problem);
+                            BottomNavigationMenu.setActiveFragment(problem);
+
+                            BasicActivity.getIstance().getSupportActionBar().hide();
+
+                        }
+
+                        return false;
+
+                    }
+
+                });
+
                 frameWarning.addView(cerchioView);
 
             }
@@ -54,6 +86,26 @@ public class CuraPianteFragment extends Fragment {
         }
 
         frameWarning.invalidate();
+
+    }
+
+    private Warning frameCliccato(MotionEvent event) {
+        Warning warningCliccato=null;
+        int action = event.getAction();
+        if(action==MotionEvent.ACTION_DOWN){
+            for(Warning warn:RiepilogoFragment.warnings){
+                double xDiff=Math.abs(event.getX()-warn.getxPosition());
+                double yDiff=Math.abs(event.getY()-warn.getyPosition() * 2);
+                double hypot=Math.hypot(xDiff,yDiff);
+                if (hypot<warn.getSizeOfWarning()){
+                    warningCliccato=warn;
+                    warningCliccato.setTagClicked(true);
+                    Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
+                }
+            }
+        }
+
+        return warningCliccato;
 
     }
 

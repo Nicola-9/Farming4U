@@ -4,9 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.gruppodieci.farming4u.R;
 
@@ -14,46 +17,47 @@ public class CerchioView extends View {
     private float x,y;
     private int size;
     private boolean isSerious;
+
     private int actualSize;
     private boolean animation;
+  
     private Paint fill;
+    private Paint strokePaint;
     private Warning warning;
 
 
     public CerchioView(Context context, float x, float y, int size, boolean isSerious, Warning warning) {
         super(context);
-        this.x = x;
-        this.y = y;
-        this.size=size;
-        this.isSerious=isSerious;
-        actualSize=1;
-        this.warning=warning;
-
-        fill = new Paint();
-        fill.setStyle(Paint.Style.FILL);
-        fill.setColor(getResources().getColor(R.color.colorWarningNotSerious));
-        if(isSerious)
-            fill.setColor(getResources().getColor(R.color.colorWarningSerious));
-
+        instanziaTutto(x,y,size,isSerious,warning);
     }
 
     public CerchioView(Context context, float x, float y, int size, boolean isSerious, boolean animation, Warning warning) {
         super(context);
+        this.animation=animation;
+        instanziaTutto(x,y,size,isSerious,warning);
+    }
+
+    private void instanziaTutto(float x, float y, int size, boolean isSerious, Warning warning){
         this.x = x;
         this.y = y;
         this.size=size;
         this.isSerious=isSerious;
-        this.animation=animation;
         actualSize=1;
         this.warning=warning;
 
         fill = new Paint();
         fill.setStyle(Paint.Style.FILL);
+        strokePaint=new Paint();
+        strokePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setStrokeWidth(12);
+        strokePaint.setStrokeCap(Paint.Cap.ROUND);
+        strokePaint.setColor(getResources().getColor(R.color.colorWarningNotSeriousStroke));
         fill.setColor(getResources().getColor(R.color.colorWarningNotSerious));
-        if(isSerious)
+        if(isSerious) {
             fill.setColor(getResources().getColor(R.color.colorWarningSerious));
+            strokePaint.setColor(getResources().getColor(R.color.colorWarningSeriousStroke));
 
-
+        }
     }
 
     public void setNuoveCoordinate(float x, float y) {
@@ -72,6 +76,7 @@ public class CerchioView extends View {
             Bitmap b=BitmapFactory.decodeResource(getResources(),icona);
             Bitmap bCopy=Bitmap.createScaledBitmap(b, (int)(actualSize*1.3), (int)(actualSize*1.3), false);
             canvas.drawCircle(x, y, actualSize, fill);
+            canvas.drawCircle(x,y,actualSize,strokePaint);
             canvas.drawBitmap(bCopy, x - bCopy.getWidth()/2 , y - bCopy.getHeight()/2 , null);
             if (actualSize < size) {
                 actualSize += 2;
@@ -88,11 +93,14 @@ public class CerchioView extends View {
             Bitmap b=BitmapFactory.decodeResource(getResources(),icona);
             Bitmap bCopy=Bitmap.createScaledBitmap(b, (int)(size*1.3), (int)(size*1.3), false);
             canvas.drawCircle(x, y, size,fill);
+            canvas.drawCircle(x,y,size,strokePaint);
             canvas.drawBitmap(bCopy, x - bCopy.getWidth()/2 , y - bCopy.getHeight()/2 , null);
 
         }
 
     }
+
+
 
 
     private int getIcona(){
@@ -131,7 +139,13 @@ public class CerchioView extends View {
         return size;
     }
 
+    public void setWarning(Warning warning) {
+        this.warning = warning;
+    }
 
+    public Warning getWarning() {
+        return this.warning;
+    }
 
 
 }
