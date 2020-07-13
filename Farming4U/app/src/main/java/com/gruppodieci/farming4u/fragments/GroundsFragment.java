@@ -22,6 +22,8 @@ public class GroundsFragment extends Fragment {
     private TabLayout tabLayout;
     TabLayout.Tab semina;
     TabLayout.Tab cura;
+    TabLayout.Tab trattamento;
+
 
     static Fragment activeFragment;
     static String activeTab = null;
@@ -37,8 +39,9 @@ public class GroundsFragment extends Fragment {
 
         semina = tabLayout.newTab().setText("Semina e coltivazione");
         cura=tabLayout.newTab().setText("Cura delle piante");
+        trattamento=tabLayout.newTab().setText("Trattamento del terreno");
         tabLayout.addTab(cura);
-        tabLayout.addTab(tabLayout.newTab().setText("Trattamento del terreno"));
+        tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
 
         if (activeTab != null && activeTab.equals("semina")){
@@ -75,6 +78,23 @@ public class GroundsFragment extends Fragment {
 
             replaceFragment(R.id.mapContent, cura);
         }
+        else if(activeTab != null && activeTab.equals("trattamento")){
+            MaterialToolbar toolbar = BasicActivity.getToolbar();
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BasicActivity.getBasicActivity().onBackPressed();
+                }
+            });
+
+            trattamento.select();
+
+            Fragment trattamento = new TrattamentoTerrenoFragment();
+            BottomNavigationMenu.setActiveFragment(trattamento);
+
+            replaceFragment(R.id.mapContent, trattamento);
+        }
         else {
             replaceFragment(R.id.mapContent, new CuraPianteFragment());
         }
@@ -96,9 +116,13 @@ public class GroundsFragment extends Fragment {
 
                     case "Trattamento del terreno":
 
+                        fragment = new TrattamentoTerrenoFragment();
+
+                        replaceFragment(R.id.mapContent,fragment);
+
                         break;
 
-                    case "Semina e coltivazione":
+                        case "Semina e coltivazione":
 
                         fragment = new SeminaFragment();
                         replaceFragment(R.id.mapContent,fragment);

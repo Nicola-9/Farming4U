@@ -1,13 +1,24 @@
 package com.gruppodieci.farming4u.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+p
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+
+import android.os.Handler;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +40,7 @@ import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.fragments.SettingsIrrigator;
+import com.gruppodieci.farming4u.fragments.TrattamentoTerrenoFragment;
 
 public class BasicActivity extends AppCompatActivity {
 
@@ -64,6 +76,32 @@ public class BasicActivity extends AppCompatActivity {
         showToolbarMenu = true;
 
         instanceThis = this;
+
+        handler = new Handler();
+
+        runnable = new Runnable() {
+            public void run() {
+                String message="Sono stati riscontrati nuovi problemi.\nAvvia l'applicazione per risolverli.";
+                Log.d("DEBUG_NOTIFICHE","Notifica creata");
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_stat_logoium)
+                        .setColor(113163187)
+                        .setContentTitle("Attenzione")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                        .setContentText(message)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setAutoCancel(true);
+
+
+
+                createNotificationChannel();
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                notificationManager.notify(1,builder.build());
+                handler.postDelayed(runnable, 1000*60*2);
+
+            }
+        };
+        handler.postDelayed(runnable, 1000*60*2);
     }
 
     public void showToolbarMenu(boolean show){
@@ -124,6 +162,21 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof TrattamentoTerrenoFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+                super.onBackPressed();
+            }
         } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
 
             Fragment newFragment = new GroundsFragment();
@@ -135,6 +188,13 @@ public class BasicActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -198,7 +258,25 @@ public class BasicActivity extends AppCompatActivity {
         }
     }
 
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Farming4U";
+            String description = "Notifiche di Farming4U";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 
+    private String CHANNEL_ID="Channel_1";
+    private Runnable runnable;
+    private Handler handler;
     private boolean showToolbarMenu;
     static MaterialToolbar toolbar;
     static BottomNavigationView bottomBar;

@@ -1,16 +1,21 @@
 package com.gruppodieci.farming4u.fragments;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +45,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
     private float y_sel_fine;
     private int i;
     private ImageButton img;
+    private ImageButton freccia;
     private TextInputEditText periodo_coltivazione;
     private TextInputEditText quantita_coltivazione;
     private Button salva;
@@ -87,6 +93,14 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
         cancella = this.view.findViewById(R.id.cancel);
 
+        freccia = this.view.findViewById(R.id.freccia);
+
+       /* freccia.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+            }
+        });*/
 
 
         if(i == 1) {
@@ -142,6 +156,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
 
 
+
     public void onButtonShowPopupWindowClick(View view) {
         LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_salvacoltura, null);
@@ -150,8 +165,18 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
         Button annullaPopup = popupView.findViewById(R.id.cancels);
 
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = (int) (size.x * 0.8f);
+        int height = size.y/3;
+
+        //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
         boolean focusable = true;
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
@@ -165,7 +190,6 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
             }
         });
 
-
         salvaPopup.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
 
@@ -175,7 +199,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
                 String periodo = s.toString();
                 int quant = Integer.valueOf(s2.toString());
 
-                Pattern pattern = Pattern.compile("((0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d)");
+                Pattern pattern = Pattern.compile("((0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[-/.](19|20)\\d\\d)");//((0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d)")
                 Matcher matcher = pattern.matcher(periodo);
 
                 Boolean resu = false;
