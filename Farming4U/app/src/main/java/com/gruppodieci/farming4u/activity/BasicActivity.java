@@ -34,6 +34,7 @@ import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
 import com.gruppodieci.farming4u.business.InstanziateFiles;
 import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.fragments.SettingsIrrigator;
+import com.gruppodieci.farming4u.fragments.TrattamentoTerrenoFragment;
 
 public class BasicActivity extends AppCompatActivity {
 
@@ -142,6 +143,21 @@ public class BasicActivity extends AppCompatActivity {
             }
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof CuraPianteFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+                super.onBackPressed();
+            }
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof TrattamentoTerrenoFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
                 bottomBar.setSelectedItemId(R.id.home);
 

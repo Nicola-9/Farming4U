@@ -172,7 +172,11 @@ public class RiepilogoFragment extends Fragment {
                         BasicActivity.setSelectedItem("semina");
                     }
                     else{
-
+                        GroundsFragment.setTab("trattamento");
+                        BottomNavigationMenu.setPreviousFragment("home");
+                        Fragment frag = new GroundsFragment();
+                        BottomNavigationMenu.replaceFragment(frag);
+                        BasicActivity.setSelectedItem("semina");
                     }
                 }
             }
