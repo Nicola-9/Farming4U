@@ -7,19 +7,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+p
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
 import android.os.Handler;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
@@ -204,10 +210,27 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(new ImpostazioniSensori(),true);
                 return true;
             case R.id.logoutSettingsButton:
-                this.launchLogin = new Intent(this, LoginActivity.class);
-                this.startActivity(this.launchLogin);
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                launchLogin = new Intent(BasicActivity.getBasicActivity(), LoginActivity.class);
+                                startActivity(launchLogin);
 
-                this.finish();
+                                finish();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                new MaterialAlertDialogBuilder(this)
+                        .setTitle("Attenzione")
+                        .setMessage("Sei sicuro di voler effettuare il logout da Farming4U?")
+                        .setNegativeButton("No",dialogClickListener)
+                        .setPositiveButton("Si",dialogClickListener)
+                        .show();
 
                 return true;
             default:
