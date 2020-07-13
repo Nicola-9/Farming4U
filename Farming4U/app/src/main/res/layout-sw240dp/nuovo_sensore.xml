@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:hint="Inserisci tipologia"
             />
 
@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:hint="Inserisci valore di minimo"
             android:inputType="number"
             />
