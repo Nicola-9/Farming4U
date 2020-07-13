@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
@@ -19,12 +20,13 @@ import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
 public class GroundsFragment extends Fragment {
 
     private View grounds;
-    private TabLayout tabLayout;
+    private static TabLayout tabLayout;
     TabLayout.Tab semina;
     TabLayout.Tab cura;
 
     static Fragment activeFragment;
     static String activeTab = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,6 +124,10 @@ public class GroundsFragment extends Fragment {
 
         return this.grounds;
 
+    }
+
+    public static TabLayout getTab(){
+        return tabLayout;
     }
 
     public static void setTab(String tab){
