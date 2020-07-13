@@ -138,9 +138,6 @@ public class BasicActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         switch (itemId){
-            case R.id.mappaSettingsButton:
-
-                return true;
             case R.id.irrigatoriSettingsButton:
                 Fragment irrigator = new SettingsIrrigator();
                 BottomNavigationMenu.setActiveFragment(irrigator);
