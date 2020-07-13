@@ -96,9 +96,13 @@ public class GroundsFragment extends Fragment {
 
                     case "Trattamento del terreno":
 
+                        fragment = new TrattamentoTerrenoFragment();
+
+                        replaceFragment(R.id.mapContent,fragment);
+
                         break;
 
-                    case "Semina e coltivazione":
+                        case "Semina e coltivazione":
 
                         fragment = new SeminaFragment();
                         replaceFragment(R.id.mapContent,fragment);
