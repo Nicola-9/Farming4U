@@ -64,6 +64,8 @@ public class BottomNavigationMenu {
                         GroundsFragment.setTab("cura");
                         replaceFragment(activeFragment);
 
+                        BasicActivity.getIstance().getSupportActionBar().show();
+
                         BasicActivity.getToolbar().setTitle("Terreni");
                         BasicActivity.getToolbar().setElevation(0);
 
