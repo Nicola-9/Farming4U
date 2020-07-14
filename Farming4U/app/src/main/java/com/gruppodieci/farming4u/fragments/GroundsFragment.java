@@ -1,5 +1,6 @@
 package com.gruppodieci.farming4u.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
@@ -19,7 +21,7 @@ import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
 public class GroundsFragment extends Fragment {
 
     private View grounds;
-    private TabLayout tabLayout;
+    private static TabLayout tabLayout;
     TabLayout.Tab semina;
     TabLayout.Tab cura;
     TabLayout.Tab trattamento;
@@ -27,6 +29,7 @@ public class GroundsFragment extends Fragment {
 
     static Fragment activeFragment;
     static String activeTab = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,12 +40,17 @@ public class GroundsFragment extends Fragment {
 
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
+        this.tabLayout.setElevation(10);
+
         semina = tabLayout.newTab().setText("Semina e coltivazione");
         cura=tabLayout.newTab().setText("Cura delle piante");
         trattamento=tabLayout.newTab().setText("Trattamento del terreno");
         tabLayout.addTab(cura);
         tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
+
+        tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
+        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 
         if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
@@ -146,6 +154,10 @@ public class GroundsFragment extends Fragment {
 
         return this.grounds;
 
+    }
+
+    public static TabLayout getTab(){
+        return tabLayout;
     }
 
     public static void setTab(String tab){

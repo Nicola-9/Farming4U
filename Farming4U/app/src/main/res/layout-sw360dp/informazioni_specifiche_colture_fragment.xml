@@ -7,7 +7,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_product"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:background="#71A3BB"
             app:titleMarginStart="35dp"
             android:elevation="25dp"
@@ -16,28 +16,24 @@
 
 
             <ImageButton
-                android:id="@+id/frccia"
-                android:layout_height="16dp"
-                android:layout_width="16dp"
-                android:layout_weight="1"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="15dp"
-                android:padding="@dimen/cardview_padding_left"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_gravity="top"
-                android:layout_margin="10dp"
-                android:src="@drawable/icona_freccia"
+                android:src="@drawable/arrow_back"
                 android:background="@null"
-                />
+                android:tint="#fff"
+                android:scaleType="fitCenter"
+                android:id="@+id/freccia" />
 
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="200dp"
-                android:layout_height="60dp"
-                android:textSize="24dp"
+                android:layout_height="100dp"
+                android:textSize="26dp"
                 android:text="Informazioni specifiche colture"
                 android:textColor="#fff"
                 android:layout_gravity="left"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 />
 
 

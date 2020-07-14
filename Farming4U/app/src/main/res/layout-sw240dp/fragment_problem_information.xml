@@ -8,7 +8,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarSensorInformation"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="85dp"
         android:background="#71A3BB">
 
         <LinearLayout
@@ -18,8 +18,8 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/arrow_back"
                 android:background="@null"
@@ -44,29 +44,29 @@
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="#fff"
-                        android:textSize="30dp"
+                        android:textSize="17sp"
                         android:id="@+id/informationTitle"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="3dp"
                         android:text=""
                         android:textColor="#fff"
-                        android:textSize="19sp"
+                        android:textSize="13sp"
                         android:id="@+id/informationPriority"/>
                 </LinearLayout>
 
                 <FrameLayout
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="25dp"
                     android:id="@+id/framePriorityColor">
 
                     <ImageView
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:id="@+id/informationParameterImage"/>
 
@@ -115,25 +115,33 @@
             android:id="@+id/msg1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"/>
 
         <TextView
             android:id="@+id/msg2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"/>
 
         <TextView
             android:id="@+id/msg3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"/>
 
         <TextView
             android:id="@+id/msg4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="150dp"

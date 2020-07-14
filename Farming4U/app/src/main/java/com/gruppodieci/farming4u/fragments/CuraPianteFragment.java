@@ -15,6 +15,7 @@ import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
+import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.Warning;
 
 import java.util.Random;
@@ -36,7 +37,23 @@ public class CuraPianteFragment extends Fragment {
 
         this.map = this.curaPiante.findViewById(R.id.map);
 
-        RiepilogoFragment.loadWarnings();
+        Warning warningRemove = null;
+        for(Warning warning: RiepilogoFragment.warnings) {
+
+            if(warning.getTagClicked()) {
+
+                warningRemove = warning;
+
+            }
+
+        }
+
+        if(warningRemove != null) {
+            RiepilogoFragment.warnings.remove(warningRemove);
+            SavingFiles.saveFile("fileWarnings", RiepilogoFragment.warnings);
+        }
+        else
+            RiepilogoFragment.loadWarnings();
 
         disegnaCerchi(map);
 
@@ -44,7 +61,7 @@ public class CuraPianteFragment extends Fragment {
 
     }
 
-    void disegnaCerchi(FrameLayout frameWarning) {
+    private void disegnaCerchi(FrameLayout frameWarning) {
 
         frameWarning.removeAllViews();
 
@@ -64,6 +81,8 @@ public class CuraPianteFragment extends Fragment {
                         Warning warningCliccato = frameCliccato(motionEvent);
 
                         if(warningCliccato != null) {
+
+                            warningCliccato.setTagClicked(true);
 
                             Fragment problem = new ProblemInformationFragment();
                             BottomNavigationMenu.replaceFragment(R.id.fragmentContainer, problem);
@@ -99,7 +118,6 @@ public class CuraPianteFragment extends Fragment {
                 double hypot=Math.hypot(xDiff,yDiff);
                 if (hypot<warn.getSizeOfWarning()){
                     warningCliccato=warn;
-                    warningCliccato.setTagClicked(true);
                     Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
                 }
             }
