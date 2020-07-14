@@ -164,6 +164,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof TrattamentoTerrenoFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -179,6 +182,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof ProblemIrrigazioneFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -232,6 +238,9 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         } else{
             super.onBackPressed();
         }
