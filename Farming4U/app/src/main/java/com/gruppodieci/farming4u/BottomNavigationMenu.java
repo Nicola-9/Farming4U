@@ -60,6 +60,8 @@ public class BottomNavigationMenu {
                         }
 
                         activeFragment = new GroundsFragment();
+
+                        GroundsFragment.setTab("cura");
                         replaceFragment(activeFragment);
 
                         BasicActivity.getIstance().getSupportActionBar().show();
