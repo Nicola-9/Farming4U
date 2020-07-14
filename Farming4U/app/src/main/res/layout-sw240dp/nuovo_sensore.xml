@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:id="@+id/headerSensors"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/switchSensorsLeft"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_left"
+                android:tint="#717171" />
+
+            <ImageView
+                android:id="@+id/sensorsImage"
+                android:layout_width="175dp"
+                android:layout_height="150dp"
+                android:src="@drawable/beacon_ble" />
+
+            <ImageButton
+                android:id="@+id/switchSensorsRight"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/key_arrow_right"
+                android:tint="#717171" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_below="@id/headerSensors"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_margin="8dp"
+            android:hint="Inserisci nome del sensore"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_margin="8dp"
+            android:hint="Inserisci tipologia"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_margin="8dp"
+            android:hint="Inserisci valore di minimo"
+            android:inputType="number"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:layout_margin="10dp"
+            android:hint="Inserisci valore di massimo"
+            android:inputType="number"
+            />
+
+
+
+    </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPulsanti"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/returnButtonSensore"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Annulla"
+                android:backgroundTint="@color/buttonAnnulla"
+                />
+
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/saveButtonSensore"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salva"
+                android:backgroundTint="@color/buttonOk"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+</LinearLayout>

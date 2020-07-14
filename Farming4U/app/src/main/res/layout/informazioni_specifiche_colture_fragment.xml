@@ -16,18 +16,14 @@
 
 
             <ImageButton
-                android:id="@+id/frccia"
-                android:layout_height="16dp"
-                android:layout_width="16dp"
-                android:layout_weight="1"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="15dp"
-                android:padding="@dimen/cardview_padding_left"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_gravity="top"
-                android:layout_margin="10dp"
-                android:src="@drawable/icona_freccia"
+                android:src="@drawable/arrow_back"
                 android:background="@null"
-                />
+                android:tint="#fff"
+                android:scaleType="fitCenter"
+                android:id="@+id/freccia" />
 
             <TextView
                 android:id="@+id/text1"

@@ -10,9 +10,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.fragments.GroundsFragment;
+import com.gruppodieci.farming4u.fragments.ProblemGrassFragment;
+import com.gruppodieci.farming4u.fragments.ProblemInformationFragment;
+import com.gruppodieci.farming4u.fragments.ProblemIrrigazioneFragment;
+import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 
 import java.util.List;
 
@@ -58,6 +67,34 @@ public class CustomAdapterWarning extends ArrayAdapter<Warning> {
             @Override
             public void onClick(View view) {
                 Log.d("DEBUG","cliccata view in posizione"+position);
+                Warning warningCliccato= RiepilogoFragment.warnings.get(position);
+                if(warningCliccato.getType().equals(Warning.CONCIMAZIONE) || warningCliccato.getType().equals(Warning.PESTICIDI)){
+                    BottomNavigationMenu.setPreviousFragment("home");
+                    warningCliccato.setTagClicked(true);
+                    Fragment problem = new ProblemInformationFragment();
+                    BottomNavigationMenu.replaceFragment(problem,false);
+                    BottomNavigationMenu.setActiveFragment(problem);
+                    BasicActivity.getIstance().getSupportActionBar().hide();
+                }
+                else {
+                    Fragment problem=null;
+
+                    if(warningCliccato.getType().equals(Warning.IRRIGAZIONE)) {
+
+                        problem = new ProblemIrrigazioneFragment();
+
+                    }
+                    else if(warningCliccato.getType().equals(Warning.ERBA)) {
+
+                        problem = new ProblemGrassFragment();
+
+                    }
+                    BottomNavigationMenu.setPreviousFragment("home");
+                    BottomNavigationMenu.replaceFragment(problem,false);
+                    BottomNavigationMenu.setActiveFragment(problem);
+                    BasicActivity.getIstance().getSupportActionBar().hide();
+
+                }
             }
         });
 

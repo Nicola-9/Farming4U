@@ -7,12 +7,12 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="230dp"
         android:layout_weight="1"
         >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="295dp"
+            android:layout_width="360dp"
+            android:layout_height="257dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
 
@@ -25,7 +25,7 @@
             android:padding="@dimen/cardview_padding_left"
             android:layout_gravity="top"
             android:layout_margin="15dp"
-            android:src="@drawable/icona_menu"
+            android:src="@drawable/icona_menu2"
             android:background="@null"
             />
 
@@ -35,10 +35,10 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/salva"
-            android:layout_width="130dp"
-            android:layout_height="55dp"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
             android:layout_marginBottom="0dp"
-            android:layout_gravity="left"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="190dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
@@ -70,7 +70,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_alignParentTop="true"
                 android:text="Seleziona la tipologia per la coltivazione"
-                android:textSize="21dp"
+                android:textSize="16dp"
                 />
 
             <com.google.android.material.card.MaterialCardView
@@ -95,10 +95,12 @@
                         android:layout_height="60dp"
                         android:layout_width="60dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
                         android:src="@drawable/icona_albero"
                         android:background="@null"
                         />
@@ -108,11 +110,13 @@
                         android:layout_height="60dp"
                         android:layout_width="60dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_ciliegia"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@id/icona1"
                         android:background="@null"
                         />
@@ -122,11 +126,13 @@
                         android:layout_height="60dp"
                         android:layout_width="60dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_mela"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@id/icona2"
                         android:background="@null"
                         />
@@ -136,11 +142,13 @@
                         android:layout_height="60dp"
                         android:layout_width="60dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_patata"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@id/icona3"
                         android:background="@null"
                         />
@@ -157,6 +165,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -171,6 +180,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
                     <ImageButton
                         android:id="@+id/icona7"
@@ -184,6 +194,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                 </RelativeLayout>
@@ -204,7 +215,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="30dp"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:id="@+id/input_text"
@@ -216,7 +227,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="25dp"
                 android:layout_alignRight="@id/search_plants"
@@ -224,11 +235,11 @@
                 android:backgroundTint="#20C627"
                 app:cornerRadius="7dp"
                 android:text="Conferma"
-                android:textSize="16sp"
+                android:textSize="13sp"
                 android:id="@+id/confirm" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="25dp"
                 android:layout_alignLeft="@id/search_plants"
@@ -237,7 +248,7 @@
                 android:backgroundTint="#D83A3A"
                 app:cornerRadius="7dp"
                 android:text="annulla"
-                android:textSize="16sp"
+                android:textSize="13sp"
                 android:id="@+id/cancel" />
 
         </RelativeLayout>

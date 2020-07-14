@@ -6,13 +6,13 @@
 
     <FrameLayout
         android:id="@+id/mappa"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_width="320dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="295dp"
+            android:layout_width="320dp"
+            android:layout_height="230dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
 
@@ -25,7 +25,7 @@
             android:padding="@dimen/cardview_padding_left"
             android:layout_gravity="top"
             android:layout_margin="15dp"
-            android:src="@drawable/icona_menu"
+            android:src="@drawable/icona_menu2"
             android:background="@null"
             />
 
@@ -35,11 +35,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/salva"
-            android:layout_width="130dp"
-            android:layout_height="55dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="0dp"
-            android:layout_gravity="left"
-            android:layout_marginTop="190dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
             android:textSize="16sp"
@@ -67,10 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_alignParentTop="true"
                 android:text="Seleziona la tipologia per la coltivazione"
-                android:textSize="21dp"
+                android:textSize="15dp"
                 />
 
             <com.google.android.material.card.MaterialCardView
@@ -92,57 +92,69 @@
 
                     <ImageButton
                         android:id="@+id/icona1"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
                         android:src="@drawable/icona_albero"
                         android:background="@null"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
                         android:id="@+id/icona2"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_ciliegia"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona1"
                         android:background="@null"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
                         android:id="@+id/icona3"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_mela"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona2"
                         android:background="@null"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
                         android:id="@+id/icona4"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="5dp"
                         android:padding="@dimen/cardview_padding_left"
                         android:layout_gravity="center"
                         android:src="@drawable/icona_patata"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona3"
                         android:background="@null"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -157,6 +169,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                     <ImageButton
@@ -171,6 +184,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
                     <ImageButton
                         android:id="@+id/icona7"
@@ -184,6 +198,7 @@
                         android:layout_margin="15dp"
                         android:background="@null"
                         android:visibility="gone"
+                        android:foreground="@drawable/rounded_fg"
                         />
 
                 </RelativeLayout>
@@ -204,7 +219,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="30dp"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:id="@+id/input_text"
@@ -216,20 +231,20 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
-                android:layout_height="55dp"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="25dp"
                 android:layout_alignRight="@id/search_plants"
                 android:layout_below="@id/search_plants"
                 android:backgroundTint="#20C627"
                 app:cornerRadius="7dp"
                 android:text="Conferma"
-                android:textSize="16sp"
+                android:textSize="11sp"
                 android:id="@+id/confirm" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
-                android:layout_height="55dp"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="25dp"
                 android:layout_alignLeft="@id/search_plants"
                 android:layout_below="@id/search_plants"
@@ -237,7 +252,7 @@
                 android:backgroundTint="#D83A3A"
                 app:cornerRadius="7dp"
                 android:text="annulla"
-                android:textSize="16sp"
+                android:textSize="11sp"
                 android:id="@+id/cancel" />
 
         </RelativeLayout>

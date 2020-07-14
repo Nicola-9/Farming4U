@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
@@ -20,10 +21,15 @@ import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
 public class GroundsFragment extends Fragment {
 
     private View grounds;
-    private TabLayout tabLayout;
+    private static TabLayout tabLayout;
     TabLayout.Tab semina;
+    TabLayout.Tab cura;
+    TabLayout.Tab trattamento;
+
+
     static Fragment activeFragment;
     static String activeTab = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +43,10 @@ public class GroundsFragment extends Fragment {
         this.tabLayout.setElevation(10);
 
         semina = tabLayout.newTab().setText("Semina e coltivazione");
-
-        tabLayout.addTab(tabLayout.newTab().setText("Cura delle piante"));
-        tabLayout.addTab(tabLayout.newTab().setText("Trattamento del terreno"));
+        cura=tabLayout.newTab().setText("Cura delle piante");
+        trattamento=tabLayout.newTab().setText("Trattamento del terreno");
+        tabLayout.addTab(cura);
+        tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
 
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
@@ -61,7 +68,42 @@ public class GroundsFragment extends Fragment {
             BottomNavigationMenu.setActiveFragment(semina);
 
             replaceFragment(R.id.mapContent, semina);
-        } else {
+        }
+        else if (activeTab != null && activeTab.equals("cura")) {
+            MaterialToolbar toolbar = BasicActivity.getToolbar();
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BasicActivity.getBasicActivity().onBackPressed();
+                }
+            });
+
+            cura.select();
+
+            Fragment cura = new CuraPianteFragment();
+            BottomNavigationMenu.setActiveFragment(cura);
+
+            replaceFragment(R.id.mapContent, cura);
+        }
+        else if(activeTab != null && activeTab.equals("trattamento")){
+            MaterialToolbar toolbar = BasicActivity.getToolbar();
+            toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BasicActivity.getBasicActivity().onBackPressed();
+                }
+            });
+
+            trattamento.select();
+
+            Fragment trattamento = new TrattamentoTerrenoFragment();
+            BottomNavigationMenu.setActiveFragment(trattamento);
+
+            replaceFragment(R.id.mapContent, trattamento);
+        }
+        else {
             replaceFragment(R.id.mapContent, new CuraPianteFragment());
         }
 
@@ -82,9 +124,13 @@ public class GroundsFragment extends Fragment {
 
                     case "Trattamento del terreno":
 
+                        fragment = new TrattamentoTerrenoFragment();
+
+                        replaceFragment(R.id.mapContent,fragment);
+
                         break;
 
-                    case "Semina e coltivazione":
+                        case "Semina e coltivazione":
 
                         fragment = new SeminaFragment();
                         replaceFragment(R.id.mapContent,fragment);
@@ -108,6 +154,10 @@ public class GroundsFragment extends Fragment {
 
         return this.grounds;
 
+    }
+
+    public static TabLayout getTab(){
+        return tabLayout;
     }
 
     public static void setTab(String tab){

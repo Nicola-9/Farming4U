@@ -1,16 +1,23 @@
 package com.gruppodieci.farming4u.fragments;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +25,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.SavingFilesSeminaTerreni;
 import com.gruppodieci.farming4u.business.TerreniColtivati;
 
@@ -40,6 +50,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
     private float y_sel_fine;
     private int i;
     private ImageButton img;
+    private ImageButton freccia;
     private TextInputEditText periodo_coltivazione;
     private TextInputEditText quantita_coltivazione;
     private Button salva;
@@ -48,7 +59,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
     private ArrayList<TerreniColtivati> arrayTerreni = new ArrayList<TerreniColtivati>();
     private TextView textView;
     private String periodo;
-    private int quant;
+    //private int quant;
 
 
     public InformazioniSpecificheColtureFragment(){
@@ -87,7 +98,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
         cancella = this.view.findViewById(R.id.cancel);
 
-
+        freccia = this.view.findViewById(R.id.freccia);
 
         if(i == 1) {
             img.setBackgroundResource(R.drawable.icona_albero);
@@ -132,96 +143,117 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
                 Editable s2 = quantita_coltivazione.getText();
 
                 periodo = s.toString();
-                quant = Integer.valueOf(s2.toString());
-                onButtonShowPopupWindowClick(view);
+               // quant = Integer.valueOf(s2.toString());
+                createDialogSalvaColture(getContext());
             }
         });
 
+        freccia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+            }
+        });
+
+        BasicActivity.getToolbar().setVisibility(View.GONE);
+        GroundsFragment.getTab().setVisibility(View.GONE);
         return this.view;
     }
 
 
 
-    public void onButtonShowPopupWindowClick(View view) {
-        LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_salvacoltura, null);
+    public void createDialogSalvaColture(final Context context){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
 
-        Button salvaPopup = popupView.findViewById(R.id.salvas);
-        Button annullaPopup = popupView.findViewById(R.id.cancels);
+                        Editable s = periodo_coltivazione.getText();
+                        Editable s2 = quantita_coltivazione.getText();
+
+                        String periodo = s.toString();
+
+                        Pattern pattern = Pattern.compile("(([1-9]|[12][0-9]|3[01])[- /.]([1-9]|1[012])[-/.](19|20)\\d\\d)");//((0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[-/.](19|20)\d\d)
+                        Matcher matcher = pattern.matcher(periodo);
+
+                        Boolean resu = false;
+                        Boolean resuN = isNumerico(s2.toString());
+
+                        if (matcher.matches())
+                            resu = true;
+                        else
+                            resu = false;
+
+                        if(resu == true && resuN == true){
+                            int quant = Integer.valueOf(s2.toString());
+                            TerreniColtivati terreno = new TerreniColtivati(x_sel_inizio,  y_sel_inizio, x_sel_fine, y_sel_fine);
+
+                            SavingFilesSeminaTerreni disco = new SavingFilesSeminaTerreni();
+
+                            disco.clearOneTerreni(terreno, getContext());
+
+                            arrayTerreni= disco.readFromFileTerreni(getContext());
+
+                            arrayTerreni.add(new TerreniColtivati(x_sel_inizio,  y_sel_inizio, x_sel_fine, y_sel_fine, i, periodo, quant));
+
+                            disco.saveTerreni(arrayTerreni, getContext());
+
+                            System.out.println(arrayTerreni.toString());
+
+                            //restart fragment
+                            Fragment fragment = new SeminaFragment();
+                            replaceFragment(R.id.mapContent,fragment);
+                        }
+
+                        else if(resu == false && resuN == true){
+                            Toast.makeText(getContext(), "Data non corretta" , Toast.LENGTH_SHORT).show();
+                        }
+                        else if(resu == true && resuN == false){
+                            Toast.makeText(getContext(), "numero colture errato" , Toast.LENGTH_SHORT).show();
+                        }
+                        else if(resu == false && resuN == false){
+                            Toast.makeText(getContext(), "Data e numero di coltivazioni errete" , Toast.LENGTH_SHORT).show();
+                        }
 
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-
-        salvaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-                Editable s = periodo_coltivazione.getText();
-                Editable s2 = quantita_coltivazione.getText();
-
-                String periodo = s.toString();
-                int quant = Integer.valueOf(s2.toString());
-
-                Pattern pattern = Pattern.compile("((0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d)");
-                Matcher matcher = pattern.matcher(periodo);
-
-                Boolean resu = false;
-                if (matcher.matches())
-                    resu = true;
-                else
-                    resu = false;
-
-                if(resu == true){
-                    TerreniColtivati terreno = new TerreniColtivati(x_sel_inizio,  y_sel_inizio, x_sel_fine, y_sel_fine);
-
-                    SavingFilesSeminaTerreni disco = new SavingFilesSeminaTerreni();
-
-                    disco.clearOneTerreni(terreno, getContext());
-
-                    arrayTerreni= disco.readFromFileTerreni(getContext());
-
-                    arrayTerreni.add(new TerreniColtivati(x_sel_inizio,  y_sel_inizio, x_sel_fine, y_sel_fine, i, periodo, quant));
-
-                    disco.saveTerreni(arrayTerreni, getContext());
-
-                    System.out.println(arrayTerreni.toString());
-
-                    //restart fragment
-                    popupWindow.dismiss();
-                    Fragment fragment = new SeminaFragment();
-                    replaceFragment(R.id.mapContent,fragment);
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
                 }
-
-                else{
-                    Toast.makeText(getContext(), "Data non corretta" , Toast.LENGTH_SHORT).show();
-                }
-
-
-
             }
-        });
+        };
 
-        annullaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Attenzione")
+                .setMessage("Stai per salvare una zona coltivata. Vuoi procedere?")
+                .setNegativeButton("No",dialogClickListener)
+                .setPositiveButton("Si",dialogClickListener)
+                .show();
     }
 
+    public static boolean isNumerico(String s) {
+
+        boolean numerico = true;
+        char[] sequenza = s.toCharArray();
+
+        for (int i=0; i< sequenza.length; i++) {
+
+            try {
+
+                Integer.parseInt(Character.toString(sequenza[i]));
+
+            } catch (Exception e) {
+
+                numerico = false;
+
+            }
+
+        }
+
+        return numerico;
+    }
 
     private String consigli_patata = "La patata è un tubero commestibile ottenuto dalle piante della specie Solanum tuberosum, molto utilizzato a scopo alimentare previa cottura. Originaria delle Ande, la patata fu domesticata nella regione del lago Titicaca e divenne uno degli alimenti principali degli Inca, che ne svilupparono un gran numero di varietà per adattarla ai diversi ambienti delle regioni da loro abitate.";
     private String consigli_kiwi = "Il kiwi o kivi è una bacca commestibile, prodotta da numerose specie di liane del genere Actinidia, famiglia delle Actinidiaceae. Le due principali varietà di questa bacca sono: la verde e la gialla (o gold). La prima, la più diffusa, ha la buccia marrone scuro con pelucchi e la polpa verde brillante, semi piccoli e neri disposti a raggiera intorno al centro della bacca, la forma è simile a un uovo o a una piccola patata. La varietà gold ha forma più allungata, la polpa è gialla e non ha pelucchi sulla buccia. Esistono altre varietà, ma sono poco diffuse, come ad esempio il kiwi con la polpa rossa e la buccia color mattone.";
