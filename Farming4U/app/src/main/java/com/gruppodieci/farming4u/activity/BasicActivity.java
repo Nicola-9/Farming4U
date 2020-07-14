@@ -115,6 +115,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+        BasicActivity.getIstance().getSupportActionBar().show();
+
     }
 
     @Override

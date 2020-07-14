@@ -56,6 +56,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setTitle("Terreni");
+                        BasicActivity.getToolbar().setElevation(0);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
