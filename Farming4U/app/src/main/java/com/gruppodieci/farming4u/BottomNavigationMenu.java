@@ -1,5 +1,6 @@
 package com.gruppodieci.farming4u;
 
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,13 @@ public class BottomNavigationMenu {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+                Log.d("DEBUG","Precedente frammento "+BottomNavigationMenu.getPreviousFragment());
 
+                //pulizia backstack
+                FragmentManager fm = BasicActivity.getBasicActivity().getSupportFragmentManager();
+                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                    fm.popBackStack();
+                }
                 switch (itemId){
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
@@ -53,9 +60,14 @@ public class BottomNavigationMenu {
                         }
 
                         activeFragment = new GroundsFragment();
+
+                        GroundsFragment.setTab("cura");
                         replaceFragment(activeFragment);
 
+                        BasicActivity.getIstance().getSupportActionBar().show();
+
                         BasicActivity.getToolbar().setTitle("Terreni");
+                        BasicActivity.getToolbar().setElevation(0);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
