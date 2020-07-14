@@ -49,6 +49,7 @@ public class GroundsFragment extends Fragment {
         tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
 
+
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 

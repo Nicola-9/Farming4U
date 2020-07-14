@@ -191,16 +191,14 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
-            } else{
-                super.onBackPressed();
+            } else {
+                Fragment newFragment = new GroundsFragment();
+                GroundsFragment.setTab("trattamento");
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
             }
-
-
             BasicActivity.getIstance().getSupportActionBar().show();
-
-
-        }else
-        if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
+        }else if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
                 bottomBar.setSelectedItemId(R.id.home);
 
@@ -211,9 +209,14 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
-            } else{
-                super.onBackPressed();
+            } else {
+
+                Fragment newFragment = new GroundsFragment();
+                GroundsFragment.setTab("trattamento");
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
             }
+            BasicActivity.getIstance().getSupportActionBar().show();
         } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
                 bottomBar.setSelectedItemId(R.id.home);
@@ -228,10 +231,11 @@ public class BasicActivity extends AppCompatActivity {
             } else{
 
                 Fragment newFragment = new GroundsFragment();
-
+                GroundsFragment.setTab("cura");
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
+
         } else{
             super.onBackPressed();
         }
