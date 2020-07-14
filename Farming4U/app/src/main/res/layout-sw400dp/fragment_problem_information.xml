@@ -115,25 +115,33 @@
             android:id="@+id/msg1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"/>
 
         <TextView
             android:id="@+id/msg2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"/>
 
         <TextView
             android:id="@+id/msg3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"/>
 
         <TextView
             android:id="@+id/msg4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="150dp"

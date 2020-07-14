@@ -1,5 +1,6 @@
 package com.gruppodieci.farming4u.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,12 +40,17 @@ public class GroundsFragment extends Fragment {
 
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
+        this.tabLayout.setElevation(10);
+
         semina = tabLayout.newTab().setText("Semina e coltivazione");
         cura=tabLayout.newTab().setText("Cura delle piante");
         trattamento=tabLayout.newTab().setText("Trattamento del terreno");
         tabLayout.addTab(cura);
         tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
+
+        tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
+        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 
         if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();

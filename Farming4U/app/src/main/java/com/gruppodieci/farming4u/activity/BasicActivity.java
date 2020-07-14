@@ -194,6 +194,11 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -230,6 +235,7 @@ public class BasicActivity extends AppCompatActivity {
         } else{
             super.onBackPressed();
         }
+
     }
 
     @Override
