@@ -28,6 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
+import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.Warning;
 
 public class ProblemInformationFragment extends Fragment {
@@ -80,6 +81,22 @@ public class ProblemInformationFragment extends Fragment {
                 materialAlertDialogBuilder.setPositiveButton( "Sì", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
+
+                        Warning warningRemove = null;
+                        for(Warning warning: RiepilogoFragment.warnings) {
+
+                            if(warning.getTagClicked()) {
+
+                                warningRemove = warning;
+
+                            }
+
+                        }
+
+                        if(warningRemove != null) {
+                            RiepilogoFragment.warnings.remove(warningRemove);
+                            SavingFiles.saveFile("fileWarnings", RiepilogoFragment.warnings);
+                        }
 
                         BasicActivity.getIstance().onBackPressed();
 
