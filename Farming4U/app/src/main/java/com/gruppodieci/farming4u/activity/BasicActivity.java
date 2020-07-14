@@ -33,7 +33,9 @@ import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.GroundsFragment;
 import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
+import com.gruppodieci.farming4u.fragments.ProblemGrassFragment;
 import com.gruppodieci.farming4u.fragments.ProblemInformationFragment;
+import com.gruppodieci.farming4u.fragments.ProblemIrrigazioneFragment;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
@@ -177,16 +179,63 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof ProblemIrrigazioneFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+                super.onBackPressed();
+            }
+
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
+
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+                super.onBackPressed();
+            }
         } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
 
-            Fragment newFragment = new GroundsFragment();
+                Fragment newFrag = new RiepilogoFragment();
 
-            BottomNavigationMenu.replaceFragment(newFragment);
-            BottomNavigationMenu.setActiveFragment(newFragment);
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
 
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+
+                Fragment newFragment = new GroundsFragment();
+
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+            }
         } else{
             super.onBackPressed();
         }
+
     }
 
     @Override

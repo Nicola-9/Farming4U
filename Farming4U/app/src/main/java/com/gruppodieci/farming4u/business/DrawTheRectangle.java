@@ -76,14 +76,14 @@ public class DrawTheRectangle extends View{
 
     protected void onDraw(Canvas canvas) {
         if(drawRectangle) {
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.colorDonutValue));
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.colorCardviewNote));
             paint.setAlpha(180);
             canvas.drawRect(inizio_x, inizio_y, fine_x, fine_y, paint);
         }
     }
 
     public void disegnaRettangoloSel (float inizio_x, float inizio_y, float fine_x, float fine_y){
-        paint.setColor(ContextCompat.getColor(getContext(), R.color.menuitem_color));//R.color.menuitem_color
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorCardviewNote));//R.color.menuitem_color
         paint.setAlpha(180);
         Canvas canvas = new Canvas();
         canvas.drawRect(inizio_x, inizio_y, fine_x, fine_y, paint);

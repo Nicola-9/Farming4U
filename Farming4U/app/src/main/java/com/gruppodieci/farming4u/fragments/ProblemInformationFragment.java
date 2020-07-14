@@ -1,6 +1,8 @@
 package com.gruppodieci.farming4u.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -22,9 +24,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.CerchioView;
+import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.Warning;
 
 public class ProblemInformationFragment extends Fragment {
@@ -37,7 +41,10 @@ public class ProblemInformationFragment extends Fragment {
     private FrameLayout framePriorityColor;
     private ImageView informationParameterImage;
 
-    private TextView msg;
+    private TextView msg1;
+    private TextView msg2;
+    private TextView msg3;
+    private TextView msg4;
 
     private MaterialButton buttonResolve;
 
@@ -56,7 +63,10 @@ public class ProblemInformationFragment extends Fragment {
         framePriorityColor = this.problemInformation.findViewById(R.id.framePriorityColor);
         informationParameterImage = this.problemInformation.findViewById(R.id.informationParameterImage);
 
-        msg = this.problemInformation.findViewById(R.id.msg);
+        msg1 = this.problemInformation.findViewById(R.id.msg1);
+        msg2 = this.problemInformation.findViewById(R.id.msg2);
+        msg3 = this.problemInformation.findViewById(R.id.msg3);
+        msg4 = this.problemInformation.findViewById(R.id.msg4);
 
         buttonResolve = this.problemInformation.findViewById(R.id.risolvi);
 
@@ -65,18 +75,44 @@ public class ProblemInformationFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Warning warningRemove = null;
-                for(Warning warning: RiepilogoFragment.warnings) {
 
-                    if(warning.getTagClicked())
-                        warningRemove = warning;
+                MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(problemInformation.getContext());
+                materialAlertDialogBuilder.setMessage("Sei sicuro di voler risolvere il problema?");
+                materialAlertDialogBuilder.setPositiveButton( "Sì", new DialogInterface.OnClickListener() {
 
-                }
+                    public void onClick(DialogInterface dialog, int which) {
 
-                if(warningRemove != null)
-                   ;
+                        Warning warningRemove = null;
+                        for(Warning warning: RiepilogoFragment.warnings) {
 
-                BasicActivity.getIstance().onBackPressed();
+                            if(warning.getTagClicked()) {
+
+                                warningRemove = warning;
+
+                            }
+
+                        }
+
+                        if(warningRemove != null) {
+                            RiepilogoFragment.warnings.remove(warningRemove);
+                            SavingFiles.saveFile("fileWarnings", RiepilogoFragment.warnings);
+                        }
+
+                        BasicActivity.getIstance().onBackPressed();
+
+                    }
+
+                } );
+                materialAlertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+
+                });
+
+                materialAlertDialogBuilder.show();
 
             }
 
@@ -130,11 +166,10 @@ public class ProblemInformationFragment extends Fragment {
                     framePriorityColor.setBackgroundColor(Color.parseColor("#EFF377"));
                 }
 
-
-                msg.setText("L'ultimo impiego di concime in questa zona risale a " + warningPressed.getDays() + "giorni fa.\n" +
-                        priority +
-                        "La quantità di concime richiesta è " + warningPressed.getProductQuantity() + " kg." +
-                        "Assicurati di aver eseguito gli interventi richiesti prima di segnare il problema come risolto.");
+                msg1.setText("L'ultimo impiego di concime in questa zona risale a " + warningPressed.getDays() + "giorni fa.");
+                msg2.setText(priority);
+                msg3.setText("La quantità di concime richiesta è " + warningPressed.getProductQuantity() + " kg.");
+                msg4.setText("Assicurati di aver eseguito gli interventi richiesti prima di segnare il problema come risolto.");
 
             } else if (warningPressed.getType().equals(Warning.PESTICIDI)) {
 
@@ -153,11 +188,11 @@ public class ProblemInformationFragment extends Fragment {
                     framePriorityColor.setBackgroundColor(Color.parseColor("#EFF377"));
                 }
 
+                msg1.setText("L'ultimo impiego di pesticidi in questa zona risale a " + warningPressed.getDays() + "giorni fa.");
+                msg2.setText(priority);
+                msg3.setText("La quantità di concime richiesta è " + warningPressed.getProductQuantity() + " l.");
+                msg4.setText("Assicurati di aver eseguito gli interventi richiesti prima di segnare il problema come risolto.");
 
-                msg.setText("L'ultimo impiego di pesticidi in questa zona risale a " + warningPressed.getDays() + "giorni fa.\n" +
-                        priority +
-                        "La quantità di concime richiesta è " + warningPressed.getProductQuantity() + " l." +
-                        "Assicurati di aver eseguito gli interventi richiesti prima di segnare il problema come risolto.");
 
             }
 
@@ -168,5 +203,23 @@ public class ProblemInformationFragment extends Fragment {
         return problemInformation;
 
     }
+/*
+    private void removeWarning(Warning warningRemove) {
+
+        CuraPianteFragment.map.removeAllViews();
+        RiepilogoFragment.warnings.remove(warningRemove);
+
+        for(Warning warning:RiepilogoFragment.warnings){
+
+            if( warning.getType().equals(Warning.CONCIMAZIONE) || warning.getType().equals(Warning.PESTICIDI) ) {
+
+                CerchioView cerchioView = new CerchioView(getContext(), warning.getxPosition(), warning.getyPosition() * 2, warning.getSizeOfWarning(), warning.isSerious(), warning);
+                CuraPianteFragment.map.addView(cerchioView);
+
+            }
+
+        }
+
+    }*/
 
 }

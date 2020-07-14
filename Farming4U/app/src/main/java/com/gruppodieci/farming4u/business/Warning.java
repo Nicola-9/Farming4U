@@ -110,6 +110,22 @@ public class Warning implements Serializable {
         this.days = days;
     }
 
+    @Override
+    public String toString() {
+        return "Warning{" +
+                "type='" + type + '\'' +
+                ", sizeOfWarning=" + sizeOfWarning +
+                ", yPosition=" + yPosition +
+                ", xPosition=" + xPosition +
+                ", data='" + data + '\'' +
+                ", warning='" + warning + '\'' +
+                ", isSerious=" + isSerious +
+                ", tagClicked=" + tagClicked +
+                ", productQuantity=" + productQuantity +
+                ", days=" + days +
+                '}';
+    }
+
     private String type;
     private int sizeOfWarning;
     private int yPosition;

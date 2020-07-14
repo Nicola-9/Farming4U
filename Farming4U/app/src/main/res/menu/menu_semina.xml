@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Disegna zona" android:id="@+id/disegnaSettingsButton"/>
     <item android:title="Seleziona" android:id="@+id/selezionaSettingsButton"/>
-    <item android:title="Salva" android:id="@+id/salvaSettingsButton" />
     <item android:title="@string/elimina_zonaOptionName" android:id="@+id/eliminaSettingsButton" />
     <item android:title="Elimina tutto" android:id="@+id/eliminaAllSettingsButton" />
     <item android:title="Annulla" android:id="@+id/annullaSettingsButton" />
