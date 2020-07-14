@@ -4,5 +4,4 @@
     <item android:title="Seleziona" android:id="@+id/selezionaSettingsButton"/>
     <item android:title="@string/elimina_zonaOptionName" android:id="@+id/eliminaSettingsButton" />
     <item android:title="Elimina tutto" android:id="@+id/eliminaAllSettingsButton" />
-    <item android:title="Annulla" android:id="@+id/annullaSettingsButton" />
 </menu>
