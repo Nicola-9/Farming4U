@@ -90,6 +90,7 @@ public class CustomAdapterWarning extends ArrayAdapter<Warning> {
 
                     }
                     BottomNavigationMenu.setPreviousFragment("home");
+                    warningCliccato.setTagClicked(true);
                     BottomNavigationMenu.replaceFragment(problem,false);
                     BottomNavigationMenu.setActiveFragment(problem);
                     BasicActivity.getIstance().getSupportActionBar().hide();
