@@ -12,7 +12,7 @@ import android.content.DialogInterface;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-p
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +33,9 @@ import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.GroundsFragment;
 import com.gruppodieci.farming4u.fragments.ImpostazioniSensori;
+import com.gruppodieci.farming4u.fragments.ProblemGrassFragment;
 import com.gruppodieci.farming4u.fragments.ProblemInformationFragment;
+import com.gruppodieci.farming4u.fragments.ProblemIrrigazioneFragment;
 import com.gruppodieci.farming4u.fragments.RiepilogoFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
 import com.gruppodieci.farming4u.fragments.SensorInformationFragment;
@@ -162,6 +164,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof TrattamentoTerrenoFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -177,16 +182,73 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
+        }else
+        if(BottomNavigationMenu.getActiveFragment() instanceof ProblemIrrigazioneFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else {
+                Fragment newFragment = new GroundsFragment();
+                GroundsFragment.setTab("trattamento");
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+            }
+            BasicActivity.getIstance().getSupportActionBar().show();
+        }else if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
+
+                Fragment newFrag = new RiepilogoFragment();
+
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else {
+
+                Fragment newFragment = new GroundsFragment();
+                GroundsFragment.setTab("trattamento");
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+            }
+            BasicActivity.getIstance().getSupportActionBar().show();
         } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
+            if(BottomNavigationMenu.getPreviousFragment().equals("home")){
+                bottomBar.setSelectedItemId(R.id.home);
 
-            Fragment newFragment = new GroundsFragment();
+                Fragment newFrag = new RiepilogoFragment();
 
-            BottomNavigationMenu.replaceFragment(newFragment);
-            BottomNavigationMenu.setActiveFragment(newFragment);
+                toolbar.setNavigationIcon(null);
+                toolbar.setNavigationOnClickListener(null);
+
+                BottomNavigationMenu.replaceFragment(newFrag);
+                BottomNavigationMenu.setActiveFragment(newFrag);
+            } else{
+
+                Fragment newFragment = new GroundsFragment();
+                GroundsFragment.setTab("cura");
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+            }
+
+
+            BasicActivity.getIstance().getSupportActionBar().show();
 
         } else{
             super.onBackPressed();
         }
+
     }
 
     @Override

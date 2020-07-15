@@ -2,6 +2,8 @@ package com.gruppodieci.farming4u.fragments;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.graphics.Point;
@@ -9,6 +11,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,11 +35,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gruppodieci.farming4u.R;
+import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.DrawExistingRectangle;
 import com.gruppodieci.farming4u.business.DrawTheRectangle;
 import com.gruppodieci.farming4u.business.DrawTheSelectRectangle;
+import com.gruppodieci.farming4u.business.SavingFiles;
 import com.gruppodieci.farming4u.business.SavingFilesSeminaTerreni;
 import com.gruppodieci.farming4u.business.TerreniColtivati;
 
@@ -47,6 +53,7 @@ import java.util.zip.Inflater;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
+import static com.gruppodieci.farming4u.fragments.GroundsFragment.activeFragment;
 
 
 public class SeminaFragment extends Fragment {
@@ -93,11 +100,11 @@ public class SeminaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        BasicActivity.getToolbar().setVisibility(View.VISIBLE);
+        GroundsFragment.getTab().setVisibility(View.VISIBLE);
         view = inflater.inflate(R.layout.riepilogo_fragment, container, false);
 
         GroundsFragment.setTab(null);
-
 
         // Inflate Fragment layout
         this.view = inflater.inflate(R.layout.semina_fragment, container, false);
@@ -128,8 +135,12 @@ public class SeminaFragment extends Fragment {
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Fragment fragment = new GroundsFragment();
-                replaceFragment(R.id.mapContent,fragment);
+                /*Fragment fragment = new GroundsFragment();
+                replaceFragment(R.id.mapContent,fragment);*/
+                activeFragment = new RiepilogoFragment();
+                replaceFragment(activeFragment);
+
+                BasicActivity.getToolbar().setNavigationIcon(null);
             }
         });
 
@@ -176,6 +187,9 @@ public class SeminaFragment extends Fragment {
                     Fragment fragment = new InformazioniSpecificheColtureFragment(selezionaIMGB, x_sel_inizio, x_sel_fine, y_sel_inizio, y_sel_fine);
                     replaceFragment(R.id.mapContent,fragment);
                 }
+                else if(selezionato1 == false || selezionato2 == false){
+                    Toast.makeText(getContext(), "Selezionare sia il terreno che la coltura" , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -204,19 +218,28 @@ public class SeminaFragment extends Fragment {
             switch (item.getItemId())
             {
                 case R.id.disegnaSettingsButton:
-
+                    /*frame.setOnTouchListener(null);
+                    frame.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, @NotNull MotionEvent event) {
                     frame.addView(drawRectangle);
                     frame.invalidate();
                     save.setVisibility(View.VISIBLE);
-
+                    return true;
+                    }
+                    });*/
+                    frame.removeView(drawRectangle);
+                    frame.addView(drawRectangle);
+                    frame.invalidate();
+                    save.setVisibility(View.VISIBLE);
                     return true;
 
-                case R.id.salvaSettingsButton:
-
-                    return true;
 
                 case R.id.eliminaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "seleziona l'area da cancellare" , Toast.LENGTH_LONG).show();
+                    frame.setOnTouchListener(null);
                     //verifica se viene selezionata una zona
                    frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -238,7 +261,7 @@ public class SeminaFragment extends Fragment {
                                                 x_sel_fine = t.getxPositionFine();
                                                 y_sel_fine = t.getyPositionFine();
 
-                                                onButtonShowPopupWindowClick2(view);
+                                                createDialogElininaOne(getContext());
 
                                             }
                                         }
@@ -254,16 +277,16 @@ public class SeminaFragment extends Fragment {
                     return true;
 
                 case R.id.eliminaAllSettingsButton:
-
-                    onButtonShowPopupWindowClick(view);
-
-                    return true;
-
-                case R.id.annullaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
+                    createDialogEliminatutto(getContext());
+                    //onButtonShowPopupWindowClick(view);
 
                     return true;
 
                 case R.id.selezionaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     //verifica se viene selezionata una zona
                     frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -503,118 +526,60 @@ public class SeminaFragment extends Fragment {
         return this.view;
     }
 
+            public void createDialogEliminatutto(final Context context){
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                SavingFilesSeminaTerreni s = new SavingFilesSeminaTerreni();
 
-    public void onButtonShowPopupWindowClick(View view) {
-        LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_eliminatutto, null);
+                                s.clearAllTerreni(getContext());
+                                //restart fragment
+                                Fragment fragment = new SeminaFragment();
+                                replaceFragment(R.id.mapContent,fragment);
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
 
-        Button confermaPopup = popupView.findViewById(R.id.conf);
-        Button annullaPopup = popupView.findViewById(R.id.cancels);
-
-
-        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = (int) (size.x * 0.8f);
-        int height = size.y/3;
-
-        //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
+                new MaterialAlertDialogBuilder(context)
+                        .setTitle("Attenzione")
+                        .setMessage("Stai per eliminare ogni zona selezionata e coltivata. Vuoi procedere?")
+                        .setNegativeButton("No",dialogClickListener)
+                        .setPositiveButton("Si",dialogClickListener)
+                        .show();
             }
-        });
 
-        confermaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
 
-                SavingFilesSeminaTerreni s = new SavingFilesSeminaTerreni();
+    public void createDialogElininaOne(final Context context){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        TerreniColtivati nuovoTerreno = new TerreniColtivati(x_sel_inizio, y_sel_inizio, x_sel_fine, y_sel_fine);
+                        SavingFilesSeminaTerreni elimina = new SavingFilesSeminaTerreni();
 
-                s.clearAllTerreni(getContext());
-                //restart fragment
-                Fragment fragment = new SeminaFragment();
-                replaceFragment(R.id.mapContent,fragment);
+                        elimina.clearOneTerreni(nuovoTerreno, getContext());
 
-                popupWindow.dismiss();
-
+                        //restart fragment
+                        Fragment fragment = new SeminaFragment();
+                        replaceFragment(R.id.mapContent,fragment);
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
             }
-        });
+        };
 
-        annullaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Attenzione")
+                .setMessage("Stai per eliminare la zona selezionata. Vuoi procedere?")
+                .setNegativeButton("No",dialogClickListener)
+                .setPositiveButton("Si",dialogClickListener)
+                .show();
     }
-
-    public void onButtonShowPopupWindowClick2(View view) {
-        LayoutInflater inflater = (LayoutInflater)  getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_eliminasingolo, null);
-
-        Button confermaPopup = popupView.findViewById(R.id.conf);
-        Button annullaPopup = popupView.findViewById(R.id.cancels);
-
-
-        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = (int) (size.x * 0.8f);
-        int height = size.y/3;
-
-        //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-
-        boolean focusable = true;
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-        confermaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-                TerreniColtivati nuovoTerreno = new TerreniColtivati(x_sel_inizio, y_sel_inizio, x_sel_fine, y_sel_fine);
-                SavingFilesSeminaTerreni elimina = new SavingFilesSeminaTerreni();
-
-                elimina.clearOneTerreni(nuovoTerreno, getContext());
-
-                //restart fragment
-                Fragment fragment = new SeminaFragment();
-                replaceFragment(R.id.mapContent,fragment);
-                popupWindow.dismiss();
-
-            }
-        });
-
-        annullaPopup.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-
-    }
-
 
     float x_sel_inizio;
     float y_sel_inizio;

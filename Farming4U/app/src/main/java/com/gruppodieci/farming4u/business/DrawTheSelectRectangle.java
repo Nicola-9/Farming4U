@@ -71,7 +71,7 @@ public class DrawTheSelectRectangle extends View {
                         }
                     }
                     else{
-                        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorDonutValue));
+                        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorCardviewNote));
                         paint.setAlpha(180);
                         canvas.drawRect(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine(), paint);
                     }

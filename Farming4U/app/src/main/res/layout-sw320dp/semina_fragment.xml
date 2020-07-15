@@ -7,11 +7,11 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="320dp"
-        android:layout_height="220dp"
+        android:layout_height="150dp"
         android:layout_weight="1"
         >
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="230dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
@@ -25,7 +25,7 @@
             android:padding="@dimen/cardview_padding_left"
             android:layout_gravity="top"
             android:layout_margin="15dp"
-            android:src="@drawable/icona_menu"
+            android:src="@drawable/icona_menu2"
             android:background="@null"
             />
 
@@ -35,11 +35,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/salva"
-            android:layout_width="130dp"
-            android:layout_height="55dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="150dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
             android:textSize="16sp"
@@ -117,7 +117,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona1"
                         android:background="@null"
                         android:foreground="@drawable/rounded_fg"
@@ -134,7 +134,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona2"
                         android:background="@null"
                         android:foreground="@drawable/rounded_fg"
@@ -151,7 +151,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_toRightOf="@id/icona3"
                         android:background="@null"
                         android:foreground="@drawable/rounded_fg"
