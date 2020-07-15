@@ -53,6 +53,7 @@ import java.util.zip.Inflater;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
+import static com.gruppodieci.farming4u.fragments.GroundsFragment.activeFragment;
 
 
 public class SeminaFragment extends Fragment {
@@ -134,8 +135,12 @@ public class SeminaFragment extends Fragment {
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Fragment fragment = new GroundsFragment();
-                replaceFragment(R.id.mapContent,fragment);
+                /*Fragment fragment = new GroundsFragment();
+                replaceFragment(R.id.mapContent,fragment);*/
+                activeFragment = new RiepilogoFragment();
+                replaceFragment(activeFragment);
+
+                BasicActivity.getToolbar().setNavigationIcon(null);
             }
         });
 
@@ -213,15 +218,28 @@ public class SeminaFragment extends Fragment {
             switch (item.getItemId())
             {
                 case R.id.disegnaSettingsButton:
-
+                    /*frame.setOnTouchListener(null);
+                    frame.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, @NotNull MotionEvent event) {
                     frame.addView(drawRectangle);
                     frame.invalidate();
                     save.setVisibility(View.VISIBLE);
-
+                    return true;
+                    }
+                    });*/
+                    frame.removeView(drawRectangle);
+                    frame.addView(drawRectangle);
+                    frame.invalidate();
+                    save.setVisibility(View.VISIBLE);
                     return true;
 
+
                 case R.id.eliminaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "seleziona l'area da cancellare" , Toast.LENGTH_LONG).show();
+                    frame.setOnTouchListener(null);
                     //verifica se viene selezionata una zona
                    frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -259,16 +277,16 @@ public class SeminaFragment extends Fragment {
                     return true;
 
                 case R.id.eliminaAllSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     createDialogEliminatutto(getContext());
                     //onButtonShowPopupWindowClick(view);
 
                     return true;
 
-                case R.id.annullaSettingsButton:
-
-                    return true;
-
                 case R.id.selezionaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     //verifica se viene selezionata una zona
                     frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
