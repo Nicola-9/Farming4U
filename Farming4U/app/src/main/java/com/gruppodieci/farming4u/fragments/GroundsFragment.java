@@ -22,13 +22,15 @@ public class GroundsFragment extends Fragment {
 
     private View grounds;
     private static TabLayout tabLayout;
-    TabLayout.Tab semina;
-    TabLayout.Tab cura;
-    TabLayout.Tab trattamento;
+    public TabLayout.Tab semina;
+    public TabLayout.Tab cura;
+    public TabLayout.Tab trattamento;
 
 
     static Fragment activeFragment;
     static String activeTab = null;
+
+    public static GroundsFragment instance;
 
 
     @Override
@@ -37,6 +39,8 @@ public class GroundsFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         this.grounds = inflater.inflate(R.layout.fragment_grounds, container, false);
+
+        this.instance = this;
 
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
@@ -121,7 +125,9 @@ public class GroundsFragment extends Fragment {
 
                         fragment = new CuraPianteFragment();
 
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
@@ -129,14 +135,18 @@ public class GroundsFragment extends Fragment {
 
                         fragment = new TrattamentoTerrenoFragment();
 
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
                         case "Semina e coltivazione":
 
                         fragment = new SeminaFragment();
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
@@ -166,4 +176,12 @@ public class GroundsFragment extends Fragment {
     public static void setTab(String tab){
         activeTab = tab;
     }
+
+    public static GroundsFragment getInstance() {
+
+        return instance;
+
+    }
+
+
 }
