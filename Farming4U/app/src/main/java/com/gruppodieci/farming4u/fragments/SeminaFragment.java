@@ -89,6 +89,7 @@ public class SeminaFragment extends Fragment {
     private Button select;
     private int selezionaIMGB;
     private Inflater inf;
+    private int sele;
 
 
     @Override
@@ -137,10 +138,9 @@ public class SeminaFragment extends Fragment {
             @Override public void onClick(View v) {
                 /*Fragment fragment = new GroundsFragment();
                 replaceFragment(R.id.mapContent,fragment);*/
-                activeFragment = new RiepilogoFragment();
-                replaceFragment(activeFragment);
-
-                BasicActivity.getToolbar().setNavigationIcon(null);
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent,fragment);
+                Toast.makeText(getContext(), "Operazione annullata" , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -218,20 +218,11 @@ public class SeminaFragment extends Fragment {
             switch (item.getItemId())
             {
                 case R.id.disegnaSettingsButton:
-                    /*frame.setOnTouchListener(null);
-                    frame.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, @NotNull MotionEvent event) {
-                    frame.addView(drawRectangle);
-                    frame.invalidate();
-                    save.setVisibility(View.VISIBLE);
-                    return true;
-                    }
-                    });*/
                     frame.removeView(drawRectangle);
                     frame.addView(drawRectangle);
                     frame.invalidate();
                     save.setVisibility(View.VISIBLE);
+
                     return true;
 
 
@@ -587,5 +578,4 @@ public class SeminaFragment extends Fragment {
     float y_sel_fine;
     Boolean selezionato1 = false;
     Boolean selezionato2 = false;
-
 }
