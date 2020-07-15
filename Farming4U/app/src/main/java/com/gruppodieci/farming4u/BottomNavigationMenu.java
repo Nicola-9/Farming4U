@@ -37,17 +37,19 @@ public class BottomNavigationMenu {
                 switch (itemId){
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
-                        replaceFragment(activeFragment);
+                        replaceFragment(activeFragment, true);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");
 
                         activeFragment = new GroundStatusFragment();
-                        replaceFragment(activeFragment);
+                        replaceFragment(activeFragment, true);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+
                         return true;
                     case R.id.grounds:
 
@@ -58,7 +60,7 @@ public class BottomNavigationMenu {
                         }
 
                         activeFragment = new GroundsFragment();
-                        replaceFragment(activeFragment);
+                        replaceFragment(activeFragment, true);
 
                         BasicActivity.getIstance().getSupportActionBar().show();
 
