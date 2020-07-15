@@ -60,7 +60,7 @@ public class SettingsIrrigator extends Fragment {
 
         ((BasicActivity) getActivity()).showToolbarMenu(false);
 
-        toolbar.setTitle("Irrigatori");
+        toolbar.setTitle("Gestione Irrigatori");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
