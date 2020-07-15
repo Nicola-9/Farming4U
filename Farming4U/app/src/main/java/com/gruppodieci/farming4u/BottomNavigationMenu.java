@@ -47,8 +47,6 @@ public class BottomNavigationMenu {
                         activeFragment = new GroundStatusFragment();
                         replaceFragment(activeFragment);
 
-                        BasicActivity.getToolbar().setTitle("Stato Terreno");
-
                         BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                     case R.id.grounds:
@@ -66,7 +64,6 @@ public class BottomNavigationMenu {
 
                         BasicActivity.getIstance().getSupportActionBar().show();
 
-                        BasicActivity.getToolbar().setTitle("Terreni");
                         BasicActivity.getToolbar().setElevation(0);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);

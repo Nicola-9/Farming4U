@@ -47,7 +47,7 @@ public class SettingsAddIrrigator extends Fragment {
 
         ((BasicActivity) getActivity()).showToolbarMenu(false);
 
-        toolbar.setTitle("Inserisci irrigatore");
+        toolbar.setTitle("Aggiunta irrigatore");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

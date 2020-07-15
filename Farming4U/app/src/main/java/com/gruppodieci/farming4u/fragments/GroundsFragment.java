@@ -53,6 +53,8 @@ public class GroundsFragment extends Fragment {
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 
+        BasicActivity.getToolbar().setTitle("Terreni");
+
         if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
