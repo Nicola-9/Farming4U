@@ -57,6 +57,8 @@ public class CuraPianteFragment extends Fragment {
 
         disegnaCerchi(map);
 
+        BottomNavigationMenu.setActiveFragment(this);
+
         return curaPiante;
 
     }
