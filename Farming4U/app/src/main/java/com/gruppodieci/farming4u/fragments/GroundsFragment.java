@@ -59,8 +59,6 @@ public class GroundsFragment extends Fragment {
 
         BasicActivity.getToolbar().setTitle("Terreni");
 
-        BottomNavigationMenu.setActiveFragment(this);
-
         if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
