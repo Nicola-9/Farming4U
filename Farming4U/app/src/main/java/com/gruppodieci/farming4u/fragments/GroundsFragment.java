@@ -35,6 +35,7 @@ public class GroundsFragment extends Fragment {
 
     public static boolean flagCura = false;
     public static boolean flagTrattamento = false;
+    public static boolean flagSemina = false;
 
 
     @Override
@@ -62,6 +63,7 @@ public class GroundsFragment extends Fragment {
 
         System.out.println("Cura" + flagCura);
         System.out.println("Trattamento" + flagTrattamento);
+        System.out.println("semina" + flagSemina);
 
         if(flagCura) {
 
@@ -73,9 +75,15 @@ public class GroundsFragment extends Fragment {
             activeTab = "trattamento";
 
         }
+        else if (flagSemina) {
+
+            activeTab = "semina";
+
+        }
 
         flagCura = false;
         flagTrattamento = false;
+        flagSemina = false;
 
         BasicActivity.getToolbar().setTitle("Terreni");
 
