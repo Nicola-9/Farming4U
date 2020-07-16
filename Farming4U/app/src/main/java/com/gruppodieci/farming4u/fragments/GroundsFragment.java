@@ -22,13 +22,15 @@ public class GroundsFragment extends Fragment {
 
     private View grounds;
     private static TabLayout tabLayout;
-    TabLayout.Tab semina;
-    TabLayout.Tab cura;
-    TabLayout.Tab trattamento;
+    public TabLayout.Tab semina;
+    public TabLayout.Tab cura;
+    public TabLayout.Tab trattamento;
 
 
     static Fragment activeFragment;
     static String activeTab = null;
+
+    public static GroundsFragment instance;
 
 
     @Override
@@ -37,6 +39,8 @@ public class GroundsFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         this.grounds = inflater.inflate(R.layout.fragment_grounds, container, false);
+
+        this.instance = this;
 
         this.tabLayout = this.grounds.findViewById(R.id.tabGrounds);
 
@@ -53,6 +57,8 @@ public class GroundsFragment extends Fragment {
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 
+        BasicActivity.getToolbar().setTitle("Terreni");
+
         if (activeTab != null && activeTab.equals("semina")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
             toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
@@ -68,7 +74,7 @@ public class GroundsFragment extends Fragment {
             Fragment semina = new SeminaFragment();
             BottomNavigationMenu.setActiveFragment(semina);
 
-            replaceFragment(R.id.mapContent, semina);
+            replaceFragment(R.id.mapContent, semina, true);
         }
         else if (activeTab != null && activeTab.equals("cura")) {
             MaterialToolbar toolbar = BasicActivity.getToolbar();
@@ -85,7 +91,7 @@ public class GroundsFragment extends Fragment {
             Fragment cura = new CuraPianteFragment();
             BottomNavigationMenu.setActiveFragment(cura);
 
-            replaceFragment(R.id.mapContent, cura);
+            replaceFragment(R.id.mapContent, cura, true);
         }
         else if(activeTab != null && activeTab.equals("trattamento")){
             MaterialToolbar toolbar = BasicActivity.getToolbar();
@@ -102,10 +108,10 @@ public class GroundsFragment extends Fragment {
             Fragment trattamento = new TrattamentoTerrenoFragment();
             BottomNavigationMenu.setActiveFragment(trattamento);
 
-            replaceFragment(R.id.mapContent, trattamento);
+            replaceFragment(R.id.mapContent, trattamento, true);
         }
         else {
-            replaceFragment(R.id.mapContent, new CuraPianteFragment());
+            replaceFragment(R.id.mapContent, new CuraPianteFragment(), true);
         }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -119,7 +125,9 @@ public class GroundsFragment extends Fragment {
 
                         fragment = new CuraPianteFragment();
 
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
@@ -127,14 +135,18 @@ public class GroundsFragment extends Fragment {
 
                         fragment = new TrattamentoTerrenoFragment();
 
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
                         case "Semina e coltivazione":
 
                         fragment = new SeminaFragment();
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mapContent,fragment, true);
+
+                        activeFragment = fragment;
 
                         break;
 
@@ -164,4 +176,12 @@ public class GroundsFragment extends Fragment {
     public static void setTab(String tab){
         activeTab = tab;
     }
+
+    public static GroundsFragment getInstance() {
+
+        return instance;
+
+    }
+
+
 }
