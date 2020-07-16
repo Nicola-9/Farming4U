@@ -24,6 +24,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -80,9 +82,25 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         // Inflate Fragment layout
         this.view = inflater.inflate(R.layout.informazioni_specifiche_colture_fragment, container, false);
 
@@ -131,8 +149,9 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Fragment fragment = new SeminaFragment();
-                replaceFragment(R.id.mapContent,fragment);
+              Fragment fragment = new SeminaFragment();
+
+              replaceFragment(R.id.infSpecifica,fragment);
             }
         });
 
@@ -151,8 +170,11 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
         freccia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Fragment fragment = new SeminaFragment();
-                replaceFragment(R.id.mapContent,fragment);
+
+                replaceFragment(R.id.infSpecifica,fragment);
             }
         });
 
@@ -201,9 +223,10 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
                             System.out.println(arrayTerreni.toString());
 
-                            //restart fragment
                             Fragment fragment = new SeminaFragment();
-                            replaceFragment(R.id.mapContent,fragment);
+
+                            replaceFragment(R.id.infSpecifica,fragment);
+
                         }
 
                         else if(resu == false && resuN == true){
