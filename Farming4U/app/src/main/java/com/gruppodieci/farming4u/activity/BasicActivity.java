@@ -198,8 +198,8 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
             } else {
+                GroundsFragment.flagTrattamento = true;
                 Fragment newFragment = new GroundsFragment();
-                GroundsFragment.getInstance().trattamento.select();
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
@@ -216,9 +216,8 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
             } else {
-
+                GroundsFragment.flagTrattamento = true;
                 Fragment newFragment = new GroundsFragment();
-                GroundsFragment.getInstance().trattamento.select();
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
@@ -235,9 +234,8 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
             } else{
-
+                GroundsFragment.flagCura = true;
                 Fragment newFragment = new GroundsFragment();
-                GroundsFragment.getInstance().cura.select();
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
