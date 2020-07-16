@@ -104,7 +104,7 @@ public class ImpostazioniSensori extends Fragment {
         ((BasicActivity)getActivity()).showToolbarMenu(false);
         MaterialToolbar toolbar= BasicActivity.getToolbar();
         toolbar.setVisibility(View.VISIBLE);
-        toolbar.setTitle("Sensori");
+        toolbar.setTitle("Gestione Sensori");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

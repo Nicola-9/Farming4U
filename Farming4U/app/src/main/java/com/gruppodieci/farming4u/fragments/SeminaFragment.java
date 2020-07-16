@@ -37,6 +37,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.DrawExistingRectangle;
@@ -53,6 +54,7 @@ import java.util.zip.Inflater;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static com.gruppodieci.farming4u.BottomNavigationMenu.replaceFragment;
+import static com.gruppodieci.farming4u.fragments.GroundsFragment.activeFragment;
 
 
 public class SeminaFragment extends Fragment {
@@ -70,30 +72,47 @@ public class SeminaFragment extends Fragment {
     private Button draw;
     private Button cancella;
     private Button conferma;
-    private Button annulla;
     private DrawTheRectangle drawRectangle;
     private DrawTheSelectRectangle existingRectangle;
     private FrameLayout frame;
-    private FrameLayout frameL;
-    float inizio_x;
-    float inizio_y;
-    float fine_x;
-    float fine_y;
     float x;
     float y;
     private ArrayList<TerreniColtivati> terreniFile;
     private ArrayList<TerreniColtivati> terreniSele = new ArrayList<TerreniColtivati>();
     private Button save;
-    private Button delate;
-    private Button select;
     private int selezionaIMGB;
-    private Inflater inf;
+    float x_sel_inizio;
+    float y_sel_inizio;
+    float x_sel_fine;
+    float y_sel_fine;
+    Boolean selezionato1 = false;
+    Boolean selezionato2 = false;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        frame.removeAllViews();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        frame.removeAllViews();
     }
 
     @Nullable
@@ -136,6 +155,10 @@ public class SeminaFragment extends Fragment {
             @Override public void onClick(View v) {
                 Fragment fragment = new GroundsFragment();
                 replaceFragment(R.id.mapContent,fragment);
+
+                BasicActivity.getIstance().getSupportActionBar().hide();
+
+                Toast.makeText(getContext(), "Operazione annullata" , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,7 +188,10 @@ public class SeminaFragment extends Fragment {
 
                 //restart fragment
                 Fragment fragment = new SeminaFragment();
-                replaceFragment(R.id.mapContent,fragment);
+                replaceFragment(R.id.semina,fragment);
+                //BottomNavigationMenu.setActiveFragment(fragment);
+               // BasicActivity.getIstance().getSupportActionBar().hide();
+
             }
         });
 
@@ -176,11 +202,12 @@ public class SeminaFragment extends Fragment {
                 if(selezionato1 == true && selezionato2 == true){
                     selezionato1 = false;
                     selezionato2 = false;
-                    //start new fragment
-
 
                     Fragment fragment = new InformazioniSpecificheColtureFragment(selezionaIMGB, x_sel_inizio, x_sel_fine, y_sel_inizio, y_sel_fine);
                     replaceFragment(R.id.mapContent,fragment);
+                    BottomNavigationMenu.setActiveFragment(fragment);
+                    BasicActivity.getIstance().getSupportActionBar().hide();
+
                 }
                 else if(selezionato1 == false || selezionato2 == false){
                     Toast.makeText(getContext(), "Selezionare sia il terreno che la coltura" , Toast.LENGTH_SHORT).show();
@@ -213,15 +240,20 @@ public class SeminaFragment extends Fragment {
             switch (item.getItemId())
             {
                 case R.id.disegnaSettingsButton:
-
+                    frame.removeView(drawRectangle);
+                    frame.refreshDrawableState();
                     frame.addView(drawRectangle);
                     frame.invalidate();
                     save.setVisibility(View.VISIBLE);
 
                     return true;
 
+
                 case R.id.eliminaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "seleziona l'area da cancellare" , Toast.LENGTH_LONG).show();
+                    frame.setOnTouchListener(null);
                     //verifica se viene selezionata una zona
                    frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -259,16 +291,16 @@ public class SeminaFragment extends Fragment {
                     return true;
 
                 case R.id.eliminaAllSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     createDialogEliminatutto(getContext());
                     //onButtonShowPopupWindowClick(view);
 
                     return true;
 
-                case R.id.annullaSettingsButton:
-
-                    return true;
-
                 case R.id.selezionaSettingsButton:
+                    frame.removeView(drawRectangle);
+                    save.setVisibility(View.GONE);
                     //verifica se viene selezionata una zona
                     frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -518,7 +550,10 @@ public class SeminaFragment extends Fragment {
                                 s.clearAllTerreni(getContext());
                                 //restart fragment
                                 Fragment fragment = new SeminaFragment();
-                                replaceFragment(R.id.mapContent,fragment);
+                                replaceFragment(R.id.semina,fragment);
+                                BottomNavigationMenu.setActiveFragment(fragment);
+                                BasicActivity.getIstance().getSupportActionBar().hide();
+
                                 break;
                             case DialogInterface.BUTTON_NEGATIVE:
                                 break;
@@ -547,7 +582,10 @@ public class SeminaFragment extends Fragment {
 
                         //restart fragment
                         Fragment fragment = new SeminaFragment();
-                        replaceFragment(R.id.mapContent,fragment);
+                        replaceFragment(R.id.mappa,fragment);
+                        BottomNavigationMenu.setActiveFragment(fragment);
+                        BasicActivity.getIstance().getSupportActionBar().hide();
+
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
@@ -562,12 +600,4 @@ public class SeminaFragment extends Fragment {
                 .setPositiveButton("Si",dialogClickListener)
                 .show();
     }
-
-    float x_sel_inizio;
-    float y_sel_inizio;
-    float x_sel_fine;
-    float y_sel_fine;
-    Boolean selezionato1 = false;
-    Boolean selezionato2 = false;
-
 }

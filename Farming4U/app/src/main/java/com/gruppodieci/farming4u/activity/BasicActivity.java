@@ -164,6 +164,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof TrattamentoTerrenoFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -179,6 +182,9 @@ public class BasicActivity extends AppCompatActivity {
             } else{
                 super.onBackPressed();
             }
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         }else
         if(BottomNavigationMenu.getActiveFragment() instanceof ProblemIrrigazioneFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
@@ -191,16 +197,14 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
-            } else{
-                super.onBackPressed();
+            } else {
+                GroundsFragment.flagTrattamento = true;
+                Fragment newFragment = new GroundsFragment();
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
             }
-
-
             BasicActivity.getIstance().getSupportActionBar().show();
-
-
-        }else
-        if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
+        }else if(BottomNavigationMenu.getActiveFragment() instanceof ProblemGrassFragment){
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
                 bottomBar.setSelectedItemId(R.id.home);
 
@@ -211,9 +215,13 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
-            } else{
-                super.onBackPressed();
+            } else {
+                GroundsFragment.flagTrattamento = true;
+                Fragment newFragment = new GroundsFragment();
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
             }
+            BasicActivity.getIstance().getSupportActionBar().show();
         } else if( BottomNavigationMenu.getActiveFragment() instanceof ProblemInformationFragment) {
             if(BottomNavigationMenu.getPreviousFragment().equals("home")){
                 bottomBar.setSelectedItemId(R.id.home);
@@ -226,12 +234,15 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
             } else{
-
+                GroundsFragment.flagCura = true;
                 Fragment newFragment = new GroundsFragment();
-
                 BottomNavigationMenu.replaceFragment(newFragment);
                 BottomNavigationMenu.setActiveFragment(newFragment);
             }
+
+
+            BasicActivity.getIstance().getSupportActionBar().show();
+
         } else{
             super.onBackPressed();
         }
