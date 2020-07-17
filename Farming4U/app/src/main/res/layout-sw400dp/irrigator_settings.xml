@@ -259,7 +259,9 @@
             android:textSize="20sp"/>
 
     </RelativeLayout>
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
     </LinearLayout>
 
     </ScrollView>
