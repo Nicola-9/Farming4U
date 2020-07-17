@@ -11,12 +11,12 @@
 
     <FrameLayout
         android:id="@+id/mappa"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_weight="1"
         >
         <ImageView
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="230dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
