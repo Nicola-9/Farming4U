@@ -158,7 +158,8 @@
             app:cornerRadius="7dp"
             android:text="Risolvi"
             android:textSize="19sp"
-            android:id="@+id/risolvi" />
+            android:id="@+id/risolvi"
+            android:layout_marginLeft="25dp"/>
 
         <FrameLayout
             android:layout_width="match_parent"

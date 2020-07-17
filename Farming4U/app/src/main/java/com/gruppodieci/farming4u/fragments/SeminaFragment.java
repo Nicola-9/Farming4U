@@ -266,6 +266,8 @@ public class SeminaFragment extends Fragment {
                    frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, @NotNull MotionEvent event) {
+                            Log.d("DEBUG_FRAME","Click sul frame");
+
                             switch(event.getAction()) {
                                 case MotionEvent.ACTION_DOWN:
                                     x = event.getX();
@@ -273,8 +275,12 @@ public class SeminaFragment extends Fragment {
                                     break;
                                 case MotionEvent.ACTION_UP:
                                     for(TerreniColtivati t : terreniFile){
-                                        if(x > t.getxPositionInizio() && x < t.getxPositionFine()){
-                                            if(y > t.getyPositionInizio() && y < t.getyPositionFine()){
+                                        float minX=Math.min(t.getxPositionInizio(),t.getxPositionFine());
+                                        float maxX=Math.max(t.getxPositionInizio(),t.getxPositionFine());
+                                        float minY=Math.min(t.getyPositionInizio(),t.getyPositionFine());
+                                        float maxY=Math.max(t.getyPositionInizio(),t.getyPositionFine());
+                                        if(x > minX && x < maxX){
+                                            if(y > minY && y < maxY){
                                                 DrawTheRectangle x = new DrawTheRectangle(getContext());
                                                 x.disegnaRettangoloSel(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine());
 
@@ -309,19 +315,36 @@ public class SeminaFragment extends Fragment {
                 case R.id.selezionaSettingsButton:
                     frame.removeView(drawRectangle);
                     save.setVisibility(View.GONE);
+                    frame.setOnTouchListener(null);
+
                     //verifica se viene selezionata una zona
                     frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, @NotNull MotionEvent event) {
+                            Log.d("DEBUG_FRAME","Click sul frame. Stampo terreni");
+                            for(TerreniColtivati terreno : terreniFile){
+                                Log.d("DEBUG_FRAME","terreno: "+terreno.getxPositionInizio()+" "+terreno.getyPositionInizio()+" "+terreno.getxPositionFine()+" "+terreno.getyPositionFine());
+                            }
                             switch(event.getAction()) {
+
                                 case MotionEvent.ACTION_DOWN:
+                                    Log.d("DEBUG_FRAME","Action down");
+
                                     x = event.getX();
                                     y = event.getY();
                                     break;
                                 case MotionEvent.ACTION_UP:
+                                    Log.d("DEBUG_FRAME","Action up. posizione click x: "+event.getX()+" y: "+event.getY());
+
                                     for(TerreniColtivati t : terreniFile){
-                                        if(x > t.getxPositionInizio() && x < t.getxPositionFine()){
-                                            if(y > t.getyPositionInizio() && y < t.getyPositionFine()){
+                                        float minX=Math.min(t.getxPositionInizio(),t.getxPositionFine());
+                                        float maxX=Math.max(t.getxPositionInizio(),t.getxPositionFine());
+                                        float minY=Math.min(t.getyPositionInizio(),t.getyPositionFine());
+                                        float maxY=Math.max(t.getyPositionInizio(),t.getyPositionFine());
+                                        if(x > minX && x < maxX){
+                                            if(y > minY && y < maxY){
+                                                Log.d("DEBUG_FRAME","click interno al rettangolo");
+
                                                 DrawTheRectangle x = new DrawTheRectangle(getContext());
                                                 x.disegnaRettangoloSel(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine());
 
@@ -601,6 +624,7 @@ public class SeminaFragment extends Fragment {
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
                 }
+                view.invalidate();
             }
         };
 
