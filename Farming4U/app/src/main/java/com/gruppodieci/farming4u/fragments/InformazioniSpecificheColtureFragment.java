@@ -182,6 +182,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
                 Fragment fragment = new SeminaFragment();
 
                 replaceFragment(R.id.infSpecifica,fragment);
+                BasicActivity.getIstance().getSupportActionBar().show();
             }
         });
 
@@ -232,8 +233,8 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
                             System.out.println(arrayTerreni.toString());
 
                             Fragment fragment = new SeminaFragment();
-
-                            replaceFragment(R.id.infSpecifica,fragment);
+                            replaceFragment(R.id.mapContent, fragment);
+                            BasicActivity.getIstance().getSupportActionBar().show();
 
                         }
 
