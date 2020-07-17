@@ -29,6 +29,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.business.SensorInformationBusiness;
+import com.gruppodieci.farming4u.business.Warning;
 import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.GroundsFragment;
@@ -127,6 +128,7 @@ public class BasicActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         if (BottomNavigationMenu.getActiveFragment() instanceof SensorInformationFragment) {
             GroundStatusFragment.setSensor(SensorInformationBusiness.getSensorName());
 
@@ -146,7 +148,17 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
+
             } else{
+/*
+                if(GroundsFragment.isSet) {
+
+                    Fragment newFragment = new GroundsFragment();
+                    BottomNavigationMenu.replaceFragment(newFragment);
+                    BottomNavigationMenu.setActiveFragment(newFragment);
+
+                }
+*/
                 super.onBackPressed();
             }
         }else
@@ -179,7 +191,17 @@ public class BasicActivity extends AppCompatActivity {
 
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
+
             } else{
+/*
+                if(GroundsFragment.isSet) {
+
+                    Fragment newFragment = new GroundsFragment();
+                    BottomNavigationMenu.replaceFragment(newFragment);
+                    BottomNavigationMenu.setActiveFragment(newFragment);
+
+                }
+*/
                 super.onBackPressed();
             }
 
@@ -234,6 +256,13 @@ public class BasicActivity extends AppCompatActivity {
                 BottomNavigationMenu.replaceFragment(newFrag);
                 BottomNavigationMenu.setActiveFragment(newFrag);
             } else{
+
+                for(Warning warning: RiepilogoFragment.warnings) {
+
+                    warning.setTagClicked(false);
+
+                }
+
                 GroundsFragment.flagCura = true;
                 Fragment newFragment = new GroundsFragment();
                 BottomNavigationMenu.replaceFragment(newFragment);
@@ -244,7 +273,17 @@ public class BasicActivity extends AppCompatActivity {
             BasicActivity.getIstance().getSupportActionBar().show();
 
         } else{
+/*
+            if(GroundsFragment.isSet) {
+
+                Fragment newFragment = new GroundsFragment();
+                BottomNavigationMenu.replaceFragment(newFragment);
+                BottomNavigationMenu.setActiveFragment(newFragment);
+
+            }
+*/
             super.onBackPressed();
+
         }
 
     }
