@@ -64,10 +64,6 @@ public class GroundsFragment extends Fragment {
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
 
-        System.out.println("Cura" + flagCura);
-        System.out.println("Trattamento" + flagTrattamento);
-        System.out.println("semina" + flagSemina);
-
         if(flagCura) {
 
             activeTab = "cura";

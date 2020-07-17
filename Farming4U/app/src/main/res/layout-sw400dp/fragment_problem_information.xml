@@ -102,6 +102,11 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabBarSensor">
+
     <LinearLayout
         android:id="@+id/tabBar"
         android:layout_width="match_parent"
@@ -153,9 +158,15 @@
             app:cornerRadius="7dp"
             android:text="Risolvi"
             android:textSize="19sp"
-            android:id="@+id/risolvi" />
+            android:id="@+id/risolvi"
+            android:layout_marginLeft="28dp"/>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -102,60 +102,71 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/tabBar"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/tabBarSensor">
 
-        <TextView
-            android:id="@+id/msg1"
+        <LinearLayout
+            android:id="@+id/tabBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tabBarSensor">
 
-        <TextView
-            android:id="@+id/msg2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"/>
+            <TextView
+                android:id="@+id/msg1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"/>
 
-        <TextView
-            android:id="@+id/msg3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"/>
+            <TextView
+                android:id="@+id/msg2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"/>
 
-        <TextView
-            android:id="@+id/msg4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            android:layout_margin="4dp"/>
+            <TextView
+                android:id="@+id/msg3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="25dp"
-            android:layout_alignRight="@id/search_plants"
-            android:layout_below="@id/search_plants"
-            android:backgroundTint="#20C627"
-            app:cornerRadius="7dp"
-            android:text="Risolvi"
-            android:textSize="19sp"
-            android:id="@+id/risolvi" />
+            <TextView
+                android:id="@+id/msg4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="25dp"
+                android:layout_alignRight="@id/search_plants"
+                android:layout_below="@id/search_plants"
+                android:backgroundTint="#20C627"
+                app:cornerRadius="7dp"
+                android:text="Risolvi"
+                android:textSize="19sp"
+                android:id="@+id/risolvi"
+                android:layout_marginLeft="20dp"/>
 
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
