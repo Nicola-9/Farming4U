@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/sensorsImageSettings"
-                android:layout_width="145dp"
-                android:layout_height="120dp"
+                android:layout_width="125dp"
+                android:layout_height="110dp"
                 android:src="@drawable/irrigator_settings_icon" />
 
             <ImageButton
