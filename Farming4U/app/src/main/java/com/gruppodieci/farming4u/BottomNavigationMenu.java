@@ -37,6 +37,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
 
                         return true;
                     case R.id.groundStatus:
@@ -46,6 +47,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
 
                         return true;
                     case R.id.grounds:

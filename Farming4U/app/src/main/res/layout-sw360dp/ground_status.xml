@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,8 +19,8 @@
 
             <ImageButton
                 android:id="@+id/switchSensorsLeft"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:scaleType="fitCenter"
@@ -29,14 +29,14 @@
 
             <ImageView
                 android:id="@+id/sensorsImage"
-                android:layout_width="150dp"
+                android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:src="@drawable/beacon_ble" />
 
             <ImageButton
                 android:id="@+id/switchSensorsRight"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:scaleType="fitCenter"
@@ -56,6 +56,11 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerSensors">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -220,4 +225,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
