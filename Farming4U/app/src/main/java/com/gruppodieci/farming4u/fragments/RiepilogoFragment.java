@@ -8,6 +8,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -42,6 +43,7 @@ import static android.content.Context.VIBRATOR_SERVICE;
 
 
 public class RiepilogoFragment extends Fragment {
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ public class RiepilogoFragment extends Fragment {
 
         aggiornaWarning();
         Log.d("DEBUG","oncreate riepilogofragment chiamata");
+        BottomNavigationMenu.setPreviousFragment("");
+
     }
 
     @Override
@@ -65,15 +69,18 @@ public class RiepilogoFragment extends Fragment {
         secondaNotaRiepilogo=view.findViewById(R.id.secondaNotaRiepilogo);
         nrNoteSalvateRiepilogo=view.findViewById(R.id.nrNoteSalvateRiepilogo);
 
-        String primaNota=noteSaved.get(0).getNota();
-        String secondaNota=noteSaved.get(1).getNota();
+        String primaNota=null;
+        String secondaNota=null;
+        if(noteSaved.size()>0)
+            primaNota=noteSaved.get(0).getNota();
+        if(noteSaved.size()>1)
+            secondaNota=noteSaved.get(1).getNota();
 
         nrNoteSalvateRiepilogo.setText(""+noteSaved.size()+" note salvate");
         primaNotaRiepilogo.setText(primaNota!=null?primaNota:"");
         secondaNotaRiepilogo.setText(secondaNota!=null?secondaNota:"");
 
         textviewWarningAttivi=view.findViewById(R.id.textviewWarningAttivi);
-
 
         warningAttivi=view.findViewById(R.id.materialcardWarningAttivi);
         warningAttivi.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +108,12 @@ public class RiepilogoFragment extends Fragment {
         m2Coltivati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"Fragment coltivazioni",Toast.LENGTH_LONG).show();
+                GroundsFragment.setTab("semina");
+
+                BottomNavigationMenu.setPreviousFragment("home");
+                Fragment frag = new GroundsFragment();
+                BottomNavigationMenu.replaceFragment(frag);
+                BasicActivity.setSelectedItem("semina");
             }
         });
 
@@ -111,6 +123,13 @@ public class RiepilogoFragment extends Fragment {
 
         frameWarning=view.findViewById(R.id.frameWarning);
         frameTreeObserver();
+        frameWarning.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                frameCliccato(motionEvent);
+                return false;
+            }
+        });
 
         imageColtivations=view.findViewById(R.id.imageColtivations);
         Glide.with(this).load(R.drawable.gif_irrigazione).into(imageColtivations);
@@ -132,6 +151,37 @@ public class RiepilogoFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void frameCliccato(MotionEvent event) {
+        Warning warningCliccato=null;
+        int action = event.getAction();
+        if(action==MotionEvent.ACTION_DOWN){
+            for(Warning warn:warnings){
+                double xDiff=Math.abs(event.getX()-warn.getxPosition());
+                double yDiff=Math.abs(event.getY()-warn.getyPosition());
+                double hypot=Math.hypot(xDiff,yDiff);
+                if (hypot<warn.getSizeOfWarning()){
+                    warningCliccato=warn;
+                    Log.d("DEBUG","Cerchio cliccato appartente al tipo "+warningCliccato.getType());
+                    if(warningCliccato.getType().equals(Warning.CONCIMAZIONE) || warningCliccato.getType().equals(Warning.PESTICIDI)){
+                        GroundsFragment.setTab("cura");
+                        BottomNavigationMenu.setPreviousFragment("home");
+                        Fragment frag = new GroundsFragment();
+                        BottomNavigationMenu.replaceFragment(frag);
+                        BasicActivity.setSelectedItem("semina");
+                    }
+                    else{
+                        GroundsFragment.setTab("trattamento");
+                        BottomNavigationMenu.setPreviousFragment("home");
+                        Fragment frag = new GroundsFragment();
+                        BottomNavigationMenu.replaceFragment(frag);
+                        BasicActivity.setSelectedItem("semina");
+                    }
+                }
+            }
+        }
+
     }
 
     private void setTextviewWarningAttivi() {
@@ -197,6 +247,7 @@ public class RiepilogoFragment extends Fragment {
         super.onResume();
         frameTreeObserver();
         loadWarnings();
+        instanziateWarnings();
         runnable.run();
         setTextviewWarningAttivi();
         disegnaCerchi();
@@ -217,10 +268,16 @@ public class RiepilogoFragment extends Fragment {
         runnable = new Runnable() {
             public void run() {
                 if (frameWidth > 0) {
-                    Log.d("DEBUG", "runnable attivo");
-                    int value = random.nextInt(100);
-                    if (value <= 15) {
-                        Log.d("DEBUG", "warning normale generato");
+                    Log.d("DEBUG_RUNNABLE_ONLY_RUN", "runnable attivo");
+                    int value = random.nextInt(8);
+
+                    //forzo la pulizia dello schermo
+                    if(warnings.size()>10)
+                        value=100;
+                    else if(warnings.size()<3)
+                        value=random.nextInt(3);
+                    if (value == 0 || value==1) {
+                        Log.d("DEBUG_RUNNABLE", "warning normale generato");
 
                         //generazione tipologia
                         int choice = random.nextInt(4);
@@ -245,34 +302,35 @@ public class RiepilogoFragment extends Fragment {
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]);
-                        Log.d("DEBUG", "Overlap!");
-                        int size = ((random.nextInt(5) + 3) * 25);
-                        Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
+                        //Log.d("DEBUG", "Overlap!");
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
+                        //Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            Log.d("DEBUG", "Overlap!");
-                            size = ((random.nextInt(5) + 3) * 25);
+                            //Log.d("DEBUG", "Overlap!");
+                            size = ((random.nextInt(5) + 2) * min);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
                         warning.setxPosition(xPosition);
                         warning.setyPosition(yPosition);
                         warning.setSizeOfWarning(size);
+
+                        warning.setProductQuantity(random.nextInt(20) + 10);
+                        warning.setDays(random.nextInt(70) + 20);
+
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning);
                         frameWarning.addView(cerchioView);
-                        cerchioView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                cerchioCliccato(view);
-                            }
-                        });
+
                         startVibration();
 
-                    } else if (value > 20 && value <= 35) {
+                    } else if (value ==2) {
 
                         //generazione tipologia
                         int choice = random.nextInt(4);
@@ -293,39 +351,40 @@ public class RiepilogoFragment extends Fragment {
                         }
 
                         //warning grave
-                        Log.d("DEBUG", "warning grave generato");
+                        Log.d("DEBUG_RUNNABLE", "warning grave generato");
                         Warning warning = new Warning("Testo", true);
                         warning.setType(type);
                         int witch = random.nextInt(location.length);
                         warning.setWarning(type+location[witch]+" Richiesta massima urgenza.");
-                        int size = ((random.nextInt(5) + 3) * 25);
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
                         Log.d("DEBUG", "framewidth " + frameWidth + " frameheight " + frameHeight);
                         int xPosition = random.nextInt(frameWidth - size - size) + size;
                         int yPosition = random.nextInt(frameHeight - size - size) + size;
                         while (isOverlap(xPosition, yPosition, size)) {
-                            size = ((random.nextInt(5) + 3) * 25);
+                            size = ((random.nextInt(5) + 2) * min);
                             xPosition = random.nextInt(frameWidth - size - size) + size;
                             yPosition = random.nextInt(frameHeight - size - size) + size;
                         }
                         warning.setxPosition(xPosition);
                         warning.setyPosition(yPosition);
                         warning.setSizeOfWarning(size);
+
+                        warning.setProductQuantity(random.nextInt(20) + 10);
+                        warning.setDays(random.nextInt(70) + 20);
+
                         warnings.add(warning);
                         saveWarnings();
                         setTextviewWarningAttivi();
-                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning.getType());
+                        CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),true,warning);
                         frameWarning.addView(cerchioView);
-                        cerchioView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                cerchioCliccato(view);
-                            }
-                        });
+
                         startVibration();
 
 
-                    } else if (value > 65) {
-                        Log.d("DEBUG", "warning risolto");
+                    } else if (value >=5) {
+                        Log.d("DEBUG_RUNNABLE", "warning risolto");
                         //Simulazione problema risolto
                         int size = warnings.size();
                         while(size>8){
@@ -343,16 +402,15 @@ public class RiepilogoFragment extends Fragment {
                     }
 
 
-                    handler.postDelayed(this, 5000);
+                    handler.postDelayed(this, 7000);
                 }
                 else {
-                    Log.d("DEBUG", "errore runnable");
-                    handler.postDelayed(this, 5000);
+                    Log.d("DEBUG_RUNNABLE_ONLY_RUN", "errore runnable");
+                    handler.postDelayed(this, 7000);
                 }
 
             }
         };
-        runnable.run();
     }
 
     private void deleteRandomWarning(){
@@ -385,18 +443,13 @@ public class RiepilogoFragment extends Fragment {
         else if(posIrrigazione.size()==maxSize)
             toDelete=posIrrigazione;
         else  toDelete=posPesticidi;
-        Log.d("DEBUGTYPE","toDelete size "+toDelete.size()+" maxSize "+maxSize);
+        //Log.d("DEBUGTYPE","toDelete size "+toDelete.size()+" maxSize "+maxSize);
         int randVal = random.nextInt(toDelete.size());
-        Log.d("DEBUGTYPE","Deleted "+warnings.get(toDelete.get(randVal)).getType());
-        Log.d("DEBUGTYPE","grandezza warnings prima di cancellare "+warnings.size());
-        Log.d("DEBUGTYPE","Cancellare warning in posizione "+toDelete.get(randVal));
         warnings.remove((toDelete.get(randVal)).intValue());
-        Log.d("DEBUGTYPE","grandezza warnings dopo aver cancellato "+warnings.size());
 
         for(Warning warn:warnings){
-            Log.d("DEBUGTYPE","Warning type "+warn.getType());
+            //Log.d("DEBUGTYPE","Warning type "+warn.getType());
         }
-        Log.d("DEBUGTYPE","\n\n");
     }
 
     private void startVibration(){
@@ -410,23 +463,14 @@ public class RiepilogoFragment extends Fragment {
     private void disegnaCerchi() {
         frameWarning.removeAllViews();
         for(Warning warning:warnings){
-            Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
-            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning.getType());
+           // Log.d("DEBUGCERCHI","Warnings type: "+warning.getType());
+            CerchioView cerchioView=new CerchioView(getContext(),warning.getxPosition(),warning.getyPosition(),warning.getSizeOfWarning(),warning.isSerious(),warning);
             frameWarning.addView(cerchioView);
-            cerchioView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    cerchioCliccato(view);
-                }
-            });
+
         }
         frameWarning.invalidate();
     }
 
-    private void cerchioCliccato(View view) {
-        CerchioView cerchiooView=(CerchioView)view;
-        Log.d("DEBUG","Cerchio cliccato, tipo "+cerchiooView.getType());
-    }
 
     private void saveWarnings(){
         SavingFiles.saveFile("fileWarnings",warnings);
@@ -436,6 +480,67 @@ public class RiepilogoFragment extends Fragment {
         warnings=(ArrayList<Warning>)SavingFiles.loadFile("fileWarnings");
         if(warnings==null){
             warnings=new ArrayList<>();
+            mustGenerate=true;
+        }
+        else
+            mustGenerate=false;
+    }
+
+
+    private void instanziateWarnings(){
+        if(mustGenerate){
+            frameWarning.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    frameWarning.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    frameHeight=frameWarning.getHeight(); //height is ready
+                    frameWidth=frameWarning.getWidth();
+                    Log.d("DEBUG","instanziateWarnings onGlobalLayout called, framewidth "+frameWidth+" frameheight "+frameHeight);
+                    boolean serious=false;
+                    for(int choice=0;choice<4;choice++) {
+                        String type = "";
+                        switch (choice) {
+                            case 0:
+                                type = Warning.CONCIMAZIONE;
+                                break;
+                            case 1:
+                                type = Warning.ERBA;
+                                break;
+                            case 2:
+                                type = Warning.IRRIGAZIONE;
+                                break;
+                            case 3:
+                                type = Warning.PESTICIDI;
+                                break;
+                        }
+                        int witch = random.nextInt(location.length);
+                        Warning warning = new Warning(type + location[witch], serious);
+                        warning.setType(type);
+                        int min=Math.min(frameWidth,frameHeight);
+                        min=min/27;
+                        int size = ((random.nextInt(5) + 2) * min);
+                        int xPosition = random.nextInt(frameWidth - size - size) + size;
+                        int yPosition = random.nextInt(frameHeight - size - size) + size;
+                        while (isOverlap(xPosition, yPosition, size)) {
+                            size = ((random.nextInt(5) + 2) * min);
+                            xPosition = random.nextInt(frameWidth - size - size) + size;
+                            yPosition = random.nextInt(frameHeight - size - size) + size;
+                        }
+                        warning.setxPosition(xPosition);
+                        warning.setyPosition(yPosition);
+                        warning.setSizeOfWarning(size);
+                        warning.setProductQuantity(random.nextInt(20) + 10);
+                        warning.setDays(random.nextInt(70) + 20);
+                        warnings.add(warning);
+                        saveWarnings();
+                        setTextviewWarningAttivi();
+                        CerchioView cerchioView = new CerchioView(getContext(), warning.getxPosition(), warning.getyPosition(), warning.getSizeOfWarning(), warning.isSerious(), false, warning);
+                        frameWarning.addView(cerchioView);
+                        serious=!serious;
+                    }
+                }
+            });
+
         }
     }
 
@@ -463,7 +568,7 @@ public class RiepilogoFragment extends Fragment {
         Glide.with(this).load(R.drawable.meteo_11).into(imageView);
     }
 
-
+    private static boolean mustGenerate;
     private int frameHeight;
     private int frameWidth;
     private String[] warningsSerious = new String[]{"Temperatura estrema nella piantagione di mele","Terreno eccessivamente arido nel vitigno","Grave mancanza di pesticida nella piantagione di uva Big Perlon","Umidità eccessiva rilevata nella piantagione di zucche"};

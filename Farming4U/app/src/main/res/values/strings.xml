@@ -2,9 +2,12 @@
     <string name="app_name">Farming4U</string>
 
     <string name="title_activity_maps">Map</string>
-    <string name="mappaOptionName">Mappa</string>
-    <string name="irrigatorOptionName">Irrigatori</string>
-    <string name="sensorOptionName">Sensori</string>
+    <string name="mappaOptionName">Cambia Mappa</string>
+    <string name="irrigatorOptionName">Gestione Irrigatori</string>
+    <string name="sensorOptionName">Gestione Sensori</string>
     <string name="logoutOptionName">Logout</string>
+
+    <string name="seleziona_zonaOptionName">Seleziona zona</string>
+    <string name="elimina_zonaOptionName">Elimina</string>
 
 </resources>

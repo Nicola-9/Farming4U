@@ -60,6 +60,8 @@ public class GroundStatusFragment extends Fragment {
 
         BasicActivity.getToolbar().setVisibility(View.VISIBLE);
 
+        BasicActivity.getToolbar().setTitle("Stato Terreno");
+
         return this.groundStatus;
     }
 

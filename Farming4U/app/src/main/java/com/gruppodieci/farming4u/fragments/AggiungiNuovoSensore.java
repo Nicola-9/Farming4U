@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -36,6 +37,10 @@ public class AggiungiNuovoSensore extends Fragment {
         switchSensorsLeft=view.findViewById(R.id.switchSensorsLeft);
         switchSensorsRight=view.findViewById(R.id.switchSensorsRight);
         sensorsImage=view.findViewById(R.id.sensorsImage);
+        nome=view.findViewById(R.id.editTextNomeSensore);
+        tipologia=view.findViewById(R.id.editTextTipologiaSensore);
+        valoreMinimo=view.findViewById(R.id.editTextValoreMinimoSensore);
+        valoreMassimo=view.findViewById(R.id.editTextValoreMassimoSensore);
         switchSensorsLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,9 +64,15 @@ public class AggiungiNuovoSensore extends Fragment {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                tipologia.setText("");
+                nome.setText("");
+                valoreMinimo.setText("");
+                valoreMassimo.setText("");
             }
         });
+
+
+
 
 
         setToolbar();
@@ -73,7 +84,7 @@ public class AggiungiNuovoSensore extends Fragment {
         ((BasicActivity)getActivity()).showToolbarMenu(false);
         MaterialToolbar toolbar= BasicActivity.getToolbar();
         toolbar.setVisibility(View.VISIBLE);
-        toolbar.setTitle("Inserisci sensore");
+        toolbar.setTitle("Aggiunta sensore");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +114,7 @@ public class AggiungiNuovoSensore extends Fragment {
         isBeacon=!isBeacon;
     }
 
+    private EditText nome,tipologia,valoreMinimo,valoreMassimo;
     private ImageView sensorsImage;
     private ImageButton switchSensorsRight;
     private ImageButton switchSensorsLeft;

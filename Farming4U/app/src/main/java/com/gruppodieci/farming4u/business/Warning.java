@@ -12,12 +12,18 @@ public class Warning implements Serializable {
         this.isSerious=isSerious;
         this.data=data;
         this.type=type;
+        this.tagClicked = false;
+        this.productQuantity = 0;
+        this.days = 0;
     }
 
     public Warning(String warning, boolean isSerious, String data){
         this.warning=warning;
         this.isSerious=isSerious;
         this.data=data;
+        this.tagClicked = false;
+        this.productQuantity = 0;
+        this.days = 0;
     }
 
     public Warning(String warning, boolean isSerious){
@@ -26,6 +32,9 @@ public class Warning implements Serializable {
         LocalDateTime data=LocalDateTime.now();
         String dataStr=""+data.getDayOfMonth()+" "+MonthConverter.getMonth(data.getMonthValue())+" "+data.getYear()+" "+data.getHour()+":"+data.getMinute();
         this.data=dataStr;
+        this.tagClicked = false;
+        this.productQuantity = 0;
+        this.days = 0;
     }
 
     public int getyPosition() {
@@ -81,6 +90,42 @@ public class Warning implements Serializable {
 
     public void setType(String type) { this.type = type; }
 
+    public boolean getTagClicked() { return this.tagClicked; }
+
+    public void setTagClicked(boolean tagClicked) { this.tagClicked = tagClicked; }
+
+    public int getProductQuantity() {
+        return this.productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public int getDays() {
+        return this.days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    @Override
+    public String toString() {
+        return "Warning{" +
+                "type='" + type + '\'' +
+                ", sizeOfWarning=" + sizeOfWarning +
+                ", yPosition=" + yPosition +
+                ", xPosition=" + xPosition +
+                ", data='" + data + '\'' +
+                ", warning='" + warning + '\'' +
+                ", isSerious=" + isSerious +
+                ", tagClicked=" + tagClicked +
+                ", productQuantity=" + productQuantity +
+                ", days=" + days +
+                '}';
+    }
+
     private String type;
     private int sizeOfWarning;
     private int yPosition;
@@ -88,6 +133,9 @@ public class Warning implements Serializable {
     private String data;
     private String warning;
     private boolean isSerious;
+    private boolean tagClicked;
+    private int productQuantity;
+    private int days;
 
     public static final String CONCIMAZIONE = "Carenza di concime";
     public static final String PESTICIDI = "Carenza di pesticidi";

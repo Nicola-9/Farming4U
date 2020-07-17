@@ -1,5 +1,6 @@
 package com.gruppodieci.farming4u;
 
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gruppodieci.farming4u.activity.BasicActivity;
+import com.gruppodieci.farming4u.business.Warning;
 import com.gruppodieci.farming4u.fragments.CuraPianteFragment;
 import com.gruppodieci.farming4u.fragments.GroundStatusFragment;
 import com.gruppodieci.farming4u.fragments.SeminaFragment;
@@ -25,11 +27,18 @@ public class BottomNavigationMenu {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
+                Log.d("DEBUG","Precedente frammento "+BottomNavigationMenu.getPreviousFragment());
+
+
 
                 switch (itemId){
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
                         replaceFragment(activeFragment);
+
+                        BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
+
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");
@@ -37,16 +46,26 @@ public class BottomNavigationMenu {
                         activeFragment = new GroundStatusFragment();
                         replaceFragment(activeFragment);
 
-                        BasicActivity.getToolbar().setTitle("Stato Terreno");
+                        BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
 
                         return true;
                     case R.id.grounds:
 
+                        for(Warning warning: RiepilogoFragment.warnings) {
+
+                            warning.setTagClicked(false);
+
+                        }
+
                         activeFragment = new GroundsFragment();
                         replaceFragment(activeFragment);
 
-                        BasicActivity.getToolbar().setTitle("Terreni");
+                        BasicActivity.getIstance().getSupportActionBar().show();
 
+                        BasicActivity.getToolbar().setElevation(0);
+
+                        BasicActivity.getToolbar().setNavigationIcon(null);
                         return true;
                 }
 
@@ -81,6 +100,16 @@ public class BottomNavigationMenu {
         fragmentTransaction.commit();
     }
 
+    public static void replaceFragment(int containerViewId, Fragment toReplace, boolean addToBackstack){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(containerViewId, toReplace);
+        if (addToBackstack) {
+            fragmentTransaction.addToBackStack(null);
+        }
+        fragmentTransaction.commit();
+    }
+
     public static AppCompatActivity getInstance(){
         return instance;
     }
@@ -93,6 +122,15 @@ public class BottomNavigationMenu {
         activeFragment = fragment;
     }
 
+    public static void setPreviousFragment(String fragment){
+        previousFrag = fragment;
+    }
+
+    public static String getPreviousFragment(){
+        return previousFrag;
+    }
+
     static AppCompatActivity instance;
     static Fragment activeFragment;
+    static String previousFrag;
 }
