@@ -52,7 +52,10 @@
 
 
     </LinearLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -64,6 +67,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editTextNomeSensore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
@@ -72,6 +76,7 @@
             />
 
         <EditText
+            android:id="@+id/editTextTipologiaSensore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
@@ -85,6 +90,7 @@
             android:lines="1"
             android:layout_margin="10dp"
             android:hint="Inserisci valore di minimo"
+            android:id="@+id/editTextValoreMinimoSensore"
             android:inputType="number"
             />
         <EditText
@@ -93,13 +99,14 @@
             android:lines="1"
             android:layout_margin="10dp"
             android:hint="Inserisci valore di massimo"
+            android:id="@+id/editTextValoreMassimoSensore"
             android:inputType="number"
             />
 
 
 
     </LinearLayout>
-
+    </ScrollView>
 
         <RelativeLayout
             android:id="@+id/relativeLayoutPulsanti"

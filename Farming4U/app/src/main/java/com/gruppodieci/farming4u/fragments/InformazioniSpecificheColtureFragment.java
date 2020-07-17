@@ -178,16 +178,15 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 Fragment fragment = new SeminaFragment();
-
-                replaceFragment(R.id.infSpecifica,fragment);
+                replaceFragment(R.id.mapContent, fragment);
                 BasicActivity.getIstance().getSupportActionBar().show();
             }
         });
 
         BasicActivity.getToolbar().setVisibility(View.GONE);
         GroundsFragment.getTab().setVisibility(View.GONE);
+        view.invalidate();
         return this.view;
     }
 
@@ -234,6 +233,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
                             Fragment fragment = new SeminaFragment();
                             replaceFragment(R.id.mapContent, fragment);
+
                             BasicActivity.getIstance().getSupportActionBar().show();
 
                         }
