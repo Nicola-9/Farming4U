@@ -59,6 +59,11 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerSensors">
+
     <TextView
         android:id="@+id/testoDesc1"
         android:layout_width="wrap_content"
@@ -82,7 +87,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"
             android:id="@+id/periodo_coltivazione" />
@@ -113,7 +118,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"
             android:id="@+id/Quntità_da_coltivare" />
@@ -134,7 +139,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/descrzione"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         android:layout_below="@id/testoDesc3"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
@@ -167,6 +172,8 @@
         android:text="annulla"
         android:textSize="13sp"
         android:id="@+id/cancel" />
+
+    </ScrollView>
 
 </RelativeLayout>
 </FrameLayout>
