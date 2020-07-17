@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
@@ -121,37 +122,43 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
         if(i == 1) {
             img.setBackgroundResource(R.drawable.icona_albero);
             textView.setText(consigli_gelso);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 2) {
             img.setBackgroundResource(R.drawable.icona_ciliegia);
             textView.setText(consigli_ciliegia);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 3) {
             img.setBackgroundResource(R.drawable.icona_mela);
             textView.setText(consigli_mela);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 4) {
             img.setBackgroundResource(R.drawable.icona_patata);
             textView.setText(consigli_patata);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 5) {
             img.setBackgroundResource(R.drawable.icona_kiwi);
             textView.setText(consigli_kiwi);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 6) {
             img.setBackgroundResource(R.drawable.icona_piselli);
             textView.setText(consigli_piselli);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
         else if(i == 7) {
             img.setBackgroundResource(R.drawable.icona_uva);
             textView.setText(consigli_uva);
+            textView.setMovementMethod(new ScrollingMovementMethod());
         }
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
               Fragment fragment = new SeminaFragment();
-
-              replaceFragment(R.id.infSpecifica,fragment);
+              replaceFragment(R.id.mapContent, fragment);
             }
         });
 
@@ -196,7 +203,8 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
                         String periodo = s.toString();
 
-                        Pattern pattern = Pattern.compile("(([1-9]|[12][0-9]|3[01])[- /.]([1-9]|1[012])[-/.](19|20)\\d\\d)");//((0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[-/.](19|20)\d\d)
+                        Pattern pattern = Pattern.compile("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
+
                         Matcher matcher = pattern.matcher(periodo);
 
                         Boolean resu = false;
