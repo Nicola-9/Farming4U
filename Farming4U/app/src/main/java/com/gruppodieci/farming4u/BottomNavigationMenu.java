@@ -29,17 +29,15 @@ public class BottomNavigationMenu {
                 int itemId = item.getItemId();
                 Log.d("DEBUG","Precedente frammento "+BottomNavigationMenu.getPreviousFragment());
 
-                //pulizia backstack
-                FragmentManager fm = BasicActivity.getBasicActivity().getSupportFragmentManager();
-                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                    fm.popBackStack();
-                }
+
+
                 switch (itemId){
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
 
                         return true;
                     case R.id.groundStatus:
@@ -49,6 +47,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+                        GroundsFragment.isSet = false;
 
                         return true;
                     case R.id.grounds:
