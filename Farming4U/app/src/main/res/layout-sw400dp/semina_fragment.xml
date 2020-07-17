@@ -18,7 +18,7 @@
         >
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="340dp"
+            android:layout_height="290dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
 
