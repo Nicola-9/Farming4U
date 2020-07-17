@@ -377,6 +377,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="9:00"
+                            android:textSize="@dimen/testo_materialcard_homepage"
                             android:layout_gravity="center"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
@@ -405,6 +406,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="12:00"
+                            android:textSize="@dimen/testo_materialcard_homepage"
                             android:layout_gravity="center"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
@@ -433,6 +435,8 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="15:00"
+                            android:textSize="@dimen/testo_materialcard_homepage"
+
                             android:layout_gravity="center"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
@@ -461,6 +465,8 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="18:00"
+                            android:textSize="@dimen/testo_materialcard_homepage"
+
                             android:layout_gravity="center"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />
@@ -489,6 +495,8 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="21:00"
+                            android:textSize="@dimen/testo_materialcard_homepage"
+
                             android:layout_gravity="center"
                             android:textAppearance="?attr/textAppearanceHeadline6"
                             />

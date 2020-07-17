@@ -12,11 +12,11 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="170dp"
         android:layout_weight="1"
         >
         <ImageView
-            android:layout_width="360dp"
+            android:layout_width="match_parent"
             android:layout_height="257dp"
             android:src="@drawable/terreno_riepilogo"
             android:layout_gravity="top"/>
@@ -44,7 +44,7 @@
             android:layout_height="45dp"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="120dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
             android:textSize="16sp"
