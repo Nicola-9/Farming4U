@@ -153,14 +153,18 @@ public class SeminaFragment extends Fragment {
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                activeFragment = new GroundsFragment();
+               /* activeFragment = new GroundsFragment();
                 replaceFragment(activeFragment);
 
                 BasicActivity.getIstance().getSupportActionBar().show();
 
                 BasicActivity.getToolbar().setElevation(0);
 
-                BasicActivity.getToolbar().setNavigationIcon(null);
+                BasicActivity.getToolbar().setNavigationIcon(null);*/
+
+                Fragment fragment = new SeminaFragment();
+                replaceFragment(R.id.mapContent, fragment);
+                BasicActivity.getIstance().getSupportActionBar().show();
 
                 Toast.makeText(getContext(), "Operazione annullata" , Toast.LENGTH_SHORT).show();
             }
@@ -585,10 +589,13 @@ public class SeminaFragment extends Fragment {
                         elimina.clearOneTerreni(nuovoTerreno, getContext());
 
                         //restart fragment
+                        /*Fragment fragment = new SeminaFragment();
+                        replaceFragment(R.id.mappa,fragment);*/
                         Fragment fragment = new SeminaFragment();
-                        replaceFragment(R.id.mappa,fragment);
+                        replaceFragment(R.id.mapContent, fragment);
+                        BasicActivity.getIstance().getSupportActionBar().show();
                         BottomNavigationMenu.setActiveFragment(fragment);
-                        BasicActivity.getIstance().getSupportActionBar().hide();
+
 
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
