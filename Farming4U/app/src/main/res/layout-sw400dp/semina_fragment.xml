@@ -55,19 +55,18 @@
 
     </FrameLayout>
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mappa">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="#FFFFFF"
-        android:layout_below="@id/mappa"
         android:id="@+id/zonaSottoMappa"
         >
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/headerSensors">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -253,9 +252,9 @@
                 android:id="@+id/cancel" />
 
         </RelativeLayout>
-    </ScrollView>
-    </FrameLayout>
 
+    </FrameLayout>
+    </ScrollView>
 
 </RelativeLayout>
 </FrameLayout>

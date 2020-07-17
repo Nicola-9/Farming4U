@@ -601,6 +601,7 @@ public class SeminaFragment extends Fragment {
                     case DialogInterface.BUTTON_NEGATIVE:
                         break;
                 }
+                view.invalidate();
             }
         };
 
