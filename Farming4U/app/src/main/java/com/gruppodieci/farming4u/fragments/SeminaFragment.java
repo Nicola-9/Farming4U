@@ -275,8 +275,12 @@ public class SeminaFragment extends Fragment {
                                     break;
                                 case MotionEvent.ACTION_UP:
                                     for(TerreniColtivati t : terreniFile){
-                                        if(x > t.getxPositionInizio() && x < t.getxPositionFine()){
-                                            if(y > t.getyPositionInizio() && y < t.getyPositionFine()){
+                                        float minX=Math.min(t.getxPositionInizio(),t.getxPositionFine());
+                                        float maxX=Math.max(t.getxPositionInizio(),t.getxPositionFine());
+                                        float minY=Math.min(t.getyPositionInizio(),t.getyPositionFine());
+                                        float maxY=Math.max(t.getyPositionInizio(),t.getyPositionFine());
+                                        if(x > minX && x < maxX){
+                                            if(y > minY && y < maxY){
                                                 DrawTheRectangle x = new DrawTheRectangle(getContext());
                                                 x.disegnaRettangoloSel(t.getxPositionInizio(), t.getyPositionInizio(), t.getxPositionFine(), t.getyPositionFine());
 
