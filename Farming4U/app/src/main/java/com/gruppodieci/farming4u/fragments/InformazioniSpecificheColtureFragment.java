@@ -178,10 +178,8 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 Fragment fragment = new SeminaFragment();
-
-                replaceFragment(R.id.infSpecifica,fragment);
+                replaceFragment(R.id.mapContent, fragment);
                 BasicActivity.getIstance().getSupportActionBar().show();
             }
         });

@@ -33,6 +33,7 @@ public class DrawTheRectangle extends View{
     private float fine_y;
     private Random casuale;
     private ArrayList<TerreniColtivati> terra;
+    private long iniziomillis,finemillis;
 
     public  DrawTheRectangle(Context context){
         super(context);
@@ -51,6 +52,7 @@ public class DrawTheRectangle extends View{
             public boolean onTouch(View v, @NotNull MotionEvent event) {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        iniziomillis=System.currentTimeMillis();
                         drawRectangle = true;
                         inizio_x = event.getX();
                         inizio_y = event.getY();
@@ -64,6 +66,9 @@ public class DrawTheRectangle extends View{
                         invalidate();
                         break;
                     case MotionEvent.ACTION_UP:
+                        iniziomillis=System.currentTimeMillis();
+                        fine_x = event.getX();
+                        fine_y = event.getY();
                         drawRectangle = false;
                         break;
                 }
@@ -74,12 +79,13 @@ public class DrawTheRectangle extends View{
         });
     }
 
+
+
     protected void onDraw(Canvas canvas) {
-        if(drawRectangle) {
-            paint.setColor(ContextCompat.getColor(getContext(), R.color.colorCardviewNote));
-            paint.setAlpha(180);
-            canvas.drawRect(inizio_x, inizio_y, fine_x, fine_y, paint);
-        }
+        paint.setColor(ContextCompat.getColor(getContext(), R.color.colorCardviewNote));
+        paint.setAlpha(180);
+        canvas.drawRect(inizio_x, inizio_y, fine_x, fine_y, paint);
+        postInvalidate();
     }
 
     public void disegnaRettangoloSel (float inizio_x, float inizio_y, float fine_x, float fine_y){
