@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/semina"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/semina"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_weight="1"
+        android:layout_height="270dp"
+        android:background="@drawable/terreno_riepilogo"
         >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="257dp"
-            android:src="@drawable/terreno_riepilogo"
-            android:layout_gravity="top"/>
+
 
         <ImageButton
             android:id="@+id/iconaMunu"
-            android:layout_height="50dp"
-            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_marginRight="5dp"
             android:padding="@dimen/cardview_padding_left"
@@ -239,8 +235,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="120dp"
-                android:layout_height="55dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_alignRight="@id/search_plants"
                 android:layout_below="@id/search_plants"
@@ -251,17 +247,18 @@
                 android:id="@+id/confirm" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="120dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="25dp"
-                android:layout_alignLeft="@id/search_plants"
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/search_plants"
+                android:layout_alignLeft="@id/search_plants"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginRight="20dp"
                 android:backgroundTint="#D83A3A"
-                app:cornerRadius="7dp"
                 android:text="annulla"
                 android:textSize="13sp"
-                android:id="@+id/cancel" />
+                app:cornerRadius="7dp" />
 
         </RelativeLayout>
 

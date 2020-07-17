@@ -13,14 +13,9 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:layout_weight="1"
+        android:layout_height="300dp"
+        android:background="@drawable/terreno_riepilogo"
         >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/terreno_riepilogo"
-            android:layout_gravity="top"/>
 
         <ImageButton
             android:id="@+id/iconaMunu"
@@ -227,8 +222,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
-                android:layout_height="55dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_alignRight="@id/search_plants"
                 android:layout_below="@id/search_plants"
@@ -239,8 +234,8 @@
                 android:id="@+id/confirm" />
 
             <com.google.android.material.button.MaterialButton
-                android:layout_width="130dp"
-                android:layout_height="55dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:layout_alignLeft="@id/search_plants"
                 android:layout_below="@id/search_plants"

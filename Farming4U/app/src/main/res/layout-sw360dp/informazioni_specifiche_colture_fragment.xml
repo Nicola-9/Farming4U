@@ -151,8 +151,8 @@
     </com.google.android.material.textview.MaterialTextView>
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="100dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_alignRight="@id/descrzione"
         android:layout_below="@id/descrzione"
@@ -163,8 +163,8 @@
         android:id="@+id/confirm" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="100dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_alignLeft="@id/descrzione"
         android:layout_below="@id/descrzione"
