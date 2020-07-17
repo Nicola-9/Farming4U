@@ -153,10 +153,14 @@ public class SeminaFragment extends Fragment {
 
         cancella.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Fragment fragment = new GroundsFragment();
-                replaceFragment(R.id.mapContent,fragment);
+                activeFragment = new GroundsFragment();
+                replaceFragment(activeFragment);
 
-                BasicActivity.getIstance().getSupportActionBar().hide();
+                BasicActivity.getIstance().getSupportActionBar().show();
+
+                BasicActivity.getToolbar().setElevation(0);
+
+                BasicActivity.getToolbar().setNavigationIcon(null);
 
                 Toast.makeText(getContext(), "Operazione annullata" , Toast.LENGTH_SHORT).show();
             }
