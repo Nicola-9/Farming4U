@@ -56,7 +56,7 @@ public class GroundsFragment extends Fragment {
 
         semina = tabLayout.newTab().setText("Semina e coltivazione");
         cura=tabLayout.newTab().setText("Cura delle piante");
-        trattamento=tabLayout.newTab().setText("Trattamento terreno");
+        trattamento=tabLayout.newTab().setText("Trattamento del terreno");
         tabLayout.addTab(cura);
         tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
