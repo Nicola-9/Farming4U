@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarIrrigationProblem"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#71A3BB">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+
+            <ImageButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/arrow_back"
+                android:background="@null"
+                android:tint="#fff"
+                android:scaleType="fitCenter"
+                android:id="@+id/infBackButton" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.7"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Irrigazione\nnecessaria"
+                        android:textColor="#fff"
+                        android:textSize="39sp"
+                        android:id="@+id/irrigationTitle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Priorità: Normale"
+                        android:textColor="#fff"
+                        android:textSize="19sp"
+                        android:id="@+id/irrigationPriority"/>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="25dp"
+                    android:background="#EFF377"
+                    android:id="@+id/irrigationPriorityColor">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/irrigator_problem"
+                        android:id="@+id/infParameterImage"/>
+
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarIrrigationProblem"
+        android:background="#71A3BB"
+        android:id="@+id/tabBarIrrigationProblem">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbarIrrigationProblem"
+            app:tabMode="fixed"
+            app:tabGravity="center"
+            android:background="#71A3BB"
+            app:tabSelectedTextColor="#fff"
+            app:tabIndicatorColor="#00FF0A">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informazioni" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabBarIrrigationProblem"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="191dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/graf"
+                android:layout_width="wrap_content"
+                android:layout_height="179dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/grafico_umidita" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/automat"
+                android:layout_width="313dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:text="Irrigazione automatica"
+                android:textSize="25dp" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="59dp"
+                android:layout_height="60dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/umidita"
+                android:layout_width="313dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:text="Valore soglia umidità"
+                android:textSize="25dp" />
+
+            <EditText
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="145" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/raggio"
+                android:layout_width="313dp"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:text="Raggio d'azione(metri)"
+                android:textSize="25dp" />
+
+            <EditText
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="20" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+

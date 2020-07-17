@@ -40,6 +40,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+
                         return true;
                     case R.id.groundStatus:
                         GroundStatusFragment.setSensor("beacon");
@@ -48,6 +49,7 @@ public class BottomNavigationMenu {
                         replaceFragment(activeFragment);
 
                         BasicActivity.getToolbar().setNavigationIcon(null);
+
                         return true;
                     case R.id.grounds:
 
@@ -58,8 +60,6 @@ public class BottomNavigationMenu {
                         }
 
                         activeFragment = new GroundsFragment();
-
-                        GroundsFragment.setTab("cura");
                         replaceFragment(activeFragment);
 
                         BasicActivity.getIstance().getSupportActionBar().show();
@@ -98,6 +98,16 @@ public class BottomNavigationMenu {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(containerViewId, toReplace);
 
+        fragmentTransaction.commit();
+    }
+
+    public static void replaceFragment(int containerViewId, Fragment toReplace, boolean addToBackstack){
+        FragmentManager fragmentManager = instance.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(containerViewId, toReplace);
+        if (addToBackstack) {
+            fragmentTransaction.addToBackStack(null);
+        }
         fragmentTransaction.commit();
     }
 

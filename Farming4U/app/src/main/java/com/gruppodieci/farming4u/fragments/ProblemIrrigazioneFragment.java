@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.gruppodieci.farming4u.BottomNavigationMenu;
 import com.gruppodieci.farming4u.R;
 import com.gruppodieci.farming4u.activity.BasicActivity;
 import com.gruppodieci.farming4u.business.SavingFiles;
@@ -45,8 +46,6 @@ public class ProblemIrrigazioneFragment extends Fragment {
         informationPriority = this.problemIrrigazione.findViewById(R.id.irrigationPriority);
 
         framePriorityColor = this.problemIrrigazione.findViewById(R.id.irrigationPriorityColor);
-
-
 
         risolvi=this.problemIrrigazione.findViewById(R.id.switch1);
 

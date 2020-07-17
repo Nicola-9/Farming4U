@@ -42,7 +42,6 @@ public class ProblemGrassFragment extends Fragment {
 
         resolve=this.problemGrass.findViewById(R.id.button_grass);
 
-
         resolve.setOnClickListener(new View.OnClickListener() {
 
             @Override
