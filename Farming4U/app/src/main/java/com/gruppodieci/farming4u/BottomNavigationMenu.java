@@ -29,11 +29,8 @@ public class BottomNavigationMenu {
                 int itemId = item.getItemId();
                 Log.d("DEBUG","Precedente frammento "+BottomNavigationMenu.getPreviousFragment());
 
-                //pulizia backstack
-                FragmentManager fm = BasicActivity.getBasicActivity().getSupportFragmentManager();
-                for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-                    fm.popBackStack();
-                }
+
+
                 switch (itemId){
                     case R.id.home:
                         activeFragment = new RiepilogoFragment();
