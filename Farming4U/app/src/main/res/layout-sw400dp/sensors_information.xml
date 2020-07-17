@@ -103,6 +103,10 @@
         </com.google.android.material.tabs.TabLayout>
 
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabBarSensor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -185,5 +189,10 @@
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"/>
+    </ScrollView>
 
 </RelativeLayout>
