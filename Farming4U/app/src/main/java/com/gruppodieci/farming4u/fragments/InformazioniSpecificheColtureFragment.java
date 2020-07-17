@@ -234,6 +234,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
                             Fragment fragment = new SeminaFragment();
                             replaceFragment(R.id.mapContent, fragment);
+
                             BasicActivity.getIstance().getSupportActionBar().show();
 
                         }
