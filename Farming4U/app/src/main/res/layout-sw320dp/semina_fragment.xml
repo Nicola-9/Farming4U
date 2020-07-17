@@ -23,15 +23,16 @@
 
         <ImageButton
             android:id="@+id/iconaMunu"
-            android:layout_height="60dp"
-            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
             android:layout_weight="1"
             android:layout_marginRight="5dp"
             android:padding="@dimen/cardview_padding_left"
             android:layout_gravity="top"
             android:layout_margin="15dp"
             android:src="@drawable/icona_menu2"
-            android:background="@null"
+            android:background="@drawable/menu_rad"
+            android:tint="#FFFFFF"
             />
 
 
