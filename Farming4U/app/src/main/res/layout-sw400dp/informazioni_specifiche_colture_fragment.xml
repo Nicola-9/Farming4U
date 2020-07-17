@@ -59,13 +59,19 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_product">
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
     <TextView
         android:id="@+id/testoDesc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
-        android:layout_below="@id/toolbar_product"
         android:text="Immetti periodo di coltivazione"
         android:textSize="15dp"
         />
@@ -78,11 +84,12 @@
         android:layout_below="@id/testoDesc1"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"
             android:id="@+id/periodo_coltivazione" />
@@ -113,10 +120,11 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"
-            android:id="@+id/Quntità_da_coltivare" />
+            android:id="@+id/Quntità_da_coltivare"
+            android:layout_marginTop="15dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,11 +142,12 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/descrzione"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="160dp"
         android:layout_below="@id/testoDesc3"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:scrollbars = "horizontal"
+        android:padding="10dp"
         android:background="@drawable/back"
         >
     </com.google.android.material.textview.MaterialTextView>
@@ -156,8 +165,8 @@
         android:id="@+id/confirm" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="130dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_alignLeft="@id/descrzione"
         android:layout_below="@id/descrzione"
@@ -167,6 +176,7 @@
         android:text="annulla"
         android:textSize="16sp"
         android:id="@+id/cancel" />
-
+   </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
 </FrameLayout>

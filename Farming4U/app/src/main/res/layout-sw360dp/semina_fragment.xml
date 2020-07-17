@@ -1,265 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:id="@+id/semina"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/semina"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/mappa"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_weight="1"
-        >
-        <ImageView
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="257dp"
-            android:src="@drawable/terreno_riepilogo"
-            android:layout_gravity="top"/>
-
-        <ImageButton
-            android:id="@+id/iconaMunu"
-            android:layout_height="60dp"
-            android:layout_width="60dp"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
-            android:padding="@dimen/cardview_padding_left"
-            android:layout_gravity="top"
-            android:layout_margin="15dp"
-            android:src="@drawable/icona_menu2"
-            android:background="@null"
-            />
-
-
-
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/salva"
-            android:layout_width="110dp"
-            android:layout_height="45dp"
-            android:layout_marginBottom="0dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="120dp"
-            android:backgroundTint="#9AB19B"
-            android:text="salva"
-            android:textSize="16sp"
-            app:cornerRadius="7dp"/>
-
-
-    </FrameLayout>
-
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#FFFFFF"
-        android:layout_below="@id/mappa"
-        >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/testoSelez"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:layout_alignParentTop="true"
-                android:text="Seleziona la tipologia per la coltivazione"
-                android:textSize="16dp"
-                />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/icon_ser"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <FrameLayout
+                android:id="@+id/mappa"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/testoSelez"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:cornerRadius="15dp"
-                app:strokeColor="#d1d1d1"
-                app:cardBackgroundColor="#FFFFFF"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@drawable/terreno_riepilogo"
                 >
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageButton
-                        android:id="@+id/icona1"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/icona_albero"
-                        android:background="@null"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/icona2"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icona_ciliegia"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@id/icona1"
-                        android:background="@null"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/icona3"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icona_mela"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@id/icona2"
-                        android:background="@null"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/icona4"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_gravity="center"
-                        android:src="@drawable/icona_patata"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@id/icona3"
-                        android:background="@null"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/icona5"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/icona_kiwi"
-                        android:layout_margin="15dp"
-                        android:background="@null"
-                        android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
-                        />
-
-                    <ImageButton
-                        android:id="@+id/icona6"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/icona_piselli"
-                        android:layout_margin="15dp"
-                        android:background="@null"
-                        android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
-                        />
-                    <ImageButton
-                        android:id="@+id/icona7"
-                        android:layout_height="60dp"
-                        android:layout_width="60dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:padding="@dimen/cardview_padding_left"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/icona_uva"
-                        android:layout_margin="15dp"
-                        android:background="@null"
-                        android:visibility="gone"
-                        android:foreground="@drawable/rounded_fg"
-                        />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/search_plants"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ricerca tipologia specificata"
-                android:layout_below="@id/icon_ser"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:id="@+id/input_text"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
+                <ImageButton
+                    android:id="@+id/iconaMunu"
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:padding="@dimen/cardview_padding_left"
+                    android:layout_gravity="top"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/icona_menu2"
+                    android:background="@drawable/menu_rad"
+                    android:tint="#FFFFFF"
                     />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="120dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="25dp"
-                android:layout_alignRight="@id/search_plants"
-                android:layout_below="@id/search_plants"
-                android:backgroundTint="#20C627"
-                app:cornerRadius="7dp"
-                android:text="Conferma"
-                android:textSize="13sp"
-                android:id="@+id/confirm" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="120dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="25dp"
-                android:layout_alignLeft="@id/search_plants"
-                android:layout_below="@id/search_plants"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="#D83A3A"
-                app:cornerRadius="7dp"
-                android:text="annulla"
-                android:textSize="13sp"
-                android:id="@+id/cancel" />
-
-        </RelativeLayout>
-
-    </FrameLayout>
 
 
-</RelativeLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/salva"
+                    android:layout_width="130dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_gravity="center_horizontal|bottom"
+
+                    android:backgroundTint="#9AB19B"
+                    android:text="salva"
+                    android:textSize="16sp"
+                    app:cornerRadius="7dp"/>
+
+
+            </FrameLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:fillViewport="true"
+                android:layout_below="@id/mappa">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:id="@+id/zonaSottoMappa"
+                    >
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                        <TextView
+                            android:id="@+id/testoSelez"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:text="Seleziona la tipologia per la coltivazione"
+                            android:textSize="17dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/icon_ser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/testoSelez"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cornerRadius="15dp"
+                            app:strokeColor="#d1d1d1">
+
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageButton
+                                        android:id="@+id/icona1"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_albero" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona2"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_toRightOf="@id/icona1"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_ciliegia" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona3"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_toRightOf="@id/icona2"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_mela" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona4"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_toRightOf="@id/icona3"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_patata" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona5"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_centerInParent="true"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_kiwi"
+                                        android:visibility="gone" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona6"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_centerInParent="true"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_piselli"
+                                        android:visibility="gone" />
+
+                                    <ImageButton
+                                        android:id="@+id/icona7"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:layout_centerInParent="true"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:background="@null"
+                                        android:padding="@dimen/cardview_padding_left"
+                                        android:src="@drawable/icona_uva"
+                                        android:visibility="gone" />
+
+                                </RelativeLayout>
+                            </HorizontalScrollView>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/search_plants"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/icon_ser"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:hint="Ricerca tipologia specificata">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/input_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:imeOptions="actionSearch"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:singleLine="true" />
+
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/confirm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignRight="@id/search_plants"
+                            android:layout_margin="20dp"
+                            android:backgroundTint="#20C627"
+                            android:text="Conferma"
+                            android:textSize="16sp"
+                            app:cornerRadius="7dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignLeft="@id/search_plants"
+                            android:layout_margin="20dp"
+                            android:layout_marginRight="20dp"
+                            android:backgroundTint="#D83A3A"
+                            android:text="annulla"
+                            android:textSize="16sp"
+                            app:cornerRadius="7dp" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>
