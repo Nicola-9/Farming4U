@@ -12,7 +12,7 @@
     <FrameLayout
         android:id="@+id/mappa"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="280dp"
         android:layout_weight="1"
         >
         <ImageView
@@ -45,7 +45,7 @@
             android:layout_height="45dp"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="200dp"
             android:backgroundTint="#9AB19B"
             android:text="salva"
             android:textSize="16sp"
@@ -95,6 +95,7 @@
                 app:cornerRadius="15dp"
                 app:strokeColor="#d1d1d1"
                 app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginTop="15dp"
                 >
 
                 <RelativeLayout
@@ -221,12 +222,12 @@
                 android:layout_below="@id/icon_ser"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-
+                android:layout_marginTop="20dp"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="match_parent"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:id="@+id/input_text"
