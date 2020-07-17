@@ -147,6 +147,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:scrollbars = "horizontal"
+        android:padding="10dp"
         android:background="@drawable/back"
         >
     </com.google.android.material.textview.MaterialTextView>
@@ -164,8 +165,8 @@
         android:id="@+id/confirm" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="130dp"
-        android:layout_height="55dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_alignLeft="@id/descrzione"
         android:layout_below="@id/descrzione"
