@@ -64,6 +64,8 @@ public class DrawTheRectangle extends View{
                         invalidate();
                         break;
                     case MotionEvent.ACTION_UP:
+                        fine_x = event.getX();
+                        fine_y = event.getY();
                         drawRectangle = false;
                         break;
                 }

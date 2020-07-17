@@ -313,6 +313,7 @@ public class SeminaFragment extends Fragment {
                     frame.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, @NotNull MotionEvent event) {
+                            Log.d("DEBUG_FRAME","Click sul frame");
                             switch(event.getAction()) {
                                 case MotionEvent.ACTION_DOWN:
                                     x = event.getX();
