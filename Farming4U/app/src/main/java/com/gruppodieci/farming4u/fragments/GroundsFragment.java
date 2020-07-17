@@ -56,17 +56,13 @@ public class GroundsFragment extends Fragment {
 
         semina = tabLayout.newTab().setText("Semina e coltivazione");
         cura=tabLayout.newTab().setText("Cura delle piante");
-        trattamento=tabLayout.newTab().setText("Trattamento del terreno");
+        trattamento=tabLayout.newTab().setText("Trattamento terreno");
         tabLayout.addTab(cura);
         tabLayout.addTab(trattamento);
         tabLayout.addTab(semina);
 
         tabLayout.setBackgroundColor(Color.parseColor("#71A3BB"));
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#FFFFFF"));
-
-        System.out.println("Cura" + flagCura);
-        System.out.println("Trattamento" + flagTrattamento);
-        System.out.println("semina" + flagSemina);
 
         if(flagCura) {
 
