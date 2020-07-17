@@ -188,6 +188,7 @@ public class InformazioniSpecificheColtureFragment extends Fragment {
 
         BasicActivity.getToolbar().setVisibility(View.GONE);
         GroundsFragment.getTab().setVisibility(View.GONE);
+        view.invalidate();
         return this.view;
     }
 
