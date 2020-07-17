@@ -147,6 +147,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:scrollbars = "horizontal"
+        android:padding="10dp"
         android:background="@drawable/back"
         >
     </com.google.android.material.textview.MaterialTextView>
