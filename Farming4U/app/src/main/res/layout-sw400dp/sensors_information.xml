@@ -188,11 +188,11 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="25dp"/>
+    </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>
